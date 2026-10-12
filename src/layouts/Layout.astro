@@ -1,0 +1,31 @@
+---
+import '@fontsource/manrope/cyrillic-400.css';
+import '@fontsource/manrope/cyrillic-500.css';
+import '@fontsource/manrope/cyrillic-600.css';
+import '@fontsource/manrope/latin-400.css';
+import '@fontsource/manrope/latin-500.css';
+import '@fontsource/manrope/latin-600.css';
+import '@fontsource/prata/cyrillic-400.css';
+import '@fontsource/prata/latin-400.css';
+import '../styles/global.css';
+interface Props { title?: string; description?: string; }
+const { title = 'Наталья Городицкая — финансовый директор для бизнеса', description = 'Финансовая модель, управленческий учёт, восстановление учёта и НМА. Наталья Городицкая: личное ведение проектов для среднего и крупного бизнеса по всей России.' } = Astro.props;
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#f6f6ef" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body><slot /></body>
+</html>
