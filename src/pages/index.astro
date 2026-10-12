@@ -1,112 +1,73 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import FinancialMap from '../components/FinancialMap.astro';
-import { site, questions, services, steps, faq } from '../data/site';
+import GrowthMap from '../components/GrowthMap.astro';
+import ModelDashboard from '../components/ModelDashboard.astro';
+import { site, services, faq } from '../data/site';
+const requests = [
+ {title:'Прибыль есть,\nа где деньги?',text:'Выручка растёт, но непонятно, куда уходят деньги и почему не чувствуется результат.',icon:'chart'},
+ {title:'Команда работает,\nно процессы пробуксовывают',text:'Много ручных операций, разные версии отчётов. Нужны единые правила и понятные роли.',icon:'team'},
+ {title:'Хотим масштабироваться,\nно как?',text:'Нужна понятная финансовая модель и план действий: рост, найм и инвестиции без лишних рисков.',icon:'box'},
+ {title:'Есть идеи, но не хватает\nструктуры',text:'Хочется навести порядок в цифрах и превратить планы в конкретные шаги и измеримый результат.',icon:'document'},
+];
+const workflow = [
+ {title:'Глубокая\nдиагностика',text:'Разбираемся в текущей ситуации, находим узкие места и точки роста.'},
+ {title:'Решение\nи план',text:'Предлагаем варианты, моделируем сценарии и согласовываем план.'},
+ {title:'Внедрение\nи поддержка',text:'Помогаем реализовать решения и сопровождаем на всех этапах.'},
+ {title:'Измеримый\nрезультат',text:'Фиксируем показатели, оцениваем эффект и строим следующие шаги.'},
+];
+const projects = [
+ {tags:['Производство','2022–2024'],title:'Связать учёт\nи производство',text:'Восстановление учёта, внедрение 1С ERP и подготовка к финансовому due diligence.',detail:'Производственная компания: восстановление учётной базы, внедрение 1С ERP, организация управленческой отчётности и подготовка данных к проверке инвестором.'},
+ {tags:['ИТ','2015–2020'],title:'Систематизация\nфинансов проектов',text:'Проектные финансы, восстановление учёта и сопровождение проверок в группе компаний.',detail:'Группа ИТ-компаний: управление проектными финансами, восстановление учёта и сопровождение сложных налоговых проверок.'},
+ {tags:['Финансовая модель','Производство'],title:'Видеть бизнес\nна три года вперёд',text:'Финансовая модель производства: связать планы, денежные потоки и результаты.',detail:'В рамках работы в производственной компании разработана финансовая модель на три года для планирования деятельности и подготовки к due diligence.'},
+];
 ---
 <Layout>
   <a class="skip-link" href="#main">К содержанию</a>
-  <header class="header">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Наталья Городицкая — на главную">
-        <span class="brand-name">{site.latinName}</span>
-        <span class="brand-role">{site.role}</span>
-      </a>
-      <nav class="desktop-nav" aria-label="Основная навигация">
-        <a href="#tasks">Задачи</a><a href="#services">Решения</a><a href="#approach">Подход</a><a href="#experience">Опыт</a>
-      </nav>
-      <a class="header-cta" href="#contact"><span>Обсудить задачу</span><span class="round-arrow"><Icon /></span></a>
-      <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
-    </div>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация" hidden>
-      <a href="#tasks">Задачи собственника</a><a href="#services">Решения для бизнеса</a><a href="#approach">Подход к работе</a><a href="#experience">Опыт Натальи</a><a href="#contact">Обсудить задачу <Icon /></a>
-    </nav>
-  </header>
-
+  <header class="header" id="top"><div class="container header-inner">
+    <a class="brand" href="#top" aria-label="Наталья Городицкая — на главную"><span class="brand-name">{site.name}</span><span class="brand-role">Бизнес. Финансы. Системный рост.</span></a>
+    <nav class="desktop-nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейсы</a><a href="#approach">Подход</a><a href="#expertise">Опыт</a><a href="#contact">Контакты</a></nav>
+    <button class="button header-cta" data-open-brief>Обсудить задачу <Icon/></button>
+    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+  </div><nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейсы</a><a href="#approach">Подход</a><a href="#expertise">Опыт</a><a href="#contact">Контакты</a></nav></header>
   <main id="main">
-    <section class="hero container" id="top">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot"></span> Финансовый директор для вашего бизнеса</p>
-        <h1>Видеть бизнес<br />целиком<span class="lime-dot">.</span><br />Управлять точнее<span class="lime-dot">.</span></h1>
-        <p class="hero-description">Помогаю собственникам среднего и крупного бизнеса понимать свои цифры и принимать обоснованные решения.</p>
-        <div class="hero-actions"><a class="button" href="#contact">Обсудить задачу <Icon /></a><span class="action-note">Личное ведение проектов.<br />Работа по всей России.</span></div>
-      </div>
-      <FinancialMap />
-      <div class="hero-foot"><span>Наталья Городицкая · Финансы, учёт и развитие</span><a href="#tasks">Начнём с ваших вопросов <span>↓</span></a></div>
+    <section class="hero container">
+      <div class="hero-copy"><p class="eyebrow">Консалтинг и финансовое моделирование</p><h1>Видеть бизнес<br/>целиком.<br/>Управлять точнее<span class="lime-dot">.</span></h1><p class="hero-description">Помогаю собственникам и руководителям навести порядок в финансах, процессах и команде, чтобы бизнес рос стабильно и приносил больше свободы.</p><div class="hero-actions"><button class="button" data-open-brief>Обсудить задачу <Icon/></button><a class="text-link" href="#about">Узнать больше <span class="circle-plus"><Icon name="plus"/></span></a></div><div class="hero-facts" id="expertise"><div><strong>с 1996 года</strong><span>в финансах и учёте</span></div><div><strong>50+</strong><span>специалистов в команде</span></div><div><strong>1С ERP</strong><span>опыт внедрения</span></div></div></div>
+      <GrowthMap/>
     </section>
-
-    <section class="section tasks-section" id="tasks">
-      <div class="container">
-        <div class="section-top"><p class="eyebrow">01 / Задачи собственника</p><span class="section-note">От вопроса — к понятным цифрам</span></div>
-        <div class="section-intro"><h2>Бизнес растёт.<br />Ясности должно<br />быть больше<span class="lime-dot">.</span></h2><p>Финансовая отчётность должна объяснять, что происходит в бизнесе, и помогать выбрать следующий шаг.</p></div>
-        <div class="question-grid">
-          {questions.map((question, i) => <article class="question-card"><span class="question-number">0{i + 1}</span><p class="micro-label">{question.tag}</p><h3>{question.title}</h3><p>{question.text}</p><a href="#financial-model" aria-label={`Как решить задачу: ${question.title}`} class="text-link">Разобраться в цифрах <Icon /></a></article>)}
-        </div>
-        <div class="tasks-note"><span class="note-mark">↳</span><p>Финансовая модель просчитывает сценарии. Управленческая отчётность показывает фактический результат и отклонения от плана.</p></div>
-      </div>
-    </section>
-
-    <section class="section services-section" id="services">
-      <div class="container">
-        <div class="section-top"><p class="eyebrow">02 / Решения для бизнеса</p><span class="section-note">От отдельной задачи до финансовой системы</span></div>
-        <h2 class="services-title">Порядок в цифрах.<br />Основа для решений<span class="lime-dot">.</span></h2>
-        <article class="model-feature" id="financial-model">
-          <div class="model-feature-copy"><p class="micro-label">01 / Финансовое управление</p><h3>Ваш бизнес.<br />В одной модели.</h3><p>Связываем выручку, затраты, денежные потоки и обязательства. Показываем, как решения о росте, найме и инвестициях меняют финансовый результат.</p><button class="button" data-open-brief data-task="Финансовая модель и управленческая отчётность">Обсудить финансовую модель <Icon /></button></div>
-          <div class="model-outline">
-            <div class="outline-title"><span>ФИНАНСОВАЯ МОДЕЛЬ</span><span>↗</span></div>
-            <div class="outline-row"><span class="outline-icon">₽</span><div><strong>Деньги</strong><span>ДДС · Платёжный календарь</span></div><Icon name="check" /></div>
-            <div class="outline-row"><span class="outline-icon">↗</span><div><strong>Прибыль</strong><span>Доходы · Себестоимость · Проекты</span></div><Icon name="check" /></div>
-            <div class="outline-row"><span class="outline-icon">≈</span><div><strong>Баланс</strong><span>Активы · Обязательства · Капитал</span></div><Icon name="check" /></div>
-            <div class="outline-result"><span class="status-dot"></span><span>План → факт → решение</span></div>
-          </div>
-        </article>
-        <div class="service-stack">
-          {services.map(service => <article class="service-panel" id={service.id}>
-            <div class="service-heading"><span class="service-number">{service.number}</span><p class="micro-label">{service.label}</p><h3>{service.title}</h3></div>
-            <div class="service-content"><p>{service.text}</p><ul class="deliverables">{service.bullets.map(item => <li><span></span>{item}</li>)}</ul><details class="service-details"><summary>Что входит в работу <Icon name="plus" /></summary><p>{service.detail}</p><button class="text-link" data-open-brief data-task={service.label}>Обсудить эту задачу <Icon /></button></details></div>
-          </article>)}
-        </div>
-        <div class="complex-work"><div><p class="micro-label">СЛОЖНЫЕ КОНТУРЫ</p><h3>Когда цена ошибки высока.</h3><p>Отдельно прорабатываем задачи, требующие внимания к документам, регламентам и рискам.</p></div><div class="complex-items"><details><summary>Раздельный учёт по ГОЗ, 275-ФЗ <Icon name="plus" /></summary><p>Методология раздельного учёта, распределение затрат и подготовка учётной базы по конкретным контрактам.</p></details><details><summary>Выездные налоговые проверки <Icon name="plus" /></summary><p>Финансовая и учётная подготовка, сбор доказательной базы. Процессуальные вопросы и споры ведём с профильным налоговым юристом.</p></details></div></div>
-      </div>
-    </section>
-
-    <section class="section approach-section" id="approach">
-      <div class="container approach-grid">
-        <div class="approach-intro"><p class="eyebrow">03 / Подход к работе</p><h2>От данных<br />к работающему<br />решению<span class="lime-dot">.</span></h2><p>На каждом этапе понятны цель, результат и следующий шаг. Вы общаетесь со специалистом, который ведёт ваш проект.</p><a href="#contact" class="text-link">Начать с обсуждения <Icon /></a></div>
-        <ol class="timeline">{steps.map((step,i) => <li><span class="step-number">0{i+1}</span><div><h3>{step.title}</h3><p>{step.text}</p><span class="step-result">{step.result}</span></div></li>)}</ol>
-      </div>
-    </section>
-
-    <section class="section experience-section" id="experience">
-      <div class="container">
-        <div class="section-top"><p class="eyebrow">04 / Практический опыт</p><span class="section-note">ИТ · Производство · Строительство</span></div>
-        <div class="section-intro"><h2>За решениями —<br />реальный опыт<span class="lime-dot">.</span></h2><p>Финансовое управление внутри компаний: от восстановления учёта до моделей для инвесторов и внедрения ERP.</p></div>
-        <div class="experience-facts"><div><span class="fact-value">С 1996<span>года</span></span><p>в финансах и учёте</p></div><div><span class="fact-value">50+<span>специалистов</span></span><p>в отделе под руководством</p></div><div><span class="fact-value">1С ERP</span><p>опыт внедрения в производстве</p></div></div>
-        <div class="experience-projects">
-          <article><p class="micro-label">ПРОИЗВОДСТВО / 2022–2024</p><h3>Связать учёт<br />и производство.</h3><p>Восстановление учёта, внедрение 1С ERP, финансовая модель на три года и подготовка к due diligence.</p><div class="project-tags"><span>1С ERP</span><span>Управленческий учёт</span><span>ГОЗ</span></div></article>
-          <article><p class="micro-label">ИТ / 2015–2020</p><h3>Управлять финансами<br />проектного бизнеса.</h3><p>Работа с проектными финансами, восстановление учёта и сопровождение проверок в группе ИТ-компаний.</p><div class="project-tags"><span>Проектные финансы</span><span>Группа компаний</span></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section about-section" id="about">
-      <div class="container about-grid">
-        <figure class="portrait"><img src="/images/natalia.png" width="327" height="500" alt="Наталья Городицкая" loading="lazy" decoding="async" /><figcaption><span class="status-dot"></span> Лично веду каждый проект</figcaption></figure>
-        <div class="about-copy"><p class="eyebrow">05 / Личный подход</p><h2>Наталья<br />Городицкая<span class="lime-dot">.</span></h2><p class="about-role">Финансовый директор · Эксперт по учёту</p><p class="about-lead">Помогаю собственнику увидеть бизнес целиком: разобраться в финансовой картине, выстроить надёжный учёт и оценить следующие решения.</p><p>Мой опыт соединяет финансовое управление, бухгалтерский учёт и внедрение систем. Поэтому модель опирается на реальные данные компании, а отчёты учитывают её процессы.</p><div class="personal-note"><span>↳</span><p>Веду проект лично. Под конкретную задачу подключаю интеграторов 1С, юристов и других профильных специалистов.</p></div><a class="text-link" href="#contact">Познакомиться и обсудить проект <Icon /></a></div>
-      </div>
-    </section>
-
-    <section class="section faq-section">
-      <div class="container faq-grid"><div><p class="eyebrow">06 / До начала работы</p><h2>Несколько<br />важных вопросов<span class="lime-dot">.</span></h2></div><div class="faq-list">{faq.map(item => <details><summary>{item.question}<Icon name="plus" /></summary><p>{item.answer}</p></details>)}</div></div>
-    </section>
-
-    <section class="contact-section" id="contact">
-      <div class="container contact-grid"><div><p class="eyebrow"><span class="status-dot"></span> Давайте начнём с вашей задачи</p><h2>Больше ясности.<br />Для следующего<br />решения<span class="lime-dot">.</span></h2></div><div class="contact-copy"><p>Расскажите, что происходит в бизнесе и какой результат вам нужен. Обсудим возможный состав работ и формат сотрудничества.</p><button class="button" data-open-brief>Обсудить задачу <Icon /></button><div class="direct-contacts"><a href={`mailto:${site.email}`}>{site.email} <Icon /></a><a href={`tel:${site.phoneHref}`}>{site.phone}</a><span>Онлайн · Компании по всей России</span></div></div></div>
-    </section>
+    <section class="requests-section" id="tasks"><div class="container split-layout">
+      <div class="section-intro"><p class="eyebrow">С чем обращаются</p><h2>Бизнес растёт.<br/>Ясности должно<br/>быть больше.</h2><p>На определённом этапе интуиции и опыта уже недостаточно. Важно видеть системную картину и принимать решения на основе цифр.</p><button class="text-link" data-open-requests>Посмотреть все запросы <span class="circle-plus"><Icon/></span></button></div>
+      <div class="request-grid">{requests.map((request,i)=><a class={`request-card request-card-${i+1}`} href="#financial-model"><div class="request-meta"><span>0{i+1}</span><Icon/></div><h3>{request.title}</h3><p>{request.text}</p><Icon name={request.icon} class="request-illustration"/></a>)}</div>
+    </div></section>
+    <section class="model-section" id="services"><div class="container model-grid" id="financial-model">
+      <div class="model-copy"><p class="eyebrow">Инструмент, который работает</p><h2>Ваш бизнес.<br/>В одной модели.</h2><p>Создаём понятную финансовую модель, которая объединяет стратегию, финансы и операционную деятельность. Вы видите, как решения влияют на прибыль, денежный поток и рост.</p><a class="button" href="#model-dashboard">Посмотреть пример <Icon/></a><button class="text-link model-services-link" data-open-services>Услуги и состав работ <Icon/></button></div>
+      <ModelDashboard/>
+      <ul class="model-benefits"><li><Icon name="finance"/><span>Моделируйте<br/>сценарии</span></li><li><Icon name="shield"/><span>Оценивайте<br/>риски</span></li><li><Icon name="process"/><span>Принимайте<br/>решения<br/>уверенно</span></li></ul>
+    </div></section>
+    <section class="approach-section" id="approach"><div class="container approach-layout"><div class="section-intro"><p class="eyebrow">Как мы работаем</p><h2>От анализа<br/>к результату.</h2><p>Структурный подход, понятные этапы и постоянная связь на каждом шаге.</p><button class="text-link" data-open-approach>Подробнее о подходе <span class="circle-plus"><Icon/></span></button></div><ol class="workflow">{workflow.map((step,i)=><li><span class="step-number">0{i+1}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol></div></section>
+    <section class="cases-section" id="experience"><div class="container cases-layout"><div class="section-intro"><p class="eyebrow">Практический опыт</p><h2>За решениями<br/>реальный опыт.</h2><p>Учёт, финансовые модели и внедрение систем внутри компаний.</p><button class="text-link" data-open-cases>Все примеры <Icon/></button></div><div class="case-grid">{projects.map((project,i)=><article class="case-card"><div class="case-tags">{project.tags.map(tag=><span>{tag}</span>)}</div><h3>{project.title}</h3><p>{project.text}</p><button class="text-link" data-case={i}>Читать подробнее <Icon/></button></article>)}</div></div></section>
+    <section class="about-section" id="about"><div class="container about-grid"><figure class="portrait"><img src="/images/natalia.png" width="327" height="500" alt="Наталья Городицкая" loading="lazy"/><figcaption class="handwritten">Бизнес —<br/>это прежде всего<br/>люди.</figcaption></figure><div class="about-copy"><p class="eyebrow">Обо мне</p><h2>Наталья<br/>Городицкая</h2><p class="about-role">Финансовый директор. Эксперт по учёту.</p><p>С 1996 года помогаю компаниям выстраивать устойчивые финансы. Мой подход — это сочетание аналитики, практического опыта и живого человеческого диалога.</p><button class="text-link" data-open-about>Подробнее обо мне <Icon/></button></div><ul class="about-facts"><li><Icon name="calendar"/><span>Опыт в финансах<br/>и учёте с 1996 года</span></li><li><Icon name="team"/><span>Руководство командой<br/>из 50+ специалистов</span></li><li><Icon name="product"/><span>Опыт в ИТ, производстве<br/>и строительстве</span></li><li><Icon name="certificate"/><span>Фокус на устойчивость<br/>и понятный результат</span></li></ul></div></section>
+    <section class="contact-section" id="contact"><img class="contact-landscape" src="/images/consultation-landscape.png" width="2172" height="724" alt="" loading="lazy"/><div class="container contact-grid"><div class="contact-copy"><p class="eyebrow">Консультация</p><h2>Обсудим ваш запрос?</h2><p>Расскажите о задаче, и я предложу возможный формат сотрудничества и первые шаги.</p><div class="contact-actions"><button class="button" data-open-brief>Оставить заявку <Icon/></button><a class="text-link" href={`mailto:${site.email}`}>Написать на почту <span class="circle-plus"><Icon name="mail"/></span></a></div></div><ul class="contact-promises"><li><span><Icon name="document"/></span>Обсуждение задачи</li><li><span><Icon name="shield"/></span>Конфиденциально</li><li><span><Icon name="finance"/></span>Личное ведение проекта</li></ul></div></section>
   </main>
-
-  <footer class="footer"><div class="container footer-top"><a href="#top" class="brand"><span class="brand-name">{site.latinName}</span><span class="brand-role">{site.role}</span></a><nav aria-label="Навигация в подвале"><a href="#services">Решения</a><a href="#approach">Подход</a><a href="#experience">Опыт</a><a href="#contact">Контакты</a></nav><a class="back-top" href="#top" aria-label="Вернуться к началу страницы">↑</a></div><div class="container footer-bottom"><span>© {new Date().getFullYear()} Наталья Городицкая</span><span>Структура сегодня. Устойчивость завтра.</span></div></footer>
-
+  <footer class="footer"><div class="container footer-inner"><a href="#top" class="brand"><span class="brand-name">{site.name}</span><span class="brand-role">Бизнес. Финансы. Системный рост.</span></a><nav aria-label="Навигация в подвале"><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейсы</a><a href="#approach">Подход</a><a href="#expertise">Опыт</a><a href="#contact">Контакты</a></nav><div class="footer-social"><a href={`mailto:${site.email}`} aria-label="Написать Наталье на почту"><Icon name="mail"/></a><a href={`tel:${site.phoneHref}`} aria-label="Позвонить Наталье"><Icon name="phone"/></a></div><div class="footer-legal"><span>© {new Date().getFullYear()} Все права защищены</span><button data-open-privacy>Конфиденциальность</button></div></div></footer>
+  <dialog class="info-dialog" id="info-dialog" aria-labelledby="info-title"><button class="dialog-close" aria-label="Закрыть подробности"><Icon name="close"/></button><p class="eyebrow">Наталья Городицкая</p><h2 id="info-title">Подробнее</h2><div id="info-content"></div></dialog>
+  <div class="info-sources" hidden>
+    <section id="info-services"><h3>Услуги и состав работ</h3><p>Финансовая модель, управленческая отчётность и план-факт — основа для решений собственника.</p>{services.map(service=><article><h4>{service.label}</h4><p>{service.text}</p><ul>{service.bullets.map(item=><li>{item}</li>)}</ul><p>{service.detail}</p></article>)}<article><h4>Сложные контуры</h4><p>Раздельный учёт по ГОЗ, 275-ФЗ, НИОКР и НМА, сопровождение выездных налоговых проверок. Юридические задачи ведём с профильными юристами, подключёнными под проект.</p></article></section>
+    <section id="info-requests"><h3>Вопросы собственника</h3><ul><li>Где деньги?</li><li>Почему прибыль есть, а денег нет?</li><li>Выручка растёт, а денег нет.</li><li>Какой проект приносит прибыль?</li><li>Могу ли я принять в штат сотрудников?</li><li>Почему не дают кредит?</li><li>Почему банк заблокировал выборку кредита?</li></ul><p>Переводим эти вопросы в понятные цифры, финансовую модель и оперативные управленческие отчёты.</p></section>
+    <section id="info-approach"><h3>От диагностики к решениям</h3>{workflow.map(step=><article><h4>{step.title}</h4><p>{step.text}</p></article>)}<p>Наталья ведёт проект лично. Интеграторы 1С, налоговые юристы и другие специалисты подключаются под согласованную задачу.</p></section>
+    <section id="info-about"><h3>Финансы, учёт и развитие</h3><p>Опыт Натальи соединяет финансовое управление, бухгалтерский учёт и внедрение систем. Финансовая модель опирается на данные компании, а отчёты учитывают её процессы.</p><p>ИТ, производство и строительство. Восстановление учёта, 1С ERP, проектные финансы и подготовка к due diligence.</p>{faq.map(item=><article><h4>{item.question}</h4><p>{item.answer}</p></article>)}<p>Связаться: <a href={`mailto:${site.email}`}>{site.email}</a> · <a href={`tel:${site.phoneHref}`}>{site.phone}</a></p></section>
+    <section id="info-cases"><h3>Примеры из практики</h3>{projects.map(project=><article><h4>{project.title}</h4><p>{project.detail}</p></article>)}</section>
+    {projects.map((project,i)=><section id={`info-case-${i}`}><h3>{project.title}</h3><p>{project.detail}</p><p>Подробнее о задаче и применимости подхода можно обсудить на встрече.</p></section>)}
+    <section id="info-privacy"><h3>Как работает сайт</h3><p>Этот сайт не получает и не сохраняет данные, введённые в форму. Текст письма формируется в вашем браузере и остаётся у вас, пока вы сами не отправите его Наталье через свою почтовую программу.</p><p>Контакты для связи: {site.email}, {site.phone}.</p></section>
+  </div>
+  <script>
+    const infoDialog=document.getElementById('info-dialog') as HTMLDialogElement;
+    const showInfo=(id:string)=>{const source=document.getElementById('info-'+id);if(!source)return;document.getElementById('info-title')!.textContent=source.querySelector('h3')!.textContent;const content=document.getElementById('info-content')!;content.replaceChildren(...[...source.children].filter(el=>el.tagName!=='H3').map(el=>el.cloneNode(true)));infoDialog.showModal();};
+    ['services','requests','approach','about','cases','privacy'].forEach(id=>document.querySelector('[data-open-'+id+']')?.addEventListener('click',()=>showInfo(id)));
+    document.querySelectorAll('[data-case]').forEach(el=>el.addEventListener('click',()=>showInfo('case-'+(el as HTMLElement).dataset.case)));
+    infoDialog.querySelector('.dialog-close')?.addEventListener('click',()=>infoDialog.close());
+    infoDialog.addEventListener('click',e=>{if(e.target!==infoDialog)return;const r=infoDialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)infoDialog.close();});
+  </script>
   <dialog class="brief-dialog" id="brief-dialog" aria-labelledby="brief-title">
     <button class="dialog-close" aria-label="Закрыть окно"><Icon name="close" /></button>
     <p class="eyebrow">Начало разговора</p><h2 id="brief-title">Расскажите<br />о вашей задаче<span class="lime-dot">.</span></h2>
@@ -129,7 +90,7 @@ import { site, questions, services, steps, faq } from '../data/site';
     toggle?.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded',String(open)); toggle.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню'); mobileNav.hidden = !open; });
     mobileNav?.querySelectorAll('a').forEach(a => a.addEventListener('click',closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-    window.matchMedia('(min-width: 901px)').addEventListener('change',closeMenu);
+    window.matchMedia('(min-width: 1101px)').addEventListener('change',closeMenu);
     const dialog = document.getElementById('brief-dialog');
     const form = document.getElementById('brief-form');
     document.querySelectorAll('[data-open-brief]').forEach(button => button.addEventListener('click', () => {
@@ -137,7 +98,7 @@ import { site, questions, services, steps, faq } from '../data/site';
       if (task) { const select=form.elements.task; const option=[...select.options].find(o=>o.value.toLowerCase()===task.toLowerCase()); if(option)select.value=option.value; }
       dialog.showModal();
     }));
-    document.querySelector('.dialog-close')?.addEventListener('click',()=>dialog.close());
+    dialog.querySelector('.dialog-close')?.addEventListener('click',()=>dialog.close());
     dialog?.addEventListener('click', e => { if (e.target === dialog) { const r=dialog.getBoundingClientRect(); if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close(); } });
     dialog?.addEventListener('close',()=> { document.querySelector('.email-fallback').hidden=true; document.getElementById('form-note').textContent='Данные не сохраняются на сайте.'; form.reset(); });
     form?.addEventListener('submit', e => {

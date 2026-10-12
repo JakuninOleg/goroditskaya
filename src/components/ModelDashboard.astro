@@ -1,0 +1,279 @@
+---
+const sections = [
+  { id: 'overview', label: 'Обзор', icon: 'M7 4h10v3H7z M5 7h14v13H5z M9 11h6 M9 15h6 M12 7v3' },
+  { id: 'finance', label: 'Финансы', icon: 'M3 10 12 4l9 6 M5 10h14 M6 11v8 M10 11v8 M14 11v8 M18 11v8 M4 20h16' },
+  { id: 'processes', label: 'Процессы', icon: 'M5 4h10l4 4v12H5z M15 4v5h4 M8 12h8 M8 16h5' },
+  { id: 'team', label: 'Команда', icon: 'M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M2 20v-3a6 6 0 0 1 12 0v3z M14 13a6 6 0 0 1 8 4v3h-5' },
+  { id: 'strategy', label: 'Стратегия', icon: 'M4 19h16 M5 16l4-5 4 2 6-8 M15 5h4v4 M6 17v2 M11 15v4 M16 11v8' },
+];
+---
+
+<div class="dash-shell" id="model-dashboard" data-dashboard>
+  <nav class="dash-nav" aria-label="Разделы примера финансовой модели">
+    {sections.map((section, index) => (
+      <button class="dash-nav-button" type="button" data-dash-section={section.id} aria-pressed={index === 0 ? 'true' : 'false'}>
+        <svg class="dash-nav-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={section.icon} /></svg>
+        <span>{section.label}</span>
+      </button>
+    ))}
+  </nav>
+
+  <div class="dash-content">
+    <div class="dash-topline">
+      <h3 class="dash-heading" data-dash-heading>Ключевые показатели</h3>
+      <div class="dash-periods" role="group" aria-label="Период модели">
+        <button class="dash-period-button" type="button" data-dash-period="half" aria-pressed="true">6 мес</button>
+        <button class="dash-period-button" type="button" data-dash-period="year" aria-pressed="false">Год</button>
+        <button class="dash-period-button" type="button" data-dash-period="three" aria-pressed="false">3 года</button>
+      </div>
+    </div>
+
+    <div class="dash-metrics" aria-live="polite" aria-atomic="true">
+      <div class="dash-metric">
+        <p class="dash-metric-label" data-dash-label="0">Выручка</p>
+        <p class="dash-metric-value" data-dash-value="0">24,8 <span>млн ₽</span></p>
+        <p class="dash-metric-change" data-dash-change="0">+9,3% к периоду</p>
+      </div>
+      <div class="dash-metric">
+        <p class="dash-metric-label" data-dash-label="1">Чистая прибыль</p>
+        <p class="dash-metric-value" data-dash-value="1">6,4 <span>млн ₽</span></p>
+        <p class="dash-metric-change" data-dash-change="1">+8,2% к периоду</p>
+      </div>
+      <div class="dash-metric">
+        <p class="dash-metric-label" data-dash-label="2">Рентабельность</p>
+        <p class="dash-metric-value" data-dash-value="2">26<span>%</span></p>
+        <p class="dash-metric-change" data-dash-change="2">+0,6 п. п.</p>
+      </div>
+    </div>
+
+    <div class="dash-chart-row">
+      <div class="dash-chart-wrap">
+        <svg class="dash-chart" viewBox="0 0 350 145" role="img" aria-label="Условная динамика выручки и прибыли за шесть месяцев" data-dash-chart>
+          <g class="dash-grid" aria-hidden="true">
+            <path d="M18 23H336 M18 61H336 M18 99H336 M18 137H336" />
+          </g>
+          <g class="dash-revenue-bars" aria-hidden="true" data-dash-bars="primary">
+            <rect x="27" y="93" width="10" height="44" /><rect x="86" y="76" width="10" height="61" />
+            <rect x="145" y="57" width="10" height="80" /><rect x="204" y="69" width="10" height="68" />
+            <rect x="263" y="48" width="10" height="89" /><rect x="322" y="36" width="10" height="101" />
+          </g>
+          <g class="dash-profit-bars" aria-hidden="true" data-dash-bars="secondary">
+            <rect x="15" y="113" width="8" height="24" /><rect x="74" y="104" width="8" height="33" />
+            <rect x="133" y="88" width="8" height="49" /><rect x="192" y="95" width="8" height="42" />
+            <rect x="251" y="84" width="8" height="53" /><rect x="310" y="71" width="8" height="66" />
+          </g>
+          <path class="dash-trend" d="M27 104C45 98 46 70 70 69S96 78 113 58S139 38 153 50S175 69 194 41S216 24 231 33S258 30 270 19S300 20 327 10" data-dash-line aria-hidden="true" />
+        </svg>
+        <div class="dash-axis-labels" aria-hidden="true" data-dash-axis>
+          <span class="dash-axis-label">Янв</span><span class="dash-axis-label">Фев</span><span class="dash-axis-label">Мар</span>
+          <span class="dash-axis-label">Апр</span><span class="dash-axis-label">Май</span><span class="dash-axis-label">Июн</span>
+        </div>
+      </div>
+
+      <div class="dash-chart-details">
+        <div class="dash-result">
+          <p class="dash-result-label" data-dash-result-label>Результат за 6 мес</p>
+          <strong class="dash-result-value" data-dash-result-value>24,8 млн ₽</strong>
+          <span class="dash-result-change" data-dash-result-change>+9,3%</span>
+        </div>
+        <div class="dash-legend" aria-label="Легенда графика">
+          <span class="dash-legend-item"><i class="dash-legend-primary" aria-hidden="true"></i><span data-dash-legend="0">Выручка</span></span>
+          <span class="dash-legend-item"><i class="dash-legend-secondary" aria-hidden="true"></i><span data-dash-legend="1">Прибыль</span></span>
+        </div>
+      </div>
+    </div>
+    <p class="dash-caption">Пример · условные данные</p>
+    <p class="dash-sr-only" data-dash-summary aria-live="polite">Обзор за шесть месяцев. Выручка — 24,8 миллиона рублей, чистая прибыль — 6,4 миллиона рублей, рентабельность — 26 процентов.</p>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const models = {
+      overview: { heading: 'Ключевые показатели', labels: ['Выручка', 'Чистая прибыль', 'Рентабельность'], values: [['24,8', 'млн ₽'], ['6,4', 'млн ₽'], ['26', '%']], changes: ['+9,3% к периоду', '+8,2% к периоду', '+0,6 п. п.'], legend: ['Выручка', 'Прибыль'], series: [38, 55, 73, 63, 82, 94], secondary: [20, 31, 45, 38, 49, 61] },
+      finance: { heading: 'Финансовая модель', labels: ['Денежный поток', 'Расходы', 'Запас средств'], values: [['4,2', 'млн ₽'], ['18,4', 'млн ₽'], ['3,5', 'мес']], changes: ['+12,4% к периоду', '+4,1% к периоду', '+0,5 мес'], legend: ['Поступления', 'Расходы'], series: [43, 64, 57, 81, 75, 96], secondary: [36, 44, 49, 58, 52, 66] },
+      processes: { heading: 'Работа процессов', labels: ['Заказы в срок', 'Цикл заказа', 'Автоматизация'], values: [['94', '%'], ['8', 'дней'], ['62', '%']], changes: ['+5 п. п.', '−2 дня к периоду', '+12 п. п.'], legend: ['В срок', 'План'], series: [56, 66, 63, 82, 85, 96], secondary: [62, 66, 70, 74, 79, 84] },
+      team: { heading: 'Показатели команды', labels: ['Команда', 'Загрузка', 'Вовлечённость'], values: [['18', 'чел.'], ['76', '%'], ['84', '%']], changes: ['+3 человека', 'В рабочем диапазоне', '+7 п. п.'], legend: ['Результат', 'План'], series: [46, 61, 57, 75, 82, 93], secondary: [50, 57, 64, 71, 78, 85] },
+      strategy: { heading: 'Сценарий роста', labels: ['План выручки', 'Инвестиции', 'Рост выручки'], values: [['32,0', 'млн ₽'], ['3,8', 'млн ₽'], ['29', '%']], changes: ['Базовый сценарий', 'По плану развития', 'К текущему периоду'], legend: ['Сценарий', 'База'], series: [36, 48, 62, 74, 85, 101], secondary: [32, 39, 46, 53, 61, 70] },
+    };
+    const periods = {
+      half: { name: '6 мес', spoken: 'шесть месяцев', factor: 1, labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн'], shift: [0, 0, 0, 0, 0, 0] },
+      year: { name: 'год', spoken: 'год', factor: 2.12, labels: ['Янв', 'Мар', 'Май', 'Июл', 'Сен', 'Ноя'], shift: [8, -3, 7, 5, -6, 2] },
+      three: { name: '3 года', spoken: 'три года', factor: 6.54, labels: ['2024', '', '2025', '', '2026', ''], shift: [-6, 4, -4, 12, 3, 8] },
+    };
+
+    document.querySelectorAll('[data-dashboard]').forEach((dashboard) => {
+      if (dashboard.dataset.dashReady) return;
+      dashboard.dataset.dashReady = 'true';
+      let section = 'overview';
+      let period = 'half';
+      const setText = (selector, value) => { dashboard.querySelector(selector).textContent = value; };
+      const render = () => {
+        const model = models[section];
+        const selected = periods[period];
+        const displayed = model.values.map(([value, unit]) => {
+          if (unit === 'млн ₽') return [new Intl.NumberFormat('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(Number(value.replace(',', '.')) * selected.factor), unit];
+          return [value, unit];
+        });
+        dashboard.querySelectorAll('[data-dash-section]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.dashSection === section)));
+        dashboard.querySelectorAll('[data-dash-period]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.dashPeriod === period)));
+        setText('[data-dash-heading]', model.heading);
+        displayed.forEach(([value, unit], index) => {
+          setText(`[data-dash-label="${index}"]`, model.labels[index]);
+          const target = dashboard.querySelector(`[data-dash-value="${index}"]`);
+          target.firstChild.nodeValue = value + (unit === '%' ? '' : ' ');
+          target.querySelector('span').textContent = unit;
+          setText(`[data-dash-change="${index}"]`, model.changes[index]);
+        });
+        setText('[data-dash-result-label]', `Результат за ${selected.name}`);
+        setText('[data-dash-result-value]', displayed[0].join(' '));
+        setText('[data-dash-result-change]', model.changes[0].replace(' к периоду', ''));
+        model.legend.forEach((label, index) => setText(`[data-dash-legend="${index}"]`, label));
+        const points = model.series.map((value, index) => Math.max(18, Math.min(110, value + selected.shift[index])));
+        dashboard.querySelectorAll('[data-dash-bars="primary"] rect').forEach((bar, index) => {
+          bar.setAttribute('y', String(137 - points[index]));
+          bar.setAttribute('height', String(points[index]));
+        });
+        dashboard.querySelectorAll('[data-dash-bars="secondary"] rect').forEach((bar, index) => {
+          const height = Math.max(14, model.secondary[index] + selected.shift[index] / 2);
+          bar.setAttribute('y', String(137 - height));
+          bar.setAttribute('height', String(height));
+        });
+        let line = `M27 ${126 - points[0]}`;
+        points.slice(1).forEach((value, index) => {
+          const previousX = 27 + index * 59;
+          const x = previousX + 59;
+          line += ` C${previousX + 24} ${126 - points[index]},${x - 24} ${126 - value},${x} ${126 - value}`;
+        });
+        dashboard.querySelector('[data-dash-line]').setAttribute('d', line);
+        dashboard.querySelectorAll('[data-dash-axis] span').forEach((label, index) => { label.textContent = selected.labels[index]; });
+        dashboard.querySelector('[data-dash-chart]').setAttribute('aria-label', `Условная динамика: ${model.legend.join(' и ')} за ${selected.spoken}`);
+        setText('[data-dash-summary]', `${model.heading} за ${selected.spoken}. ${model.labels.map((label, index) => `${label}: ${displayed[index].join(' ')}`).join('. ')}. Условные данные.`);
+      };
+      dashboard.querySelectorAll('[data-dash-section]').forEach((button) => button.addEventListener('click', () => { section = button.dataset.dashSection; render(); }));
+      dashboard.querySelectorAll('[data-dash-period]').forEach((button) => button.addEventListener('click', () => { period = button.dataset.dashPeriod; render(); }));
+    });
+  })();
+</script>
+
+<style>
+  .dash-shell {
+    width: 100%;
+    max-width: 690px;
+    min-height: 350px;
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid rgba(207, 225, 228, .2);
+    border-radius: 9px;
+    background: linear-gradient(115deg, #09222f, #041a25 75%);
+    color: #f5f7f2;
+    font-family: var(--sans, 'Manrope', Arial, sans-serif);
+    box-shadow: 0 24px 70px rgba(0, 12, 19, .14);
+  }
+  .dash-shell * { box-sizing: border-box; }
+  .dash-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 24px 10px;
+    background: linear-gradient(110deg, rgba(218, 235, 239, .085), rgba(218, 235, 239, .035));
+    border-right: 1px solid rgba(207, 225, 228, .13);
+  }
+  .dash-nav-button, .dash-period-button {
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    color: #c2cdd0;
+    border: 1px solid transparent;
+    transition: color .16s ease, background-color .16s ease, border-color .16s ease;
+  }
+  .dash-nav-button {
+    width: 100%;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 6px;
+    background: transparent;
+    text-align: left;
+    border-radius: 5px;
+  }
+  .dash-nav-button[aria-pressed='true'] { color: #fff; }
+  .dash-nav-button[aria-pressed='true'] .dash-nav-icon { color: var(--lime, #d2fd46); }
+  .dash-nav-button:hover { background: rgba(216, 234, 237, .07); color: #fff; }
+  .dash-nav-icon { width: 20px; height: 20px; flex: 0 0 20px; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+  .dash-content { min-width: 0; padding: 22px 20px 15px; }
+  .dash-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .dash-heading { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -.035em; line-height: 1.3; }
+  .dash-periods { display: flex; flex: 0 0 auto; }
+  .dash-period-button { min-height: 32px; padding: 4px 8px; background: transparent; border-color: rgba(218, 232, 235, .14); font-size: 14px; line-height: 1.2; }
+  .dash-period-button:first-child { border-radius: 5px 0 0 5px; }
+  .dash-period-button:last-child { border-radius: 0 5px 5px 0; }
+  .dash-period-button + .dash-period-button { border-left: 0; }
+  .dash-period-button[aria-pressed='true'] { background: #203d4b; color: #fff; }
+  .dash-period-button:hover { background: #294754; color: #fff; }
+  .dash-nav-button:focus-visible, .dash-period-button:focus-visible { outline: 2px solid var(--lime, #d2fd46); outline-offset: 3px; }
+  .dash-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .dash-metric { min-width: 0; padding: 12px 11px 10px; border: 1px solid rgba(215, 231, 232, .13); border-radius: 6px; }
+  .dash-metric-label { margin: 0 0 6px; color: #d0dadd; font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; }
+  .dash-metric-value { margin: 0 0 5px; color: #f5f7f2; font-size: 23px; line-height: 1.1; font-weight: 600; white-space: normal; letter-spacing: -.045em; }
+  .dash-metric-value span { font-size: 15px; font-weight: 500; letter-spacing: -.025em; }
+  .dash-metric-change { margin: 0; color: #c3d597; font-size: 14px; line-height: 1.35; }
+  .dash-chart-row { display: grid; grid-template-columns: minmax(0, 1fr) 133px; gap: 14px; align-items: center; margin-top: 14px; }
+  .dash-chart-wrap { min-width: 0; }
+  .dash-chart { display: block; width: 100%; height: auto; min-height: 116px; overflow: visible; }
+  .dash-grid path { fill: none; stroke: #9eb1bc; stroke-opacity: .08; stroke-width: 1; }
+  .dash-revenue-bars rect { fill: #4c6979; }
+  .dash-profit-bars rect { fill: var(--lime, #d2fd46); opacity: .9; }
+  .dash-trend { fill: none; stroke: var(--lime, #d2fd46); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+  .dash-axis-labels { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; }
+  .dash-axis-label { color: #a2b2ba; font-size: 14px; line-height: 1.4; text-align: center; }
+  .dash-chart-details { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+  .dash-result { padding: 11px 10px; border: 1px solid rgba(215, 231, 232, .13); border-radius: 6px; }
+  .dash-result-label { margin: 0 0 6px; font-size: 14px; color: #c1ced2; line-height: 1.4; }
+  .dash-result-value { display: block; font-size: 16px; font-weight: 600; white-space: nowrap; }
+  .dash-result-change { display: block; margin-top: 5px; color: #c3d597; font-size: 14px; line-height: 1.35; }
+  .dash-legend { display: flex; flex-direction: column; gap: 7px; }
+  .dash-legend-item { display: flex; align-items: center; gap: 6px; color: #c8d2d4; font-size: 14px; line-height: 1.25; }
+  .dash-legend-primary, .dash-legend-secondary { display: inline-block; width: 9px; height: 9px; flex: 0 0 9px; border-radius: 1px; }
+  .dash-legend-primary { background: #4c6979; }
+  .dash-legend-secondary { background: var(--lime, #d2fd46); }
+  .dash-caption { margin: 9px 0 0; color: #a4b5bd; font-size: 14px; line-height: 1.4; }
+  .dash-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+
+  @media (max-width: 900px) {
+    .dash-shell { grid-template-columns: 118px minmax(0, 1fr); }
+    .dash-nav { padding: 19px 6px; }
+    .dash-nav-button { gap: 7px; padding-inline: 4px; }
+    .dash-content { padding: 20px 15px 15px; }
+    .dash-topline { flex-wrap: wrap; }
+    .dash-chart-row { grid-template-columns: minmax(0, 1fr) 125px; gap: 10px; }
+    .dash-metric { padding: 10px 9px; }
+    .dash-metric-value { font-size: 22px; }
+  }
+  @media (max-width: 640px) {
+    .dash-shell { grid-template-columns: minmax(0, 1fr); max-width: none; }
+    .dash-nav { flex-direction: row; flex-wrap: wrap; gap: 3px; padding: 10px; border-right: 0; border-bottom: 1px solid rgba(207, 225, 228, .13); }
+    .dash-nav-button { width: auto; min-height: 40px; padding: 7px 9px; gap: 7px; }
+    .dash-content { padding: 18px 14px 15px; }
+    .dash-topline { gap: 10px; }
+    .dash-period-button { min-height: 36px; padding-inline: 11px; }
+    .dash-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+    .dash-metric { padding: 10px 8px; }
+    .dash-metric:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 15px; align-items: center; }
+    .dash-metric:last-child .dash-metric-label { min-height: 0; }
+    .dash-metric:last-child .dash-metric-value { grid-column: 2; grid-row: 1 / 3; }
+    .dash-metric-label { min-height: 39px; }
+    .dash-metric-value { font-size: 22px; white-space: normal; }
+    .dash-metric-value span { font-size: 14px; }
+    .dash-chart-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .dash-chart { min-height: 136px; }
+    .dash-chart-details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 15px; align-items: center; }
+    .dash-result-value { white-space: normal; }
+    .dash-caption { margin-top: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dash-nav-button, .dash-period-button { transition: none; }
+  }
+</style>

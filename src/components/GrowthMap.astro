@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+const nodes = [
+  {key:'finance',title:'Финансы',text:'Прозрачная картина'},
+  {key:'strategy',title:'Стратегия',text:'Чёткие цели'},
+  {key:'market',title:'Рынок',text:'Новые возможности'},
+  {key:'team',title:'Команда',text:'Понятные роли'},
+  {key:'product',title:'Продукт',text:'Устойчивый рост'},
+  {key:'process',title:'Процессы',text:'Эффективная система'},
+];
+---
+<div class="growth-map" aria-label="Финансы, стратегия, рынок, команда, продукт и процессы объединяются в целостную картину развития бизнеса">
+  <svg class="orbit-lines" viewBox="0 0 640 500" fill="none" aria-hidden="true">
+    <circle cx="320" cy="245" r="180" stroke="#b6beb0" stroke-dasharray="3 5"/>
+    <circle cx="320" cy="245" r="156" stroke="#c8cfc0" stroke-dasharray="2 6"/>
+    <circle cx="320" cy="245" r="132" stroke="#d9ddd2"/>
+    <path d="M180 90c-16 68 64 23 80 88M460 90c16 68-64 23-80 88M180 408c-16-68 64-23 80-88M460 408c16-68-64-23-80-88" stroke="#74867f" stroke-width="1.25"/>
+    <path d="M187 90c-16 57 63 21 81 87M453 90c16 57-63 21-81 87M187 408c-16-57 63-21 81-87M453 408c16-57-63-21-81-87" stroke="#bcd64d" stroke-width="1.5"/>
+    <path d="M114 245h88m236 0h88" stroke="#b5bdb0" stroke-dasharray="2 5"/>
+  </svg>
+  {nodes.map(node=><div class={`orbit-node orbit-${node.key}`}><span class="orbit-icon"><Icon name={node.key}/></span><div><strong>{node.title}</strong><span>{node.text}</span></div></div>)}
+  <div class="orbit-center"><Icon name="chart"/><strong>Развитие</strong><span>бизнеса</span></div>
+  <p class="handwritten orbit-note">Больше ясности.<br/>Больше возможностей.</p>
+</div>

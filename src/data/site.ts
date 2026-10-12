@@ -1,6 +1,5 @@
 export const site = {
   name: 'Наталья Городицкая',
-  latinName: 'Natalia Goroditskaya',
   email: 'gorodickaya@yandex.ru',
   phone: '+7 (918) 859-38-00',
   phoneHref: '+79188593800',
