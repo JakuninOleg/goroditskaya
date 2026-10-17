@@ -30,17 +30,25 @@ document.querySelectorAll<HTMLElement>('[data-tabs]').forEach(group => {
   });
 });
 
-document.querySelectorAll<HTMLButtonElement>('[data-question]').forEach(button => {
-  button.addEventListener('click', () => {
-    const question = questions[Number(button.dataset.question)];
-    if (!question) return;
-    document.querySelectorAll('[data-question]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    document.querySelector('[data-iceberg-headline]')!.textContent = question.headline;
-    const list = document.querySelector('[data-iceberg-checks]')!;
-    list.replaceChildren(...question.checks.map(text => { const item = document.createElement('li'); item.textContent = text; return item; }));
-    document.querySelector('[data-iceberg-explanation]')!.textContent = question.explanation;
-  });
-});
+const questionSelect = document.querySelector<HTMLSelectElement>('[data-question-select]');
+function selectQuestion(index: number) {
+  const question = questions[index];
+  if (!question) return;
+  document.querySelectorAll<HTMLElement>('[data-question]').forEach(item => item.setAttribute('aria-pressed', String(Number(item.dataset.question) === index)));
+  if (questionSelect) questionSelect.value = String(index);
+  document.querySelector('[data-selected-question]')!.textContent = question.title;
+  document.querySelectorAll<HTMLElement>('[data-question-icon]').forEach(icon => { icon.hidden = Number(icon.dataset.questionIcon) !== index; });
+  document.querySelector('[data-iceberg-headline]')!.textContent = question.headline;
+  document.querySelectorAll<HTMLElement>('[data-iceberg-check]').forEach((item, i) => { item.textContent = question.checks[i]; });
+  document.querySelector('[data-iceberg-explanation]')!.textContent = question.explanation;
+  const contact = document.querySelector<HTMLElement>('[data-iceberg-contact]');
+  if (contact) contact.dataset.task = question.title;
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLElement>('.needs-surface h3, .needs-check-list').forEach(item => item.animate([{ opacity: .5, transform: 'translateY(3px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' }));
+  }
+}
+document.querySelectorAll<HTMLButtonElement>('[data-question]').forEach(button => button.addEventListener('click', () => selectQuestion(Number(button.dataset.question))));
+questionSelect?.addEventListener('change', () => selectQuestion(Number(questionSelect.value)));
 
 const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
 const mobileNav = document.getElementById('mobile-nav');
