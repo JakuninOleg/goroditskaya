@@ -1,6 +1,7 @@
 export const site = {
   name: 'Наталья Городицкая', email: 'gorodickaya@yandex.ru', phone: '+7 (918) 859-38-00', phoneHref: '+79188593800',
   role: 'Финансовый директор · Учёт и 1С',
+  experienceSince: 2003,
 };
 export const questions = [
   { title: 'Прибыль есть, а денег нет?', headline: 'Прибыль есть.\nА денег нет.', checks: ['Оборотный капитал', 'Кредитные выплаты', 'Сроки платежей'], explanation: 'ДДС, баланс и платёжный календарь покажут связь.' },

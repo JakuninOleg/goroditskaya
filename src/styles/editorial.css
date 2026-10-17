@@ -246,4 +246,5 @@ h2 { font-size:clamp(34px,2.9vw,54px); line-height:1.15; }
   .hero-about-link>span { width:29px; height:29px; }
 }
 @media(max-width:380px) { .hero-actions { gap:17px; }.hero-about-link>span { display:none; }.hero-about-link { font-size:12px; } }
+@media(min-width:681px) and (max-width:950px) { .iceberg-section { overflow:hidden; } }
 @media(prefers-reduced-motion:reduce) { .special-task:hover>svg,.text-link:hover svg { transform:none; } }

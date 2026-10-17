@@ -17,29 +17,28 @@ const featuredQuestions = [
 ---
 <Layout>
   <a class="skip-link" href="#main">К содержанию</a>
-  <header class="header" id="top">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Наталья Городицкая — на главную"><span class="brand-name">Наталья<br/>Городицкая</span><span class="brand-role">{site.role}</span></a>
-      <nav class="desktop-nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a><a href="#faq">FAQ</a></nav>
-      <a class="button button-yellow header-cta" href="#contact">Обсудить задачу <Icon/></a>
-      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+  <header class="masthead" id="top">
+    <div class="masthead-shell">
+      <div class="masthead-row">
+      <a class="identity" href="#top" aria-label="Наталья Городицкая — на главную"><span class="identity-name">Наталья<span class="identity-break"></span> Городицкая</span><span class="identity-role"><span class="identity-desktop-role">Финансовый директор<br/>на аутсорсе</span><span class="identity-mobile-role">Финансовый директор</span></span></a>
+      <nav class="masthead-nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a></nav>
+      <a class="button button-yellow masthead-cta" href="#contact">Обсудить задачу <Icon/></a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+      </div>
+      <nav class="masthead-mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#tasks">Задачи</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a><a href="#about">Обо мне</a><a href="#faq">Вопросы и ответы</a><a href="#contact">Контакты</a></nav>
     </div>
-    <nav class="mobile-nav container" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#tasks">Задачи</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a><a href="#about">Обо мне</a><a href="#contact">Контакты</a></nav>
   </header>
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-heading">
-      <picture class="hero-scene"><source media="(max-width: 680px)" srcset="/images/natalia-editorial.webp"/><img src="/images/natalia-office.webp" srcset="/images/natalia-office-960.webp 960w, /images/natalia-office.webp 1672w" sizes="100vw" width="1672" height="941" alt="Наталья Городицкая" fetchpriority="high" decoding="async"/></picture>
-      <div class="hero-panel container">
-        <div class="hero-copy">
+    <section class="intro" aria-labelledby="hero-heading">
+      <div class="intro-container intro-copy"><div class="intro-text">
+          <p class="intro-kicker">Финансовый директор на аутсорсе</p>
           <h1 id="hero-heading"><span>Видеть бизнес</span><span>целиком.</span><span>Управлять точнее.</span></h1>
-          <p class="hero-description">Финансовый директор на аутсорсе для собственников. Помогаю навести порядок в финансах, видеть реальную прибыль и принимать решения на основе цифр.</p>
-          <div class="hero-actions"><a class="button button-yellow" href="#contact">Обсудить задачу <Icon/></a><a class="hero-about-link" href="#about"><span><Icon/></span>О подходе</a></div>
-          <div class="hero-facts"><div><strong>С 1996</strong><span>года в финансах</span></div><div><strong>50+</strong><span>специалистов в командах*</span></div><div><strong>1С ERP</strong><span>внедрение и сопровождение</span></div><div><strong>Вся Россия</strong><span>работаю удалённо</span></div></div>
-          <p class="hero-personal">*Опыт руководства. Команду подключаю под проект.</p>
-        </div>
-        <div class="hero-signature"><strong>Наталья Городицкая</strong><span>Финансовый директор<br/>Налоговый консультант</span></div>
-      </div>
+          <p class="intro-description">Помогаю собственникам навести порядок <br class="intro-break"/>в финансах, видеть реальную прибыль <br class="intro-break"/>и принимать решения на основе цифр.</p>
+          <a class="button button-yellow intro-cta" href="#contact">Обсудить задачу <Icon/></a>
+      </div></div>
+      <picture class="intro-visual"><img src="/images/natalia-office.webp" srcset="/images/natalia-office-960.webp 960w, /images/natalia-office.webp 1672w" sizes="(max-width: 950px) 100vw, 75vw" width="1672" height="941" alt="Наталья Городицкая" fetchpriority="high" decoding="async"/></picture>
+      <div class="intro-container intro-facts-wrap"><div class="intro-facts"><div><strong>С {site.experienceSince} года</strong><span>в финансах и учёте</span></div><div><strong>1С ERP</strong><span>внедрение и сопровождение</span></div><div><strong>Вся Россия</strong><span>работаю удалённо</span></div></div></div>
     </section>
 
     <section class="section container iceberg-section" id="tasks" aria-labelledby="tasks-heading">
@@ -99,7 +98,7 @@ const featuredQuestions = [
     <section class="section container about-section" id="about" aria-labelledby="about-heading">
       <div class="about-portrait"><img src="/images/natalia-editorial.webp" width="1120" height="1400" alt="Наталья Городицкая за рабочим столом" loading="lazy" decoding="async"/></div>
       <div class="about-copy"><p class="section-kicker">Обо мне</p><h2 id="about-heading">Лично веду ваш проект</h2><p class="about-name">Наталья Городицкая</p><p class="about-lead">Помогаю собственникам навести порядок в финансах и принимать решения на основе цифр.</p>
-        <ul class="about-facts" id="expertise"><li>В финансах и учёте с 1996 года</li><li>Опыт руководства командой 50+ специалистов</li><li>Опыт внедрения 1С ERP</li></ul>
+        <ul class="about-facts" id="expertise"><li>В финансах и учёте с {site.experienceSince} года</li><li>Опыт руководства командой 50+ специалистов</li><li>Опыт внедрения 1С ERP</li></ul>
         <p class="about-partners">Специалистов 1С и юриста подключаю под задачу.</p>
         <div class="practice" data-tabs><p class="choose-label">Из практики</p><div class="practice-tabs" role="tablist" aria-label="Отрасли практики"><button type="button" role="tab" id="tab-production" aria-controls="panel-production" aria-selected="true" data-tab="production">Производство</button><button type="button" role="tab" id="tab-it" aria-controls="panel-it" aria-selected="false" tabindex="-1" data-tab="it">IT и SaaS</button></div>
           <div role="tabpanel" id="panel-production" aria-labelledby="tab-production" data-panel="production"><h3>Восстановление учёта и ERP</h3><p>Проектный учёт и финансовая подготовка к due diligence.</p></div>

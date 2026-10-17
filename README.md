@@ -17,6 +17,7 @@ npm run preview
 - Тексты, вопросы и продукты: src/data/site.ts.
 - Палитра, отступы и адаптация: src/styles/global.css.
 - Редакционная композиция и адаптация референса: src/styles/editorial.css.
+- Центрированный хедер и первый экран по десктопному и мобильному макетам: src/styles/masthead.css. Год начала практики задаётся полем experienceSince в src/data/site.ts.
 - Авторские многослойные SVG-иллюстрации: src/components/ArtIcon.astro. Служебные значки: src/components/Icon.astro.
 - Вкладки, диалоги, меню и подготовка письма: src/scripts/main.ts.
 - Пример финансовой отчётности: src/components/FinancialReport.astro.
