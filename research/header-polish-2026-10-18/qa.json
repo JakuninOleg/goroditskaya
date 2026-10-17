@@ -1,0 +1,74 @@
+[
+  {
+    "client": 305,
+    "ctaGap": null,
+    "factsBelowPhoto": true,
+    "headingFits": true,
+    "navGap": null,
+    "navVisible": false,
+    "page": 305,
+    "roleSize": "14px",
+    "width": 320,
+    "year": "С 2003 года"
+  },
+  {
+    "client": 935,
+    "ctaGap": null,
+    "factsBelowPhoto": true,
+    "headingFits": true,
+    "navGap": null,
+    "navVisible": false,
+    "page": 935,
+    "roleSize": "15px",
+    "width": 950,
+    "year": "С 2003 года"
+  },
+  {
+    "client": 945,
+    "ctaGap": null,
+    "factsBelowPhoto": true,
+    "headingFits": true,
+    "navGap": null,
+    "navVisible": false,
+    "page": 945,
+    "roleSize": "15px",
+    "width": 960,
+    "year": "С 2003 года"
+  },
+  {
+    "client": 1265,
+    "ctaGap": null,
+    "factsBelowPhoto": true,
+    "headingFits": true,
+    "navGap": null,
+    "navVisible": false,
+    "page": 1265,
+    "roleSize": "15px",
+    "width": 1280,
+    "year": "С 2003 года"
+  },
+  {
+    "client": 1266,
+    "ctaGap": 181.984375,
+    "factsBelowPhoto": true,
+    "headingFits": true,
+    "navGap": 68.890625,
+    "navVisible": true,
+    "page": 1266,
+    "roleSize": "15px",
+    "width": 1281,
+    "year": "С 2003 года"
+  },
+  {
+    "client": 1905,
+    "ctaGap": 343.625,
+    "factsBelowPhoto": true,
+    "headingFits": true,
+    "navGap": 228.28125,
+    "navVisible": true,
+    "page": 1905,
+    "roleSize": "18px",
+    "width": 1920,
+    "year": "С 2003 года"
+  }
+]

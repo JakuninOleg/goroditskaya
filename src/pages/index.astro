@@ -20,7 +20,7 @@ const featuredQuestions = [
   <header class="masthead" id="top">
     <div class="masthead-shell">
       <div class="masthead-row">
-      <a class="identity" href="#top" aria-label="Наталья Городицкая — на главную"><span class="identity-name">Наталья<span class="identity-break"></span> Городицкая</span><span class="identity-role"><span class="identity-desktop-role">Финансовый директор<br/>на аутсорсе</span><span class="identity-mobile-role">Финансовый директор</span></span></a>
+      <a class="identity" href="#top" aria-label="Наталья Городицкая — на главную"><span class="identity-name">Наталья<span class="identity-break"></span> Городицкая</span><span class="identity-role">Финансовый директор <span class="identity-role-ending">на аутсорсе</span></span></a>
       <nav class="masthead-nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a></nav>
       <a class="button button-yellow masthead-cta" href="#contact">Обсудить задачу <Icon/></a>
       <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
@@ -28,17 +28,23 @@ const featuredQuestions = [
       <nav class="masthead-mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#tasks">Задачи</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a><a href="#about">Обо мне</a><a href="#faq">Вопросы и ответы</a><a href="#contact">Контакты</a></nav>
     </div>
   </header>
+  <div class="masthead-scrim" aria-hidden="true" hidden></div>
 
   <main id="main">
     <section class="intro" aria-labelledby="hero-heading">
+      <div class="intro-stage">
       <div class="intro-container intro-copy"><div class="intro-text">
-          <p class="intro-kicker">Финансовый директор на аутсорсе</p>
           <h1 id="hero-heading"><span>Видеть бизнес</span><span>целиком.</span><span>Управлять точнее.</span></h1>
           <p class="intro-description">Помогаю собственникам навести порядок <br class="intro-break"/>в финансах, видеть реальную прибыль <br class="intro-break"/>и принимать решения на основе цифр.</p>
           <a class="button button-yellow intro-cta" href="#contact">Обсудить задачу <Icon/></a>
       </div></div>
       <picture class="intro-visual"><img src="/images/natalia-office.webp" srcset="/images/natalia-office-960.webp 960w, /images/natalia-office.webp 1672w" sizes="(max-width: 950px) 100vw, 75vw" width="1672" height="941" alt="Наталья Городицкая" fetchpriority="high" decoding="async"/></picture>
-      <div class="intro-container intro-facts-wrap"><div class="intro-facts"><div><strong>С {site.experienceSince} года</strong><span>в финансах и учёте</span></div><div><strong>1С ERP</strong><span>внедрение и сопровождение</span></div><div><strong>Вся Россия</strong><span>работаю удалённо</span></div></div></div>
+      </div>
+      <div class="intro-container intro-facts-wrap"><div class="intro-facts">
+        <div class="intro-fact"><Icon name="verified"/><div class="intro-fact-copy"><strong>С {site.experienceSince} года</strong><span>в финансах и учёте</span></div></div>
+        <div class="intro-fact"><Icon name="automation"/><div class="intro-fact-copy"><strong>1С ERP</strong><span>внедрение и сопровождение</span></div></div>
+        <div class="intro-fact"><Icon name="remote"/><div class="intro-fact-copy"><strong>Вся Россия</strong><span>работаю удалённо</span></div></div>
+      </div></div>
     </section>
 
     <section class="section container iceberg-section" id="tasks" aria-labelledby="tasks-heading">

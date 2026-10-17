@@ -2,6 +2,7 @@
 interface Props { name: string; class?: string; }
 const { name, class: className = '' } = Astro.props;
 const art: Record<string, string> = {
+  remote: `<circle class="art-sage" cx="28" cy="27" r="21"/><ellipse class="art-paper" cx="28" cy="27" rx="10" ry="21"/><path d="M8 20h40M8 34h34M28 6v36"/><rect class="art-paper" x="32" y="33" width="26" height="20" rx="3"/><path class="art-gold" d="M36 37h18v12H36z"/><path d="M29 57h32M45 53v4m-5-15 3 3 6-6"/>`,
   report: `<path class="art-paper" d="M11 8h30l8 8v39H11z"/><path class="art-sage" d="M41 8v9h8"/><path d="M17 18h15m-15 6h9"/><path class="art-sage" d="M18 39h8v16h-8zM31 31h8v24h-8z"/><path class="art-gold" d="M44 23h8v32h-8z"/><path d="M15 55h41M21 33l13-9 13-12m-7 0h7v7"/><circle class="art-gold" cx="21" cy="33" r="2"/>`,
   chart: `<path class="art-paper" d="M11 8h30l8 8v39H11z"/><path class="art-sage" d="M41 8v9h8"/><path d="M17 18h15m-15 6h9"/><path class="art-sage" d="M18 39h8v16h-8zM31 31h8v24h-8z"/><path class="art-gold" d="M44 23h8v32h-8z"/><path d="M15 55h41M21 33l13-9 13-12m-7 0h7v7"/>`,
   tax: `<path class="art-paper" d="M12 7h26l9 9v37H12z"/><path class="art-sage" d="M38 7v10h9"/><path d="M18 18h11m-11 7h19m-19 6h12m-12 7h8"/><path class="art-sage" d="m42 30 13 5v8c0 9-13 15-13 15S29 52 29 43v-8z"/><path class="art-paper" d="m42 35 8 3v5c0 5-8 10-8 10s-8-5-8-10v-5z"/><path class="art-gold" d="m37 43 3 3 7-7-2-2-5 5-1-1z"/><circle class="art-gold" cx="16" cy="10" r="4"/>`,
