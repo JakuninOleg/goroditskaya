@@ -1,0 +1,8 @@
+{
+  "tool": "image_gen (built-in)",
+  "date": "2026-10-18",
+  "reference": "public/images/iceberg.webp",
+  "output": "public/images/iceberg-wide.webp",
+  "purpose": "Extend the ocean to the right while retaining the iceberg's proportions.",
+  "prompt": "Edit the provided iceberg artwork by OUTPAINTING THE CANVAS ONLY TO THE RIGHT. Make a wide landscape image approximately 2304 x 1086, aspect ratio 2.12:1. Preserve the current iceberg, tip and underwater body, the existing waterline, photoreal ice textures, original proportions, color grading and sunlight. The entire iceberg stays in the LEFT THIRD of the resulting wider canvas, its tip around x=460 at this requested canvas size, its underwater bottom fully visible. Preserve the original height and original left part; do not enlarge or reposition the iceberg. Extend the existing calm ocean surface, warm pale sky and deep teal underwater ocean continuously to the RIGHT EDGE, filling the whole added right side. The added right half contains only natural ocean/sky above and deep teal underwater, no additional icebergs, no rocks or objects. The waterline is continuous, horizontal and at the same height as the original. Do not fade any edge, do not make transparency, do not add vignettes, no layout, no UI, no text, no labels, no arrows, no frame. This is a clean reusable full-width website illustration asset, not a screenshot. The original white iceberg with intricate turquoise underwater base should remain natural and geometrically undistorted."
+}

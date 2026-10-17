@@ -31,9 +31,16 @@ document.querySelectorAll<HTMLElement>('[data-tabs]').forEach(group => {
 });
 
 const questionSelect = document.querySelector<HTMLSelectElement>('[data-question-select]');
+const moreQuestions = document.querySelector<HTMLDetailsElement>('.needs-more');
+function closeMoreQuestions(restoreFocus = false) {
+  if (!moreQuestions?.open) return;
+  moreQuestions.open = false;
+  if (restoreFocus) moreQuestions.querySelector('summary')?.focus({ preventScroll: true });
+}
 function selectQuestion(index: number) {
   const question = questions[index];
   if (!question) return;
+  closeMoreQuestions(!!moreQuestions?.contains(document.activeElement));
   document.querySelectorAll<HTMLElement>('[data-question]').forEach(item => item.setAttribute('aria-pressed', String(Number(item.dataset.question) === index)));
   if (questionSelect) questionSelect.value = String(index);
   document.querySelector('[data-selected-question]')!.textContent = question.title;
@@ -49,6 +56,16 @@ function selectQuestion(index: number) {
 }
 document.querySelectorAll<HTMLButtonElement>('[data-question]').forEach(button => button.addEventListener('click', () => selectQuestion(Number(button.dataset.question))));
 questionSelect?.addEventListener('change', () => selectQuestion(Number(questionSelect.value)));
+document.addEventListener('pointerdown', event => {
+  if (!moreQuestions?.contains(event.target as Node)) closeMoreQuestions();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && moreQuestions?.open) closeMoreQuestions(true);
+});
+document.addEventListener('focusin', event => {
+  if (!moreQuestions?.contains(event.target as Node)) closeMoreQuestions();
+});
+window.matchMedia('(max-width: 760px)').addEventListener('change', () => closeMoreQuestions());
 
 const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
 const mobileNav = document.getElementById('mobile-nav');

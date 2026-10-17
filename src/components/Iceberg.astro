@@ -6,10 +6,11 @@ const featured = [0, 1, 2, 4];
 const icons = ['cash', 'roadmap', 'report', 'team', 'bank', 'bank', 'chart', 'automation', 'tax'];
 const checkIcons = ['document', 'inventory', 'bank'];
 ---
-<section class="needs-section container" id="tasks" aria-labelledby="tasks-heading">
+<section class="needs-section" id="tasks" aria-labelledby="tasks-heading">
+  <div class="needs-container container">
   <div class="needs-intro">
     <p class="needs-eyebrow">Вопросы собственника</p>
-    <h2 id="tasks-heading">Ваш вопрос —<br/><span>вершина</span> <span>айсберга</span></h2>
+    <h2 id="tasks-heading"><span class="needs-title-first">Ваш вопрос —</span> <span class="needs-title-rest">вершина айсберга</span></h2>
     <p class="needs-lead">Видимая проблема — повод разобраться в финансовой системе.</p>
   </div>
   <div class="needs-layout">
@@ -21,7 +22,7 @@ const checkIcons = ['document', 'inventory', 'bank'];
             <Icon name={icons[index]}/><span>{questions[index].title}</span><svg class="needs-chevron" width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 4 8 8-8 8"/></svg>
           </button>)}
         </div>
-        <details class="needs-more"><summary>Другие вопросы <Icon name="plus"/></summary><div>{questions.map((q,index)=>!featured.includes(index)&&<button type="button" data-question={index} aria-pressed="false" aria-controls="iceberg-answer">{q.title}</button>)}</div></details>
+        <details class="needs-more"><summary aria-controls="needs-more-panel">Другие вопросы <Icon name="plus"/></summary><div id="needs-more-panel">{questions.map((q,index)=>!featured.includes(index)&&<button type="button" data-question={index} aria-pressed="false" aria-controls="iceberg-answer">{q.title}</button>)}</div></details>
       </div>
       <div class="needs-mobile-choice">
         <div class="needs-selected-question" aria-hidden="true">
@@ -34,7 +35,7 @@ const checkIcons = ['document', 'inventory', 'bank'];
     </div>
     <div class="needs-response" id="iceberg-answer" aria-live="polite" aria-atomic="true">
       <div class="needs-visual">
-        <img class="needs-iceberg" src="/images/iceberg.webp" width="1448" height="1086" alt="Айсберг: небольшая видимая вершина и большая подводная часть" loading="lazy" decoding="async"/>
+        <picture class="needs-scene"><source media="(min-width: 761px)" srcset="/images/iceberg-wide.webp"/><img class="needs-iceberg" src="/images/iceberg.webp" width="1448" height="1086" alt="Айсберг: небольшая видимая вершина и большая подводная часть" loading="lazy" decoding="async"/></picture>
         <div class="needs-surface"><svg class="needs-surface-line" width="120" height="50" viewBox="0 0 120 50" fill="none" aria-hidden="true"><path d="M5 44 38 10H116"/><circle cx="5" cy="44" r="4"/><circle cx="116" cy="10" r="4"/></svg><p>На поверхности</p><h3 data-iceberg-headline>{questions[0].headline}</h3></div>
         <svg class="needs-under-link" width="900" height="560" viewBox="0 0 900 560" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M340 315H435L495 368H570"/><circle cx="340" cy="315" r="6"/></svg>
       </div>
@@ -47,4 +48,5 @@ const checkIcons = ['document', 'inventory', 'bank'];
     </div>
   </div>
   <div class="needs-footer"><div><p>Свяжем прибыль, платежи и остатки денег.</p><span>ДДС · Отчёт о прибыли · Баланс</span></div><a class="button button-yellow" href="#contact" data-iceberg-contact data-task={questions[0].title}>Разобрать мою ситуацию <Icon/></a></div>
+  </div>
 </section>
