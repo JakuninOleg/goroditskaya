@@ -8,53 +8,63 @@ const previews = [
   { title: 'Прибыль по проектам', icon: 'report', headers: ['Проект','Доходы','Расходы','Прибыль','Маржа'], count: 9 },
   { title: 'План-факт бюджета', icon: 'chart', headers: ['Статья','План','Факт','Отклонение'], count: 13 },
 ];
+const featuredQuestions = [
+  { index: 0, icon: 'cash', note: 'Понятно, куда уходит денежный поток' },
+  { index: 1, icon: 'costs', note: 'Находим причины нехватки денег' },
+  { index: 2, icon: 'report', note: 'Видно результат каждого проекта' },
+  { index: 8, icon: 'tax', note: 'Разбираем документы и риски' },
+];
 ---
 <Layout>
   <a class="skip-link" href="#main">К содержанию</a>
   <header class="header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Наталья Городицкая — на главную"><span class="brand-name">Наталья<br/>Городицкая</span><span class="brand-role">{site.role}</span></a>
-      <nav class="desktop-nav" aria-label="Основная навигация"><a href="#tasks">Задачи</a><a href="#services">Продукты</a><a href="#about">Опыт</a><a href="#contact">Контакты</a></nav>
-      <a class="button button-outline header-cta" href="#contact">Обсудить проект</a>
+      <nav class="desktop-nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a><a href="#faq">FAQ</a></nav>
+      <a class="button button-yellow header-cta" href="#contact">Обсудить задачу <Icon/></a>
       <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
     </div>
-    <nav class="mobile-nav container" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#tasks">Задачи</a><a href="#services">Продукты</a><a href="#about">Опыт</a><a href="#contact">Контакты</a></nav>
+    <nav class="mobile-nav container" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#tasks">Задачи</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как работаем</a><a href="#about">Обо мне</a><a href="#contact">Контакты</a></nav>
   </header>
 
   <main id="main">
-    <section class="hero container" aria-labelledby="hero-heading">
-      <div class="hero-panel">
+    <section class="hero" aria-labelledby="hero-heading">
+      <picture class="hero-scene"><source media="(max-width: 680px)" srcset="/images/natalia-editorial.webp"/><img src="/images/natalia-office.webp" srcset="/images/natalia-office-960.webp 960w, /images/natalia-office.webp 1672w" sizes="100vw" width="1672" height="941" alt="Наталья Городицкая" fetchpriority="high" decoding="async"/></picture>
+      <div class="hero-panel container">
         <div class="hero-copy">
           <h1 id="hero-heading"><span>Видеть бизнес</span><span>целиком.</span><span>Управлять точнее.</span></h1>
-          <p class="hero-description">Финансовая модель, учёт и отчётность<br class="desktop-break"/> для решений собственника.</p>
-          <a class="button button-yellow" href="#contact">Обсудить финансовую задачу</a>
-          <p class="hero-personal">Лично веду проект. Работаю по всей России.</p>
+          <p class="hero-description">Финансовый директор на аутсорсе для собственников. Помогаю навести порядок в финансах, видеть реальную прибыль и принимать решения на основе цифр.</p>
+          <div class="hero-actions"><a class="button button-yellow" href="#contact">Обсудить задачу <Icon/></a><a class="hero-about-link" href="#about"><span><Icon/></span>О подходе</a></div>
+          <div class="hero-facts"><div><strong>С 1996</strong><span>года в финансах</span></div><div><strong>50+</strong><span>специалистов в командах*</span></div><div><strong>1С ERP</strong><span>внедрение и сопровождение</span></div><div><strong>Вся Россия</strong><span>работаю удалённо</span></div></div>
+          <p class="hero-personal">*Опыт руководства. Команду подключаю под проект.</p>
         </div>
-        <div class="hero-portrait"><img src="/images/natalia-editorial.webp" width="1120" height="1400" alt="Наталья Городицкая" fetchpriority="high" decoding="async"/></div>
+        <div class="hero-signature"><strong>Наталья Городицкая</strong><span>Финансовый директор<br/>Налоговый консультант</span></div>
       </div>
     </section>
 
     <section class="section container iceberg-section" id="tasks" aria-labelledby="tasks-heading">
-      <div class="iceberg-choices">
-        <h2 id="tasks-heading">Ваш вопрос — <br/>вершина <br/>айсберга.</h2>
-        <p class="choose-label">Выберите свой вопрос</p>
-        <div class="question-list" role="group" aria-label="Вопросы собственника">{questions.map((q,i)=><button type="button" data-question={i} aria-pressed={i===0 ? 'true':'false'} aria-controls="iceberg-answer">{q.title}</button>)}</div>
+      <div class="iceberg-intro">
+        <p class="section-kicker">Проблема</p><h2 id="tasks-heading">Ваш вопрос — <br/>вершина айсберга</h2>
+        <p>За конкретным запросом часто скрываются более глубокие финансовые причины. Они влияют на прибыль и развитие бизнеса.</p>
+        <a class="button button-yellow" href="#contact">Разобрать ситуацию <Icon/></a>
       </div>
       <div class="iceberg-visual" id="iceberg-answer" aria-live="polite" aria-atomic="true">
         <img src="/images/iceberg.webp" width="1448" height="1086" alt="" loading="lazy" decoding="async"/>
-        <h3 class="iceberg-headline" data-iceberg-headline>{questions[0].headline}</h3>
-        <div class="iceberg-underwater"><p>Что проверяем</p><ul data-iceberg-checks>{questions[0].checks.map(check=><li>{check}</li>)}</ul></div>
-        <div class="iceberg-bottom"><p data-iceberg-explanation>{questions[0].explanation}</p><a href="#approach">Что покажет диагностика <Icon/></a></div>
+        <h3 class="sr-only" data-iceberg-headline>{questions[0].headline}</h3>
+        <div class="iceberg-callout iceberg-visible"><strong>Видимая часть</strong><p>Выручка, прибыль, налоги</p></div>
+        <div class="iceberg-callout iceberg-hidden"><strong>Что под поверхностью</strong><ul data-iceberg-checks>{questions[0].checks.map(check=><li>{check}</li>)}</ul></div>
+        <p class="iceberg-explanation" data-iceberg-explanation>{questions[0].explanation}</p>
       </div>
+      <div class="iceberg-choices"><div class="question-list" role="group" aria-label="Вопросы собственника">{featuredQuestions.map(q=><button class="question-card" type="button" data-question={q.index} aria-pressed={q.index===0?'true':'false'} aria-controls="iceberg-answer"><Icon name={q.icon}/><span><strong>{questions[q.index].title}</strong><small>{q.note}</small></span></button>)}</div><details class="more-questions"><summary>Другие вопросы <Icon name="plus"/></summary><div>{questions.map((q,i)=>!featuredQuestions.some(f=>f.index===i)&&<button type="button" data-question={i} aria-pressed="false" aria-controls="iceberg-answer">{q.title}</button>)}</div></details></div>
     </section>
 
     <section class="section container products-section" id="services" aria-labelledby="products-heading">
-      <h2 class="section-heading" id="products-heading">Три направления работы</h2>
+      <div class="section-title-row"><div><p class="section-kicker">Услуги</p><h2 id="products-heading">Три направления<br/>работы</h2></div><a class="text-link" href="#contact">Подобрать формат <Icon/></a></div>
       <div class="products-list">{products.map(product=>
         <article class={'product-row product-'+product.id}>
           <Icon name={product.icon} class="product-icon"/>
-          <div class="product-copy"><h3>{product.title}<br/>на аутсорсе</h3><p>{product.text}</p><ul class="product-scope">{product.scope.map(item=><li>{item}</li>)}</ul></div>
-          <button class="button button-outline product-button" type="button" data-product={product.id} aria-haspopup="dialog">Состав работ<span class="sr-only">: {product.title}</span></button>
+          <div class="product-copy"><h3>{product.title}<br/>на аутсорсе</h3><p>{product.text}</p></div>
+          <button class="product-button text-link" type="button" data-product={product.id} aria-haspopup="dialog">Подробнее <Icon/><span class="sr-only">: {product.title}</span></button>
         </article>
       )}</div>
     </section>
@@ -62,39 +72,41 @@ const previews = [
     <FinancialReport/>
 
     <section class="section container technored-section" id="experience" aria-labelledby="case-heading">
-      <div class="case-story"><p class="eyebrow">Кейс · Технорэд</p><h2 id="case-heading">Разработки,<br/>которые были скрыты<br/>в расходах.</h2><p class="case-description">При анализе учёта выявлены затраты на разработки, ранее включённые в расходы периода.</p><div class="case-change"><h3 class="eyebrow">Что изменили</h3><p>Затраты выделены в составе НИОКР с положительным результатом.</p></div></div>
-      <div class="case-feature"><strong>62 млн ₽</strong><p>затрат отнесены к НИОКР</p><Icon name="patent"/><ul><li>Новая технология</li><li>Патент на полезную модель</li><li>Патент на изобретение</li></ul></div>
+      <div class="case-story"><p class="section-kicker">Кейс · Технорэд</p><h2 id="case-heading">Разработки, <br/>которые были <br/>скрыты в расходах</h2><p class="case-description">Учёт разработок помог показать активы бизнеса и подготовить финансовую картину для инвесторов.</p></div>
+      <div class="case-feature"><strong>62 млн ₽</strong><p>затрат отнесены к НИОКР</p><ul class="case-assets"><li><Icon name="research"/>Новая технология</li><li><Icon name="patent"/>Патент на полезную модель</li><li><Icon name="verified"/>Патент на изобретение</li></ul></div>
+      <div class="case-detail"><div><h3>Проблема</h3><p>Затраты на разработки включались в расходы периода. Команде не хватало опыта оформления НИОКР и НМА.</p></div><div><h3>Решение</h3><p>Проанализированы затраты и документы. 62 млн ₽ выделены в составе НИОКР с положительным результатом.</p></div><div><h3>Результат</h3><p>Новая технология и патенты отражены как активы. Финансовая картина стала полнее для инвесторов.</p></div></div>
       <div class="case-snapshots"><div><h3 class="eyebrow">6 месяцев</h3><p><strong>80 млн ₽</strong> — выручка</p><p><strong>50 млн ₽</strong> — накопленный убыток</p></div><div><h3 class="eyebrow">9 месяцев</h3><p><strong>140 млн ₽</strong> — выручка</p><p><strong>11 млн ₽</strong> — прибыль</p></div></div>
       <p class="case-note">Данные Натальи Городицкой. Периоды разной длительности; год и вид прибыли уточняются.<br/>Выделение НИОКР — изменение учёта, а не поступление денег.</p>
     </section>
 
     <section class="section container formats-section" id="approach" aria-labelledby="formats-heading" data-tabs>
-      <h2 class="section-heading" id="formats-heading">Как можем работать</h2>
+      <div class="formats-intro"><p class="section-kicker">Процесс</p><h2 id="formats-heading">Как можем <br/>работать</h2></div><div class="formats-main">
       <div class="format-tabs" role="tablist" aria-label="Форматы работы">{formats.map((format,i)=><button type="button" role="tab" id={'tab-'+format.id} aria-controls={'panel-'+format.id} aria-selected={i===0?'true':'false'} tabindex={i===0?0:-1} data-tab={format.id}>{format.label}</button>)}</div>
       {formats.map((format,i)=><div class="format-panel" role="tabpanel" id={'panel-'+format.id} aria-labelledby={'tab-'+format.id} data-panel={format.id} hidden={i!==0} tabindex="0">
-        <h3>{format.title}</h3><p class="format-description">{format.text}</p>
-        <div class="format-results">{format.items.map(item=><div><Icon name={item.icon}/><p>{item.title}</p></div>)}</div>
-        <a class="button button-green" href="#contact" data-task={format.label}>{format.action}</a>
+        <div class="format-copy"><h3>{format.title}</h3><p class="format-description">{format.text}</p></div>
+        <div class="format-results">{format.items.map(item=><div><Icon name="check"/><p>{item.title}</p></div>)}</div>
+        <a class="button button-yellow" href="#contact" data-task={format.label}>{format.action} <Icon/></a>
         <p class="format-note">Состав работ и стоимость согласуем до начала.</p>
-      </div>)}
+      </div>)}</div>
       <div class="project-journey"><h3>Путь проекта</h3><ol>{['Задача','План','Внедрение','Контроль'].map(step=><li><span aria-hidden="true"></span>{step}</li>)}</ol></div>
     </section>
 
     <section class="section container special-section" aria-labelledby="special-heading">
-      <h2 id="special-heading">Для сложных задач</h2><p class="section-description">Отдельные проекты с профильными специалистами.</p>
+      <div class="special-intro"><p class="section-kicker">Задачи</p><h2 id="special-heading">Для сложных <br/>задач</h2><p class="section-description">Когда стандартных инструментов недостаточно, подключаю профильных специалистов.</p></div>
       <div class="special-grid">{specialTasks.map(task=><button class="special-task" type="button" data-info={task.id} aria-haspopup="dialog"><Icon name={task.icon}/><h3>{task.title}</h3><p>{task.text}</p><span class="sr-only">Подробнее</span></button>)}</div>
     </section>
 
     <section class="section container about-section" id="about" aria-labelledby="about-heading">
       <div class="about-portrait"><img src="/images/natalia-editorial.webp" width="1120" height="1400" alt="Наталья Городицкая за рабочим столом" loading="lazy" decoding="async"/></div>
-      <div class="about-copy"><h2 id="about-heading">Лично веду ваш проект.</h2><p class="about-name">Наталья Городицкая</p><p class="about-lead">Связываю учёт, финансовую модель<br class="desktop-break"/> и решения собственника.</p>
+      <div class="about-copy"><p class="section-kicker">Обо мне</p><h2 id="about-heading">Лично веду ваш проект</h2><p class="about-name">Наталья Городицкая</p><p class="about-lead">Помогаю собственникам навести порядок в финансах и принимать решения на основе цифр.</p>
         <ul class="about-facts" id="expertise"><li>В финансах и учёте с 1996 года</li><li>Опыт руководства командой 50+ специалистов</li><li>Опыт внедрения 1С ERP</li></ul>
         <p class="about-partners">Специалистов 1С и юриста подключаю под задачу.</p>
         <div class="practice" data-tabs><p class="choose-label">Из практики</p><div class="practice-tabs" role="tablist" aria-label="Отрасли практики"><button type="button" role="tab" id="tab-production" aria-controls="panel-production" aria-selected="true" data-tab="production">Производство</button><button type="button" role="tab" id="tab-it" aria-controls="panel-it" aria-selected="false" tabindex="-1" data-tab="it">IT и SaaS</button></div>
           <div role="tabpanel" id="panel-production" aria-labelledby="tab-production" data-panel="production"><h3>Восстановление учёта и ERP</h3><p>Проектный учёт и финансовая подготовка к due diligence.</p></div>
           <div role="tabpanel" id="panel-it" aria-labelledby="tab-it" data-panel="it" hidden><h3>Финансы проектов и НМА</h3><p>Управленческая отчётность, план-факт и учёт разработок.</p></div>
         </div>
-      </div>
+        <a class="button button-yellow" href="#contact">Обсудить задачу <Icon/></a>
+      </div><aside class="about-principles"><h3>Мой подход</h3><ul><li><Icon name="check"/>Понятные отчёты без сложных терминов</li><li><Icon name="check"/>Решения с учётом целей собственника</li><li><Icon name="check"/>Конфиденциальность рабочих данных</li><li><Icon name="check"/>Личное ведение проекта</li></ul></aside>
     </section>
 
     <section class="section container resources-section" aria-labelledby="resources-heading">
@@ -105,7 +117,7 @@ const previews = [
     </section>
 
     <section class="section container contact-section" id="contact" aria-labelledby="contact-heading">
-      <div class="faq-column"><h2 id="contact-heading">Начнём с<br/>вашего вопроса.</h2><div class="faq-list">{faq.map((item,i)=><details open={i===0} name="faq"><summary>{item.question}<Icon name="plus"/></summary><p>{item.answer}</p></details>)}</div></div>
+      <div class="faq-column" id="faq"><p class="section-kicker">Вопросы и ответы</p><h2 id="contact-heading">Начнём с<br/>вашего вопроса</h2><div class="faq-list">{faq.map((item,i)=><details open={i===0} name="faq"><summary>{item.question}<Icon name="plus"/></summary><p>{item.answer}</p></details>)}</div></div>
       <div class="contact-panel"><h3>Обсудить проект</h3>
         <form id="contact-form" action={'mailto:'+site.email} method="post" enctype="text/plain">
           <label>Ваше имя <span aria-hidden="true">*</span><input name="name" autocomplete="name" required maxlength="100"/></label>
