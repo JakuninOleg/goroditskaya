@@ -1,52 +1,25 @@
 ---
 import Icon from './Icon.astro';
-import { questions } from '../data/site';
+import Emblem from './Emblem.astro';
+import { questions, questionCheckIcons } from '../data/site';
 import '../styles/iceberg.css';
-const featured = [0, 1, 2, 4];
-const icons = ['cash', 'roadmap', 'report', 'team', 'bank', 'bank', 'chart', 'automation', 'tax'];
-const checkIcons = ['document', 'inventory', 'bank'];
+const featured=[0,1,2,4];
+const checkArt=(position:number)=>[...new Set(questionCheckIcons.map(row=>row[position]))];
 ---
 <section class="needs-section" id="tasks" aria-labelledby="tasks-heading">
-  <div class="needs-container container">
-  <div class="needs-intro">
-    <p class="needs-eyebrow">Вопросы собственника</p>
-    <h2 id="tasks-heading"><span class="needs-title-first">Ваш вопрос —</span> <span class="needs-title-rest">вершина айсберга</span></h2>
-    <p class="needs-lead">Видимая проблема — повод разобраться в финансовой системе.</p>
-  </div>
+ <div class="needs-background" aria-hidden="true"><img src="/images/hybrid/iceberg-panorama.webp" width="1916" height="821" alt="" loading="lazy" decoding="async"/></div>
+ <div class="needs-container container">
+  <div class="needs-intro"><p class="needs-eyebrow">Вопросы собственника</p><h2 id="tasks-heading"><span class="needs-title-first">Ваш вопрос —</span> <span class="needs-title-rest">вершина айсберга</span></h2></div>
   <div class="needs-layout">
-    <div class="needs-choices">
-      <p class="needs-choice-label" id="needs-question-label">Выберите свой вопрос</p>
-      <div class="needs-desktop-choices">
-        <div class="needs-question-list" role="group" aria-labelledby="needs-question-label">
-          {featured.map(index=><button class="needs-question" type="button" data-question={index} aria-pressed={index === 0 ? 'true' : 'false'} aria-controls="iceberg-answer">
-            <Icon name={icons[index]}/><span>{questions[index].title}</span><svg class="needs-chevron" width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 4 8 8-8 8"/></svg>
-          </button>)}
-        </div>
-        <details class="needs-more"><summary aria-controls="needs-more-panel">Другие вопросы <Icon name="plus"/></summary><div id="needs-more-panel">{questions.map((q,index)=>!featured.includes(index)&&<button type="button" data-question={index} aria-pressed="false" aria-controls="iceberg-answer">{q.title}</button>)}</div></details>
-      </div>
-      <div class="needs-mobile-choice">
-        <div class="needs-selected-question" aria-hidden="true">
-          <span class="needs-selected-art">{icons.map((icon,index)=><span data-question-icon={index} hidden={index !== 0}><Icon name={icon}/></span>)}</span>
-          <span data-selected-question>{questions[0].title}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 9 7 7 7-7"/></svg>
-        </div>
-        <select id="needs-question" data-question-select aria-labelledby="needs-question-label" aria-controls="iceberg-answer">{questions.map((q,index)=><option value={index} selected={index===0}>{q.title}</option>)}</select>
-      </div>
-    </div>
-    <div class="needs-response" id="iceberg-answer" aria-live="polite" aria-atomic="true">
-      <div class="needs-visual">
-        <picture class="needs-scene"><source media="(min-width: 761px)" srcset="/images/iceberg-wide.webp"/><img class="needs-iceberg" src="/images/iceberg.webp" width="1448" height="1086" alt="Айсберг: небольшая видимая вершина и большая подводная часть" loading="lazy" decoding="async"/></picture>
-        <div class="needs-surface"><svg class="needs-surface-line" width="120" height="50" viewBox="0 0 120 50" fill="none" aria-hidden="true"><path d="M5 44 38 10H116"/><circle cx="5" cy="44" r="4"/><circle cx="116" cy="10" r="4"/></svg><p>На поверхности</p><h3 data-iceberg-headline>{questions[0].headline}</h3></div>
-        <svg class="needs-under-link" width="900" height="560" viewBox="0 0 900 560" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M340 315H435L495 368H570"/><circle cx="340" cy="315" r="6"/></svg>
-      </div>
-      <div class="needs-depth">
-        <svg class="needs-mobile-bridge" width="360" height="105" viewBox="0 0 360 105" fill="none" aria-hidden="true"><path class="needs-bridge-line" d="M150 7C150 38 228 28 228 63C228 83 201 91 179 96"/><path class="needs-bridge-tip" d="m187 84-8 12 15 3"/><circle cx="150" cy="7" r="5"/></svg>
-        <h3>Что проверим глубже</h3>
-        <ul class="needs-check-list">{questions[0].checks.map((check,index)=><li><Icon name={checkIcons[index]}/><span data-iceberg-check={index}>{check}</span></li>)}</ul>
-        <p class="sr-only" data-iceberg-explanation>{questions[0].explanation}</p>
-      </div>
-    </div>
+   <div class="needs-choices"><p class="needs-choice-label sr-only" id="needs-question-label">Выберите свой вопрос</p>
+    <div class="needs-desktop-choices"><div class="needs-question-list" role="group" aria-labelledby="needs-question-label">{featured.map(index=><button class="needs-question" type="button" data-question={index} aria-pressed={index===0?'true':'false'} aria-controls="iceberg-answer"><span>{questions[index].title}</span><Icon/></button>)}</div><details class="needs-more"><summary aria-controls="needs-more-panel">Другие вопросы <Icon name="plus"/></summary><div id="needs-more-panel">{questions.map((q,index)=>!featured.includes(index)&&<button type="button" data-question={index} aria-pressed="false" aria-controls="iceberg-answer">{q.title}</button>)}</div></details></div>
+    <div class="needs-mobile-choice"><div class="needs-selected-question" aria-hidden="true"><span data-selected-question>{questions[0].title}</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 9 7 7 7-7"/></svg></div><select id="needs-question" data-question-select aria-labelledby="needs-question-label" aria-controls="iceberg-answer">{questions.map((q,index)=><option value={index} selected={index===0}>{q.title}</option>)}</select></div>
+   </div>
+   <div class="needs-response" id="iceberg-answer" aria-live="polite" aria-atomic="true">
+    <div class="needs-visual"><picture class="needs-scene"><img src="/images/hybrid/iceberg-panorama.webp" width="1916" height="821" alt="Вершина айсберга над водой и значительно большая подводная часть" loading="lazy" decoding="async"/></picture><div class="needs-surface"><svg class="needs-surface-line" width="100" height="45" viewBox="0 0 100 45" fill="none" aria-hidden="true"><path d="M4 40 36 7H96"/><circle cx="4" cy="40" r="4"/><circle cx="96" cy="7" r="3"/></svg><p>На поверхности</p><h3 data-iceberg-headline>{questions[0].headline}</h3></div><svg class="needs-under-link" width="900" height="560" viewBox="0 0 900 560" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M295 325H390L455 380H590"/><circle cx="295" cy="325" r="6"/></svg></div>
+    <div class="needs-depth"><svg class="needs-mobile-bridge" width="100" height="100" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M28 5v29c0 22 42 17 42 38v21"/><circle cx="28" cy="5" r="4"/><path d="m63 84 7 9 7-9"/></svg><h3>Что проверим глубже</h3><ul class="needs-check-list">{questions[0].checks.map((check,index)=><li><span class="needs-check-art">{checkArt(index).map(name=><span data-check-art={name} data-check-position={index} hidden={name!==questionCheckIcons[0][index]}><Emblem name={name}/></span>)}</span><span data-iceberg-check={index}>{check}</span></li>)}</ul><p class="sr-only" data-iceberg-explanation>{questions[0].explanation}</p></div>
+   </div>
   </div>
-  <div class="needs-footer"><div><p>Свяжем прибыль, платежи и остатки денег.</p><span>ДДС · Отчёт о прибыли · Баланс</span></div><a class="button button-yellow" href="#contact" data-iceberg-contact data-task={questions[0].title}>Разобрать мою ситуацию <Icon/></a></div>
-  </div>
+  <div class="needs-footer"><p>Свяжем прибыль, платежи и остатки денег.</p><a class="button button-yellow" href="#contact" data-iceberg-contact data-task={questions[0].title}>Разобрать мою ситуацию <Icon/></a></div>
+ </div>
 </section>

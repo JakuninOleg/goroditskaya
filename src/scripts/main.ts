@@ -1,4 +1,4 @@
-import { questions } from '../data/site';
+import { questions, questionCheckIcons } from '../data/site';
 
 function selectTab(group: HTMLElement, value: string, focus = false) {
   group.querySelectorAll<HTMLButtonElement>('[role="tab"]').forEach(tab => {
@@ -47,6 +47,7 @@ function selectQuestion(index: number) {
   document.querySelectorAll<HTMLElement>('[data-question-icon]').forEach(icon => { icon.hidden = Number(icon.dataset.questionIcon) !== index; });
   document.querySelector('[data-iceberg-headline]')!.textContent = question.headline;
   document.querySelectorAll<HTMLElement>('[data-iceberg-check]').forEach((item, i) => { item.textContent = question.checks[i]; });
+  document.querySelectorAll<HTMLElement>('[data-check-art]').forEach(item => { item.hidden = item.dataset.checkArt !== questionCheckIcons[index][Number(item.dataset.checkPosition)]; });
   document.querySelector('[data-iceberg-explanation]')!.textContent = question.explanation;
   const contact = document.querySelector<HTMLElement>('[data-iceberg-contact]');
   if (contact) contact.dataset.task = question.title;
@@ -95,7 +96,7 @@ document.addEventListener('keydown', event => { if (event.key === 'Escape' && me
 document.addEventListener('focusin', event => {
   if (menuToggle?.getAttribute('aria-expanded') === 'true' && !masthead?.contains(event.target as Node)) closeMenu();
 });
-window.matchMedia('(min-width: 1281px)').addEventListener('change', () => closeMenu());
+window.matchMedia('(min-width: 1181px)').addEventListener('change', () => closeMenu());
 
 const productDialog = document.getElementById('product-dialog') as HTMLDialogElement;
 document.querySelectorAll<HTMLButtonElement>('[data-product]').forEach(button => button.addEventListener('click', () => {

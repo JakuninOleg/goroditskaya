@@ -14,6 +14,11 @@ export const questions = [
   { title: 'Погрязли в операционке?', headline: 'Слишком много\nручного управления.', checks: ['Регламенты и роли', 'Единые источники данных', 'Автоматизация отчётности'], explanation: 'Определим, какие процессы и отчёты помогут команде.' },
   { title: 'Налоговые риски непонятны?', headline: 'Вопросы налоговой.\nКакова позиция бизнеса?', checks: ['Первичные документы', 'Подтверждение сделок', 'Позиция по требованиям'], explanation: 'Разберём документы и согласуем действия по вашей ситуации.' },
 ];
+export const questionCheckIcons = [
+ ['document','inventory','payments'], ['document','inventory','personal'], ['clarity','inventory','document'],
+ ['team','clarity','system'], ['document','payments','clarity'], ['document','clarity','personal'],
+ ['clarity','personal','payments'], ['personal','system','clarity'], ['document','secure','personal'],
+] as const;
 export const products = [
   { id: 'finance', title: 'Финансовый директор', icon: 'report', text: 'Прибыль, денежный поток и решения собственника.', scope: ['Модель и бюджет', 'Управленческий учёт'] },
   { id: 'tax', title: 'Налоговый консультант', icon: 'tax', text: 'Требования, вычеты НДС, проверки и налоговые споры.', scope: ['Разбор документов', 'Подготовка позиции'] },

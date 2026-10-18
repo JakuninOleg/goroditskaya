@@ -1,5 +1,5 @@
 ---
-import ArtIcon from './ArtIcon.astro';
+import Emblem from './Emblem.astro';
 interface Props { name?: string; class?: string; }
 const { name = 'arrow', class: className = '' } = Astro.props;
 const ui: Record<string,string> = {
@@ -11,4 +11,4 @@ const ui: Record<string,string> = {
   phone:'<path d="m7 3 3 5-3 3c2 3 3 4 6 6l3-3 5 3-2 4C9 22 2 15 3 5z"/>'
 };
 ---
-{ui[name] ? <svg class={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g set:html={ui[name]}/></svg> : <ArtIcon name={name} class={className}/>}
+{ui[name] ? <svg class={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g set:html={ui[name]}/></svg> : <Emblem name={name === 'automation' ? 'system' : name === 'team' ? 'team' : name === 'chart' || name === 'report' ? 'clarity' : name === 'remote' ? 'remote' : 'document'} class={className}/>}

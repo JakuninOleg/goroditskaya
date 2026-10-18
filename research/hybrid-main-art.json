@@ -1,0 +1,63 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-10-18",
+  "purpose": "New standalone illustrations for approved hybrid website, not documentary evidence",
+  "assets": [
+    {
+      "key": "hero-office",
+      "prompt": "Use case: photorealistic-natural. Standalone WEBSITE HERO PHOTOGRAPHIC BACKGROUND asset, NOT a website mockup, no letters anywhere. Image1 is an approved office-scene style reference only; image2 is identity reference. Preserve exactly the same recognisable woman from image2: brown curly hair, black blazer, warm subtle smile, hand naturally resting at chin and other arm on the desk, accurate hands. Create a very wide 21:9 cinematic office photo. Woman seated entirely in RIGHTMOST 40% in a handsome deep forest green leather chair, foreground polished warm walnut curved executive desk, one forest cloth report book WITHOUT ANY TEXT OR GOLD LETTERING, precise black/brass pen, orderly cream reports, cropped monitor at extreme right. On LEFT 58%, calm warmly lit ivory #f4f1e8 wall with soft architectural daylight only, NO plants, objects, chair, desk clutter or high contrast details in that left text-safe area. Lower foreground may have thin warm walnut edge. Morning light, physically realistic materials, refined editorial photography. Keep head 10% below top edge, body and hands fully in right safe zone with room at bottom. No text, no UI, no charts floating in front, no watermark. Image will be overlaid with REAL HTML text at left. Match approved hero1's warm character but execute as clean reusable high-resolution background with no words baked in.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-a58cbd85-1de3-4352-be1f-af761ed24782.png",
+      "file": "public/images/hybrid/hero-office.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "key": "hero-portrait",
+      "prompt": "Use case: photorealistic-natural. Standalone PORTRAIT WEBSITE photograph, NOT UI/mockup. Image1 supplies office art direction, image2 supplies exact woman's identity. Preserve same recognizable face, curls, black blazer and natural warm subtle smile. FRONT-ON woman seated at a warm walnut executive desk, forest green leather chair, black/brass fountain pen and a single beautiful dark green cloth book with NO LETTERS. Her right hand naturally at chin, other arm relaxed on desk, anatomically correct hands. Modern softly blurred ivory office with morning architectural window light. Portrait crop4:5, head with comfortable10% top margin, upper body, both arms and desk clearly present, no cut-off hair/hands. Elegant editorial professional portrait, natural skin texture, not glamour retouch, no jewellery changes. No text, logos, charts, UI, borders, watermark. Harmonize with approved desktop office scene.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-f3216500-50ca-499d-b778-fdb45b76383f.png",
+      "file": "public/images/hybrid/hero-portrait.webp",
+      "width": 1120,
+      "height": 1400
+    },
+    {
+      "key": "service-finance",
+      "prompt": "Use case: product-mockup. Standalone landscape 4:3 material still life for a financial director's service, not a website or card. Reference supplies material/lighting style only. A beautifully constructed FOREST GREEN cloth financial casebook, slightly open, angled diagonally, on warm ivory stone desk. Subtle brass thin ascending-line chart inlaid in cover (no axes, NO WORDS OR NUMBERS). A restrained brass precision drafting compass rests beside an ivory analysis sheet; not an antique clock or piles of money. Perfect realistic cloth fibres, paper edges, carefully machined brass, physically plausible shadows and objects. Soft morning side light. Palette ivory #f4f1e8, forest #153e39, muted brass. Subject centered and whole within frame, 12% clear margin all sides. Bottom background matte ivory, slight warm depth, no plants, no busy office. Expensive editorial product photography, not glossy plastic toy, no arbitrary gold spheres, no labels, no letters, no UI.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-4acf1fcd-0c32-4777-923d-efc3cbe6e66b.png",
+      "file": "public/images/hybrid/service-finance.webp",
+      "width": 1000,
+      "height": 750
+    },
+    {
+      "key": "service-tax",
+      "prompt": "Use case: product-mockup. Standalone landscape 4:3 still life for tax advisory. Match reference's tasteful emerald/ivory/brass materials and morning light, but do not copy or crop its UI. One precisely crafted dark forest leather DOCUMENT FOLIO partly opened, revealing impeccably aligned cream tax/accounting pages with small visual table rules but NO READABLE TEXT, NO seals or invented official certificates. Three muted sage indexed divider tabs and black fountain pen with brass nib placed neatly beside. An actual thin brass clip holds the pages. Physically accurate stitching, realistic paper thickness and hardware. Compact coherent subject center with 12% margins. Warm ivory matte stone surface/backdrop, soft daylight. Distinct from a financial chart book and legal scales, instantly speaks document review/tax. No plants, glitter, toys, random coins, big gold effects, labels, UI, text or watermark.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-cd55fb8b-4db0-49bf-91ad-4472639f937d.png",
+      "file": "public/images/hybrid/service-tax.webp",
+      "width": 1000,
+      "height": 750
+    },
+    {
+      "key": "service-legal",
+      "prompt": "Use case: product-mockup. Standalone landscape4:3 legal business-advisory still life. Match reference's warm ivory, deep forest, modest brass and morning light. Beautiful architectural BRASS BALANCE SCALES, physically correct equal suspended pans and support, upright and stable on one small dark green cloth law book without text, placed on ivory stone surface. Paired precisely aligned green document folder behind, subtle black/gold pen in foreground. Realistic metal joins, taut fine chains, warm brushed brass not mirror glitter. Balanced restrained object composition, complete scales fit inside frame with12% space. Photographic editorial still life, no cathedral, no judge hammer, no gold coin piles, plants, letters, fake official seals, UI or watermark. Elegant and credible, not clipart or plastic3D toy.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-67428af8-736d-40df-bade-0b49cd54562a.png",
+      "file": "public/images/hybrid/service-legal.webp",
+      "width": 1000,
+      "height": 750
+    },
+    {
+      "key": "case-dossier",
+      "prompt": "Use case: product-mockup. Create a standalone wide landscape3:2 image of an engineering R&D asset dossier for a financial consultant case. Reference sets the composition/material style; remove ALL website text and number blocks. In RIGHT two thirds a stunning dark forest leather engineering folio lying open, thick ivory sheets with a coherent precise invented mechanical assembly technical drawing, finely ruled dimensions with NO READABLE WORDS OR NUMBERS, no actual patent, no state emblem, no official seals. Real beautiful brass-rimmed magnifier rests over detailed engineering line work, one black/brass fountain pen, two soft blurred forest ledgers behind. Morning daylight, walnut and ivory stone surface, luxurious real paper/cloth/brass texture. LEFT third smoothly fades into clear warm ivory #f4f1e8 negative space for live typography. Realistic optical magnification, plausible perspective, no clutter or plants. This is an ILLUSTRATION of reviewing engineering costs, not forged evidence. NO text, no62million number, no UI, no watermark.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-45cdc7ac-3adf-4225-a23c-c409919928df.png",
+      "file": "public/images/hybrid/case-dossier.webp",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "key": "contact-still-life",
+      "prompt": "Use case: product-mockup. Standalone wide landscape2:1 still life for a financial director's final contact section background. Forest green leather/cloth portfolio occupies RIGHT half on a warm walnut desk, exactly one elegant black and brushed-brass fountain pen laid diagonally, a thin cream page corner. Deep forest #153e39 tonal backdrop/negative space across LEFT half for real web typography. Refined close focus on cloth grain, brass nib, stitching and soft warm morning edge lighting. Real physical desk objects, very restrained composition, expensive editorial macro photograph. No words, labels, logos, computer UI, charts, plants, gold coins, plastic, borders or watermark. No forms or buttons baked in. Keep main objects at right so they won't sit behind future form inputs.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-c0856c81-1bde-4d4a-856b-b23459d820fb.png",
+      "file": "public/images/hybrid/contact-still-life.webp",
+      "width": 1600,
+      "height": 800
+    }
+  ]
+}

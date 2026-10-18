@@ -1,0 +1,169 @@
+{
+  "date": "2026-10-18",
+  "environment": "Local Astro, Codex in-app browser",
+  "viewports": [
+    {
+      "client": 345,
+      "headerRoleFont": "14px",
+      "heroFont": "35px",
+      "menu": "flex",
+      "metricsColumns": "138.5px 138.5px",
+      "overflow": false,
+      "page": 345,
+      "productsColumns": "297px",
+      "width": 360
+    },
+    {
+      "client": 375,
+      "headerRoleFont": "14px",
+      "heroFont": "37.635px",
+      "menu": "flex",
+      "metricsColumns": "153.5px 153.5px",
+      "overflow": false,
+      "page": 375,
+      "productsColumns": "327px",
+      "width": 390
+    },
+    {
+      "client": 625,
+      "headerRoleFont": "14px",
+      "heroFont": "53px",
+      "menu": "flex",
+      "metricsColumns": "278.5px 278.5px",
+      "overflow": false,
+      "page": 625,
+      "productsColumns": "577px",
+      "width": 640
+    },
+    {
+      "client": 626,
+      "header": 554,
+      "overflow": false,
+      "page": 626,
+      "processColumns": "554px",
+      "width": 641
+    },
+    {
+      "client": 685,
+      "header": 613,
+      "overflow": false,
+      "page": 685,
+      "processColumns": "613px",
+      "width": 700
+    },
+    {
+      "client": 753,
+      "header": 681,
+      "overflow": false,
+      "page": 753,
+      "processColumns": "681px",
+      "width": 768
+    },
+    {
+      "client": 819,
+      "header": 747,
+      "overflow": false,
+      "page": 819,
+      "processColumns": "239px 239px 239px",
+      "width": 834
+    },
+    {
+      "client": 935,
+      "headerRoleFont": "14px",
+      "heroFont": "43px",
+      "menu": "flex",
+      "metricsColumns": "397.5px 397.5px",
+      "overflow": false,
+      "page": 935,
+      "productsColumns": "415.5px 415.5px",
+      "width": 950
+    },
+    {
+      "client": 936,
+      "headerRoleFont": "14px",
+      "heroFont": "45.648px",
+      "menu": "flex",
+      "metricsColumns": "190.5px 190.5px 190.5px 190.5px",
+      "overflow": false,
+      "page": 936,
+      "productsColumns": "271.328px 271.328px 271.344px",
+      "width": 951
+    },
+    {
+      "client": 1165,
+      "headerRoleFont": "14px",
+      "heroFont": "56.64px",
+      "menu": "flex",
+      "metricsColumns": "247.75px 247.75px 247.75px 247.75px",
+      "overflow": false,
+      "page": 1165,
+      "productsColumns": "347.656px 347.672px 347.656px",
+      "width": 1180
+    },
+    {
+      "client": 1166,
+      "headerRoleFont": "15px",
+      "heroFont": "54.326px",
+      "menu": "none",
+      "metricsColumns": "237px 237px 237px 237px",
+      "overflow": false,
+      "page": 1166,
+      "productsColumns": "332.656px 332.672px 332.656px",
+      "width": 1181
+    },
+    {
+      "client": 1265,
+      "headerRoleFont": "15px",
+      "heroFont": "58.88px",
+      "menu": "none",
+      "metricsColumns": "261.75px 261.75px 261.75px 261.75px",
+      "overflow": false,
+      "page": 1265,
+      "productsColumns": "365.656px 365.672px 365.656px",
+      "width": 1280
+    },
+    {
+      "client": 1425,
+      "headerRoleFont": "15px",
+      "heroFont": "66.24px",
+      "menu": "none",
+      "metricsColumns": "301.75px 301.75px 301.75px 301.75px",
+      "overflow": false,
+      "page": 1425,
+      "productsColumns": "419px 419px 419px",
+      "width": 1440
+    },
+    {
+      "client": 1905,
+      "headerRoleFont": "15px",
+      "heroFont": "88px",
+      "menu": "none",
+      "metricsColumns": "359.5px 359.5px 359.5px 359.5px",
+      "overflow": false,
+      "page": 1905,
+      "productsColumns": "496px 496px 496px",
+      "width": 1920
+    }
+  ],
+  "checks": {
+    "mobileMenuOverlay": "passed, hero position unchanged",
+    "questionSwitch": "passed, text/checks/semantic emblems change",
+    "moreQuestions": "absolute overlay, closes after selection",
+    "reportTabs": "overview/model/budget passed",
+    "chartTooltip": "January revenue3.2/profit0.4 passed",
+    "faq": "single open answer, rapid interruption passed",
+    "formValidation": "name/email/consent required",
+    "formPrepare": "correct mailto and prepared text, no message sent",
+    "productDialog": "tax tab and5 situations passed",
+    "consoleErrors": [],
+    "staticBuild": "passed",
+    "integrity": "245 unique ids,23 local assets and all anchors resolved",
+    "download": "HEAD200",
+    "reducedMotion": "source inspected; browser preference not emulated"
+  },
+  "fixedIssues": [
+    "Resource-sheet transforms caused mobile overflow; clipped at section boundary.",
+    "Tablet header overflow at641px; brand/role reflowed.",
+    "Spaces at responsive line breaks restored."
+  ]
+}

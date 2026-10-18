@@ -1,0 +1,51 @@
+{
+  "createdDate": "2026-10-18",
+  "generationTool": "built-in image_gen.imagegen",
+  "referencePath": "C:/Users/olegk/code/gorodickaya/site/public/images/hybrid/special-diligence.webp",
+  "referenceRole": "Materials, lighting and photographic quality only. New independent images, not crops.",
+  "conversion": {
+    "tool": "sharp",
+    "resize": {
+      "width": 900
+    },
+    "webpQuality": 85
+  },
+  "assets": [
+    {
+      "slug": "diagnostics",
+      "title": "Диагностика",
+      "prompt": "Use case: product-mockup.\nAsset type: standalone photographic subject illustration for the process section of a premium financial director's website. Create a new editorial still life, NOT a web page, screenshot, card or collage.\nInput image1 is a reference for material, palette, natural light and photographic quality ONLY. Do not copy its subjects or create financial report verification again unless instructed in Subject.\nStyle: meticulous high-end editorial product photography, true physical materials, precise believable geometry, professional serious finance, contemporary executive style. Natural warm morning daylight from upper left, soft elongated shadows and refined highlights. Warm ivory #f4f1e8 seamless tabletop and backdrop with no room or horizon. Forest green #153e39 leather and cloth, subtle brushed brass accents, cream paper, transparent emerald glass when specified. No ornate luxury or gold overload.\nCamera: horizontal4:3, slightly elevated three-quarter camera looking about35 degrees down, 65mm lens. One compact coherent grouping centered, whole main subject inside frame and practical breathing space near edges. Main grouping roughly70% of frame width. Everything essential sharp, soft unobtrusive backdrop. Not an abstract icon, not a toy.\nText: absolutely NO words, digits, letters, labels, logos, watermarks or signatures. UI and papers contain only graph geometry and faint table rules. No UI border around the whole image. No people or hands, no random plants, no coins, money, huge arrows, lightbulbs or stock decorative spheres. Render1600x1200 or equivalent4:3.\nSubject: a thick opened ivory financial report booklet on a thin dark forest-green cloth portfolio, viewed with a noticeably different composition from the reference: book spread extends left-to-right, with a brass-and-dark-green magnifier resting on the RIGHT lower page and its handle pointing diagonally outward to the right. The left page shows a clean ascending and descending fine green line chart and a structured four-column blank numeric-style table WITHOUT any actual numbers or text. The right page shows two restrained graphical comparison charts only. A slim brass page clip at the top left and one compact dark green document tab. Lens physically magnifies the page underneath, accurately grounded and believable. The story is careful analysis and finding where financial issues begin, no treasure-hunt aesthetic.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a14c25-f251-78c1-8f16-c661e83b2b28/exec-efa5df6c-7a50-4451-b42e-8148536e1ad3.png",
+      "output": "public/images/hybrid/process-diagnostics.webp",
+      "reviewed": true,
+      "reviewNotes": "New independent image; meaningful process subject and consistent ivory/emerald/brass palette. Realistic object construction and clear composition.",
+      "width": 900,
+      "height": 675,
+      "bytes": 66240
+    },
+    {
+      "slug": "system",
+      "title": "Постановка системы",
+      "prompt": "Use case: product-mockup.\nAsset type: standalone photographic subject illustration for the process section of a premium financial director's website. Create a new editorial still life, NOT a web page, screenshot, card or collage.\nInput image1 is a reference for material, palette, natural light and photographic quality ONLY. Do not copy its subjects or create financial report verification again unless instructed in Subject.\nStyle: meticulous high-end editorial product photography, true physical materials, precise believable geometry, professional serious finance, contemporary executive style. Natural warm morning daylight from upper left, soft elongated shadows and refined highlights. Warm ivory #f4f1e8 seamless tabletop and backdrop with no room or horizon. Forest green #153e39 leather and cloth, subtle brushed brass accents, cream paper, transparent emerald glass when specified. No ornate luxury or gold overload.\nCamera: horizontal4:3, slightly elevated three-quarter camera looking about35 degrees down, 65mm lens. One compact coherent grouping centered, whole main subject inside frame and practical breathing space near edges. Main grouping roughly70% of frame width. Everything essential sharp, soft unobtrusive backdrop. Not an abstract icon, not a toy.\nText: absolutely NO words, digits, letters, labels, logos, watermarks or signatures. UI and papers contain only graph geometry and faint table rules. No UI border around the whole image. No people or hands, no random plants, no coins, money, huge arrows, lightbulbs or stock decorative spheres. Render1600x1200 or equivalent4:3.\nSubject: exactly THREE transparent deep emerald glass architectural blocks with differing measured heights, in a stable orderly cluster, beside exactly TWO small functional brushed brass spur gears. The three blocks are solid rectangular prisms with subtle green optical refraction and crisp square edges, on a low thin ivory stone slab. The two gears sit upright together in the foreground in the same plane, their matching-module teeth physically meshing correctly, with open round central bores and believable machined thickness. No random extra gears or exploded machinery. A single thin blank ivory planning sheet lies partly underneath the stone slab. Convey a financial operating system built from coherent connected parts. Restrained materiality, beautiful precise physical design, not a giant golden trophy, not a growth chart of five columns.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a14c25-f251-78c1-8f16-c661e83b2b28/exec-47bb8fd8-def9-458c-a0cc-058e16b88130.png",
+      "output": "public/images/hybrid/process-system.webp",
+      "reviewed": true,
+      "reviewNotes": "New independent image; meaningful process subject and consistent ivory/emerald/brass palette. Realistic object construction and clear composition.",
+      "width": 900,
+      "height": 675,
+      "bytes": 39438
+    },
+    {
+      "slug": "support",
+      "title": "Сопровождение",
+      "prompt": "Use case: product-mockup.\nAsset type: standalone photographic subject illustration for the process section of a premium financial director's website. Create a new editorial still life, NOT a web page, screenshot, card or collage.\nInput image1 is a reference for material, palette, natural light and photographic quality ONLY. Do not copy its subjects or create financial report verification again unless instructed in Subject.\nStyle: meticulous high-end editorial product photography, true physical materials, precise believable geometry, professional serious finance, contemporary executive style. Natural warm morning daylight from upper left, soft elongated shadows and refined highlights. Warm ivory #f4f1e8 seamless tabletop and backdrop with no room or horizon. Forest green #153e39 leather and cloth, subtle brushed brass accents, cream paper, transparent emerald glass when specified. No ornate luxury or gold overload.\nCamera: horizontal4:3, slightly elevated three-quarter camera looking about35 degrees down, 65mm lens. One compact coherent grouping centered, whole main subject inside frame and practical breathing space near edges. Main grouping roughly70% of frame width. Everything essential sharp, soft unobtrusive backdrop. Not an abstract icon, not a toy.\nText: absolutely NO words, digits, letters, labels, logos, watermarks or signatures. UI and papers contain only graph geometry and faint table rules. No UI border around the whole image. No people or hands, no random plants, no coins, money, huge arrows, lightbulbs or stock decorative spheres. Render1600x1200 or equivalent4:3.\nSubject: a thin elegant contemporary charcoal-and-forest-green laptop opened about110 degrees and angled slightly left, sitting on an ivory desk. Its screen is a refined modern green and ivory BI report with one clean line plot and exactly five green bar columns, a subtle compact horizontal tab bar and four simple pale metric blocks; no readable text or digits. Laptop has a believable real keyboard, trackpad, hinge and screen dimensions, not a monitor. A compact paper report booklet with faint table rules and a small sober line chart lies to its right, with one fine dark-green and brass pen placed neatly alongside. No accessories beyond these. This composition should suggest regular ongoing analysis and clear recommendations, visually distinct from the desktop monitor reference.",
+      "source": "C:/Users/olegk/.codex/generated_images/01a14c25-f251-78c1-8f16-c661e83b2b28/exec-fa4c794d-1021-472b-957e-e25d23af9ead.png",
+      "output": "public/images/hybrid/process-support.webp",
+      "reviewed": true,
+      "reviewNotes": "New independent image; meaningful process subject and consistent ivory/emerald/brass palette. Realistic object construction and clear composition.",
+      "width": 900,
+      "height": 675,
+      "bytes": 49298
+    }
+  ]
+}

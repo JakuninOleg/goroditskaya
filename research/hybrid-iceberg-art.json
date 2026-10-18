@@ -1,0 +1,9 @@
+{
+  "tool": "Built-in image_gen",
+  "asset": {
+    "key": "iceberg-panorama",
+    "prompt": "Use case: photorealistic-natural. Standalone website visual BACKGROUND, not UI/mockup. Create a breathtaking photorealistic very wide21:9 split-level ocean iceberg scene. Reference supplies crystalline ice quality and warm late morning ocean lighting. A sharp natural white iceberg above sea, VERY LARGE translucent cyan underwater mass below, all joined naturally across waterline, waterline at approximately35% height. Main iceberg centered at52% ofimagewidth, fits inside central35%width withfull10%topandbottom margin. Uninterrupted ocean surface and dark teal underwater sea extend to BOTH left andrightedges, full bleed, NO ivoryfade, NO vignette fade. Left25% and right20% ofimage retain visually quiet readable deep sea/softsky areas for realwebsite overlays. Above sea soft blue sky/peach morning clouds; below clear rich forest/teal water, real facets, physically plausible refraction and sunrays, graceful icebergbase. No land/plants/text/labels/arrows/UI/logos/watermark. Highresolution, cinematic but credible, NOT a tinychunk of ice, NOT a fantasygiantcrystal. Subject entirelyvisible and visually balanced. Image reused with central crop on phone, so preserve all vertical iceberg geometry.",
+    "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-ee5ea167-041d-43f4-8c9f-a05a070ca68c.png",
+    "file": "public/images/hybrid/iceberg-panorama.webp"
+  }
+}
