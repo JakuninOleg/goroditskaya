@@ -178,5 +178,3 @@ dialog::backdrop{background:#082e396e;backdrop-filter:blur(5px)}.dialog-close{po
 .case-art{min-height:0;aspect-ratio:auto;align-self:center;background:#e8eadf}
 .case-illustration{display:block;width:100%;height:auto}
 @media(max-width:640px){.case-illustration .case-art-labels{font-size:23px}.case-illustration .case-art-caption{font-size:16px;letter-spacing:1px}}
-.about-portrait{width:100%;max-width:370px;aspect-ratio:327/500;align-self:center;justify-self:center;max-height:none}
-.about-portrait img{object-position:center;object-fit:contain}
