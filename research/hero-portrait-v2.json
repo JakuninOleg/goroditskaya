@@ -1,0 +1,24 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-10-18",
+  "purpose": "Hero portrait matching the About portrait identity, new notebook and pen pose",
+  "identityReference": "public/images/hybrid/about-natalia-v2.webp",
+  "assets": [
+    {
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-caade28b-be07-465d-aa9f-3c97b369f2e9.png",
+      "prompt": "Use case: identity-preserve / photorealistic-natural. Create a NEW single very wide 21:9 desktop website HERO PHOTOGRAPH, high resolution ideally 3840 by 1646. No words, no UI, no website mockup. Input image 1 is the ONLY identity and photographic look reference: Natalia. Preserve this SAME middle-aged woman, same recognisable facial structure, brown eyes, nose, smile, age, body proportions, brown hair with natural loose waves and fine flyaways, simple black blazer and black top, small gold necklace and watch. It must be unmistakably another photo from the same real-world portrait session as input1, not a different curly-haired generic fashion model. Keep natural facial pores, fine expression lines and believable ordinary hair. NEW POSE: she sits more upright at a slight three-quarter angle with her shoulders subtly turned toward image-left, head upright toward the camera, small relaxed smile; her right hand loosely holding a pen just above an open cream notebook, left hand resting naturally on the desk beside the notebook. Do not cross/fold hands as in reference1, do not touch chin or face, keep elbows relaxed and anatomically accurate hands fully visible. Corporate editorial photo, 50mm lens, f/4, soft neutral window daylight, honest low-key professional retouch. No beauty smoothing, waxy skin, extreme sharpness, glamour, cinematic orange light, artificial glow or golden bokeh. ENVIRONMENT: same believable ivory and desaturated sage modern office as input1, quiet sage shelves only BEHIND THE WOMAN, matte muted green office chair, light warm matte oak desk, a dark green document folder and notebook with no readable writing, modest ordinary real materials. No Manhattan skyline, no ornate luxury furniture, no shiny gold hardware, no huge decorative plants, no monitor in the foreground. CRITICAL LAYOUT: LEFTMOST 58 percent must be an uninterrupted calm warmly neutral ivory wall #f4f1e8, softly and evenly lit, only faint soft architectural shadows, no furniture, shelves, plant, objects or person crossing into this left copy-safe area. The woman and notebook sit entirely in the RIGHT 38 percent, face centred near x=77 percent, head top near y=12 percent, hair fully inside the frame, desk edge at bottom, both hands above bottom margin with natural breathing room. Her torso starts around x=64 percent; her hands and props must stay within rightmost42 percent. She should be large enough to read on a desktop hero, upper body clearly shown. Top margin about10 percent, right margin8 percent. Generate one coherent photographic scene with physically consistent perspective and shadows, not composited floating objects. No text, symbols, logos, watermark or frame.",
+      "files": [
+        "public/images/hybrid/hero-office-v2.webp",
+        "public/images/hybrid/hero-office-v2-1200.webp"
+      ]
+    },
+    {
+      "source": "C:/Users/olegk/.codex/generated_images/01a0f39a-8597-7350-ab92-f40ab41effa8/exec-d11d8405-7443-45de-b1bf-d6e74b4ba751.png",
+      "prompt": "Use case: identity-preserve, precise reframing. Edit image1 into a VERTICAL 4:5 mobile website hero photograph, high-resolution 1120x1400 or larger. Image1 is the just-approved wide hero scene: preserve the SAME woman, SAME exact face, mature age, loose natural brown hair, subtle smile, black blazer, small necklace, neutral daylight and office setting, and SAME pen-and-notebook pose. Image2 is her matching About portrait for additional identity lock only. Reframe and extend image1 naturally to show her entire head with 10% top margin, upper torso, both forearms, right hand lightly holding the pen above open cream notebook, left hand flat on the desk, notebook and a small part of green folio in foreground. She should be centred in this portrait frame with shoulders and elbows comfortably inside sides, believable proportions. Do not swap face, hair, age, smile or pose, do not rest chin on hand, do not fold hands. Background same ivory room and muted sage shelves, soft neutral overcast window light, natural skin pores and expression lines, normal honest professional photograph. No glossy glamour skin, no waxy retouch, no orange cinematic light, no big luxurious props, no city skyline, no oversharpening. This must be the mobile framing of the same portrait session, not a new person or new outfit. No text, graphics, logos, watermark, website UI or frame.",
+      "files": [
+        "public/images/hybrid/hero-portrait-v2.webp",
+        "public/images/hybrid/hero-portrait-v2-640.webp"
+      ]
+    }
+  ]
+}
