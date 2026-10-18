@@ -38,8 +38,6 @@ h2{font-size:clamp(36px,3.25vw,62px)}h3{font-size:30px}h4{font-size:24px}p{overf
 @keyframes menu-enter{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .hero{position:relative;background:#f5f1e6}.hero-stage{position:relative;min-height:640px;height:clamp(640px,43vw,800px);isolation:isolate;overflow:hidden}
 .hero-visual{position:absolute;inset:0;z-index:-1}.hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center}
-/* Keep the full portrait at its native composition on wide desktop displays. */
-@media(min-width:1916px){.hero-stage{height:821px}.hero-visual{max-width:1916px;margin-inline:auto;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}}
 .hero-copy{padding-top:clamp(42px,3.5vw,70px);position:relative}.hero-text{width:55%;max-width:840px}.hero h1{font-size:clamp(48px,4.6vw,88px);line-height:1.09;letter-spacing:-.065em}
 .hero h1>span{display:block}.hero h1 em{color:#b58b2d;background:linear-gradient(135deg,#94742d,#d3aa43 60%,#a47b27);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-description{font-size:clamp(18px,1.28vw,23px);max-width:560px;line-height:1.65;margin-top:27px}.hero-cta{margin-top:27px;min-width:220px}
