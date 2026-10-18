@@ -3,6 +3,8 @@
 .needs-background{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}.needs-background img{height:100%;width:100%;object-fit:cover;object-position:52% 50%}
 .needs-background::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#032f3e83,transparent 42%,transparent)}
 .needs-container{position:relative;min-height:670px}.needs-intro{width:34%;max-width:530px}.needs-eyebrow{font:600 11px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#e1eddf;margin-bottom:17px}
+/* The wide ocean retains the full height of the 1916 × 821 scene. */
+@media(min-width:1401px){.needs-container{min-height:max(670px,calc(42.8497vw - 132px))}}
 .needs-intro h2{font-size:clamp(37px,3.3vw,63px);line-height:1.14;color:#f6f3e8;text-shadow:0 2px 15px #05283a33}.needs-intro h2>span{display:block}.needs-title-first{white-space:nowrap}
 .needs-choices{position:relative;width:32%;margin-top:28px;z-index:5}.needs-question-list{display:grid;gap:8px}
 .needs-question{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:56px;padding:15px 19px;background:#f5f2e8f0;border:1px solid #e8e9d5;border-radius:8px;color:#1a3e35;text-align:left;font:500 16px/1.45 var(--sans);transition:background-color 180ms ease,box-shadow 180ms ease}

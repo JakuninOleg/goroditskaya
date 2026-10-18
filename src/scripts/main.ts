@@ -1,4 +1,5 @@
 import { questions, questionCheckIcons } from '../data/site';
+import { attachRuPhoneMask, normalizeRuPhone } from '../lib/ru-phone';
 
 function selectTab(group: HTMLElement, value: string, focus = false) {
   group.querySelectorAll<HTMLButtonElement>('[role="tab"]').forEach(tab => {
@@ -161,11 +162,17 @@ document.getElementById('copy-email')?.addEventListener('click', async () => {
 
 // shortcut: the site has no mail transport yet; the request is sent by the visitor's mail app.
 const templatesForm = document.getElementById('templates-form') as HTMLFormElement | null;
+const templatesPhone = document.getElementById('templates-phone') as HTMLInputElement | null;
+if (templatesPhone) attachRuPhoneMask(templatesPhone, {
+  onValueChange: () => templatesPhone.setCustomValidity(''),
+});
 templatesForm?.addEventListener('submit', event => {
   event.preventDefault();
+  const phone = normalizeRuPhone(templatesPhone?.value ?? '');
+  templatesPhone?.setCustomValidity(phone ? '' : 'Укажите телефон полностью: +7 (999) 123-45-67.');
   if (!templatesForm.reportValidity()) return;
   const email = String(new FormData(templatesForm).get('email') ?? '').trim();
-  const body = ['Наталья, добрый день!', '', 'Пришлите, пожалуйста, комплект Excel-форм:', '— ДДС на 13 недель', '— Прибыль по проектам', '— План-факт бюджета', '', 'Моя почта: ' + email].join('\n');
+  const body = ['Наталья, добрый день!', '', 'Пришлите, пожалуйста, комплект Excel-форм:', '— ДДС на 13 недель', '— Прибыль по проектам', '— План-факт бюджета', '', 'Моя почта: ' + email, 'Телефон: +' + phone].join('\n');
   const link = document.getElementById('templates-mail') as HTMLAnchorElement;
   link.href = 'mailto:gorodickaya@yandex.ru?subject=' + encodeURIComponent('Запрос Excel-форм') + '&body=' + encodeURIComponent(body);
   document.getElementById('templates-request')!.hidden = false;
