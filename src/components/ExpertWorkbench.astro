@@ -1,0 +1,44 @@
+---
+import Emblem from './Emblem.astro';
+import Icon from './Icon.astro';
+import { specialTasks } from '../data/site';
+const contours = [
+ {id:'accounting',title:'Учёт и 1С',subtitle:'Автоматизация 1С · Восстановление учёта',icon:'system',tasks:['automation','accounting']},
+ {id:'capital',title:'Капитал и активы',subtitle:'Финансирование · НИОКР и НМА',icon:'clarity',tasks:['funding','assets']},
+ {id:'requirements',title:'Особые требования',subtitle:'Раздельный учёт ГОЗ · Due diligence',icon:'review',tasks:['goz','diligence']}
+];
+const inputs=[{name:'Продажи',icon:'clarity'},{name:'Закупки',icon:'inventory'},{name:'Склад',icon:'inventory'},{name:'Зарплата',icon:'team'},{name:'Основные средства',icon:'system'}];
+const reports=[{name:'ДДС',text:'Денежный поток',values:[28,35,25,54,43,68,88],icon:'clarity'},{name:'Прибыль',text:'Результат направлений',values:[38,25,48,35,58,75,66],icon:'profit'},{name:'Баланс',text:'Активы и обязательства',values:[20,32,28,45,63,60,84],icon:'document'}];
+---
+<section class="section workbench-section" id="expert-tasks" aria-labelledby="special-heading"><div class="container">
+ <div class="workbench-heading"><h2 id="special-heading">Для сложных задач</h2><p>Выберите контур, который нужно настроить.</p></div>
+ <div class="expert-workbench" data-tabs>
+  <div class="workbench-tabs" role="tablist" aria-label="Контуры финансовой системы">{contours.map((item,i)=><button type="button" role="tab" id={'contour-tab-'+item.id} aria-controls={'contour-panel-'+item.id} aria-selected={i===0?'true':'false'} tabindex={i===0?0:-1} data-tab={item.id}><Emblem name={item.icon}/><span><strong>{item.title}</strong><small>{item.subtitle}</small></span></button>)}</div>
+  <div class="workbench-surface">
+   <div role="tabpanel" id="contour-panel-accounting" aria-labelledby="contour-tab-accounting" data-panel="accounting">
+    <div class="accounting-map">
+     <div class="workbench-inputs"><h3>Данные бизнеса</h3><ul>{inputs.map(item=><li><Emblem name={item.icon}/><span>{item.name}</span><i aria-hidden="true"></i></li>)}</ul></div>
+     <div class="accounting-hub">
+      <svg class="hub-connections" viewBox="0 0 400 380" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#69958a" stroke-width="1.5"><path d="M0 54h28q20 0 20 20v78q0 20 20 20h60M0 116h14q20 0 20 20v36q0 20 20 20h74M0 190h128M0 264h14q20 0 20-20v-36q0-20 20-20h74M0 326h28q20 0 20-20v-78q0-20 20-20h60M272 174h35q20 0 20-20V85q0-20 20-20h53M272 192h128M272 210h35q20 0 20 20v69q0 20 20 20h53"/></g><g fill="#edc94e" stroke="#fffdf1" stroke-width="2"><circle cx="128" cy="172" r="4"/><circle cx="128" cy="192" r="4"/><circle cx="128" cy="208" r="4"/><circle cx="272" cy="174" r="4"/><circle cx="272" cy="192" r="4"/><circle cx="272" cy="210" r="4"/></g></svg>
+      <div class="system-stack" aria-hidden="true"><span class="system-layer layer-back"></span><span class="system-layer layer-middle"></span><div class="system-module"><span class="module-label">1С</span><span class="module-lights"><i></i><i></i></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span></div><span class="module-base"></span></div>
+      <div class="hub-caption"><strong>Единая система учёта</strong><span>ERP · КА · КОРП · Бит.Финанс</span></div>
+     </div>
+     <div class="workbench-reports">{reports.map(report=><div class="workbench-report"><div class="workbench-report-heading"><Emblem name={report.icon}/><div><h3>{report.name}</h3><p>{report.text}</p></div></div><div class="workbench-mini-chart" aria-hidden="true">{report.values.map((value,i)=><span style={'--height:'+value+'%'} class={i===report.values.length-1?'highlight':''}></span>)}</div></div>)}</div>
+    </div>
+    <div class="workbench-summary"><div><Icon name="check"/><p><strong>Данные связаны.</strong><span>Отчётность отвечает на вопросы собственника.</span></p></div><a class="button button-green" href="#contact" data-task="Учёт и 1С">Обсудить задачу <Icon/></a></div>
+   </div>
+   <div role="tabpanel" id="contour-panel-capital" aria-labelledby="contour-tab-capital" data-panel="capital" hidden>
+    <div class="expert-path"><div class="expert-path-art"><Emblem name="clarity"/><span class="path-rule"></span><Emblem name="profit"/><span class="path-rule"></span><Emblem name="tax"/></div><div><h3>Финансовая модель для роста</h3><p>Обосновать финансирование. Разобраться в стоимости разработок. Подготовить данные для банка и инвестора.</p></div></div>
+    <div class="expert-pair"><article><Emblem name="payments"/><h3>Финансирование</h3><p>Кредитный пакет, долговая нагрузка и сценарии погашения. Кредиты, гарантии и лизинг.</p><span>Результат: финансовая модель и пакет документов для рассмотрения.</span></article><article><Emblem name="review"/><h3>НИОКР и НМА</h3><p>Затраты, права и документы по разработкам. Проверка оснований для признания технологии активом.</p><span>Результат: методология учёта и обоснование капитализации.</span></article></div>
+    <div class="workbench-summary"><div><Icon name="check"/><p><strong>Видна финансовая перспектива.</strong><span>Решения опираются на модель и документы.</span></p></div><a class="button button-green" href="#contact" data-task="Финансирование, НИОКР и НМА">Обсудить задачу <Icon/></a></div>
+   </div>
+   <div role="tabpanel" id="contour-panel-requirements" aria-labelledby="contour-tab-requirements" data-panel="requirements" hidden>
+    <div class="expert-path"><div class="expert-path-art"><Emblem name="document"/><span class="path-rule"></span><Emblem name="review"/><span class="path-rule"></span><Emblem name="secure"/></div><div><h3>Учёт, который выдерживает проверку</h3><p>Связать первичные документы, аналитику по контрактам и отчётность. Подготовить материалы к внешней проверке.</p></div></div>
+    <div class="expert-pair"><article><Emblem name="secure"/><h3>Раздельный учёт ГОЗ</h3><p>Методология и аналитика по контрактам государственного оборонного заказа. Настройка учётного контура под требования 275-ФЗ.</p><span>Результат: согласованные правила и раздельный учёт по контрактам.</span></article><article><Emblem name="review"/><h3>Подготовка к due diligence</h3><p>Финансовые, бухгалтерские и налоговые данные для инвестора. Проверка согласованности отчётности и полноты материалов.</p><span>Результат: структурированный комплект финансовых данных.</span></article></div>
+    <div class="workbench-summary"><div><Icon name="check"/><p><strong>У документов есть система.</strong><span>Понятно, что подтверждает каждый показатель.</span></p></div><a class="button button-green" href="#contact" data-task="Раздельный учёт ГОЗ и подготовка к due diligence">Обсудить задачу <Icon/></a></div>
+   </div>
+  </div>
+  <div class="workbench-details">{contours.map((contour,i)=><div data-panel={contour.id} hidden={i!==0}><span>Состав работ:</span>{contour.tasks.map(id=>{const task=specialTasks.find(task=>task.id===id)!;return <button class="inline-link" type="button" data-info={id} aria-haspopup="dialog">{task.title}</button>})}</div>)}</div>
+ </div>
+ <noscript><div class="workbench-noscript">{specialTasks.map(task=><article><h3>{task.title}</h3><p>{task.detail}</p></article>)}</div></noscript>
+</div></section>

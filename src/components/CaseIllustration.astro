@@ -1,55 +1,8 @@
-<svg class="case-illustration" viewBox="0 0 680 480" role="img" aria-labelledby="case-art-title case-art-description">
-  <title id="case-art-title">От затрат на разработки к активам компании</title>
-  <desc id="case-art-description">Расходы на НИОКР связаны с результатом: новой технологией и патентами, отражёнными в составе активов.</desc>
-  <defs>
-    <linearGradient id="case-paper" x2="0" y2="1"><stop stop-color="#fffdf6"/><stop offset="1" stop-color="#f3efe1"/></linearGradient>
-    <linearGradient id="case-folio" x2="1" y2="1"><stop stop-color="#285b4c"/><stop offset="1" stop-color="#153e39"/></linearGradient>
-    <pattern id="case-grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#71856f" stroke-opacity=".1" stroke-width=".6"/></pattern>
-    <filter id="case-paper-shadow" x="-30%" y="-20%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#193d31" flood-opacity=".09"/></filter>
-  </defs>
-  <rect width="680" height="480" rx="12" fill="#e8eadf"/>
-  <rect x="28" y="28" width="624" height="424" rx="4" fill="url(#case-grid)"/>
-  <text class="case-art-caption" x="44" y="51" fill="#66776b" font-family="Manrope,Arial,sans-serif" font-size="11" font-weight="600" letter-spacing="2">ОТ РАСХОДОВ К АКТИВУ</text>
-  <path d="M44 66H636" stroke="#bdc9b7" stroke-width="1"/>
-  <g filter="url(#case-paper-shadow)">
-    <rect x="73" y="118" width="178" height="234" rx="5" fill="#d2dacb" stroke="#bbc8b6" transform="rotate(-8 162 235)"/>
-    <rect x="73" y="112" width="178" height="234" rx="5" fill="#e3e7da" stroke="#bbc8b6" transform="rotate(-3 162 229)"/>
-    <rect x="73" y="106" width="178" height="234" rx="5" fill="url(#case-paper)" stroke="#bcc8b8"/>
-  </g>
-  <g stroke="#285b4c" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M96 128h20v26H96z M101 134h10 M101 140h10 M101 146h6" stroke-width="1.3"/>
-    <path d="M130 131h94 M130 140h67" stroke="#a7b8a0"/>
-    <path d="M95 170h134" stroke="#d1d8c7"/>
-    <circle cx="104" cy="195" r="8" fill="#e6ebdd" stroke="#b6c6ab"/>
-    <circle cx="104" cy="233" r="8" fill="#e6ebdd" stroke="#b6c6ab"/>
-    <circle cx="104" cy="271" r="8" fill="#e6ebdd" stroke="#b6c6ab"/>
-    <path d="M124 191h99 M124 200h63 M124 229h99 M124 238h78 M124 267h99 M124 276h51" stroke="#adbaa4"/>
-    <path d="M95 302h134" stroke="#d1d8c7"/>
-    <path d="M184 316h39" stroke="#b58c37" stroke-width="3"/>
-  </g>
-  <g fill="none" stroke="#b18d40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M282 224h95 M367 214l10 10-10 10"/>
-    <circle cx="282" cy="224" r="3.5" fill="#e8eadf"/>
-  </g>
-  <g filter="url(#case-paper-shadow)">
-    <rect x="413" y="109" width="193" height="236" rx="5" fill="#cdd8c9" stroke="#9fb397" transform="rotate(5 510 227)"/>
-    <rect x="405" y="102" width="193" height="236" rx="5" fill="url(#case-folio)"/>
-    <path d="M417 102v236" stroke="#64836d"/>
-  </g>
-  <g fill="none" stroke="#d8c181" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
-    <path d="m453 210 49-28 49 28-49 28z" fill="#d5c58a" fill-opacity=".08"/>
-    <path d="m453 190 49-28 49 28-49 28z" fill="#d5c58a" fill-opacity=".08"/>
-    <path d="m453 170 49-28 49 28-49 28z" fill="#d5c58a" fill-opacity=".13"/>
-    <path d="M453 170v40 M502 198v40 M551 170v40" stroke-dasharray="2 5"/>
-    <path d="M442 254h121 M442 249v10 M563 249v10" stroke-opacity=".6"/>
-    <path d="M438 125v112 M433 125h10 M433 237h10" stroke-opacity=".6"/>
-  </g>
-  <text x="502" y="294" text-anchor="middle" fill="#eee9d8" font-family="Manrope,Arial,sans-serif" font-size="17" font-weight="500" letter-spacing="3">НИОКР</text>
-  <path d="M474 308h56" stroke="#bfa460"/>
-  <g class="case-art-labels" fill="#285347" font-family="Manrope,Arial,sans-serif" font-size="16" font-weight="500" text-anchor="middle">
-    <text x="162" y="389">Затраты на разработки</text>
-    <text x="502" y="389">Технология и патенты</text>
-  </g>
-  <path d="M44 414H636" stroke="#bdc9b7"/>
-  <text class="case-art-caption" x="636" y="441" text-anchor="end" fill="#607660" font-family="Manrope,Arial,sans-serif" font-size="12" letter-spacing="1">АКТИВЫ КОМПАНИИ</text>
-</svg>
+---
+import Emblem from './Emblem.astro';
+---
+<div class="case-flow" role="img" aria-label="Затраты на разработки: акты и отчёты, договоры и технические задания, данные о затратах. После анализа — технология и патенты в составе активов компании.">
+ <div class="case-source-stack" aria-hidden="true"><div class="case-source-sheet sheet-rear"><span>Акты и отчёты</span></div><div class="case-source-sheet sheet-middle"><span>Договоры и ТЗ</span></div><div class="case-source-sheet sheet-front"><Emblem name="document"/><strong>Данные о затратах</strong><i></i><i></i><i></i><i></i><div class="case-source-chart">{[24,38,32,56,69,88].map(height=><span style={'height:'+height+'%'}></span>)}</div></div></div>
+ <svg class="case-flow-connectors" viewBox="0 0 120 240" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120h35q18 0 18-18V61q0-18 18-18h49M53 120v59q0 18 18 18h49" fill="none" stroke="#568677" stroke-width="1.6"/><g fill="#edc94e" stroke="#fbf9ef" stroke-width="2"><circle cx="3" cy="120" r="4"/><circle cx="116" cy="43" r="4"/><circle cx="116" cy="197" r="4"/></g></svg>
+ <div class="case-assets" aria-hidden="true"><div><Emblem name="system"/><span><strong>Технология</strong><i></i><i></i></span></div><div><Emblem name="tax"/><span><strong>Патенты</strong><i></i><i></i></span></div></div>
+</div>

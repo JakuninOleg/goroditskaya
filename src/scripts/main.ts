@@ -158,3 +158,17 @@ document.getElementById('copy-email')?.addEventListener('click', async () => {
     document.getElementById('form-note')!.textContent = 'Выделенный текст можно скопировать вручную.';
   }
 });
+
+// shortcut: the site has no mail transport yet; the request is sent by the visitor's mail app.
+const templatesForm = document.getElementById('templates-form') as HTMLFormElement | null;
+templatesForm?.addEventListener('submit', event => {
+  event.preventDefault();
+  if (!templatesForm.reportValidity()) return;
+  const email = String(new FormData(templatesForm).get('email') ?? '').trim();
+  const body = ['Наталья, добрый день!', '', 'Пришлите, пожалуйста, комплект Excel-форм:', '— ДДС на 13 недель', '— Прибыль по проектам', '— План-факт бюджета', '', 'Моя почта: ' + email].join('\n');
+  const link = document.getElementById('templates-mail') as HTMLAnchorElement;
+  link.href = 'mailto:gorodickaya@yandex.ru?subject=' + encodeURIComponent('Запрос Excel-форм') + '&body=' + encodeURIComponent(body);
+  document.getElementById('templates-request')!.hidden = false;
+  document.getElementById('templates-note')!.textContent = 'Данные ещё не отправлены. Откройте и отправьте подготовленное письмо.';
+  link.focus({ preventScroll: true });
+});
