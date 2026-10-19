@@ -1,4 +1,15 @@
 type Rect = { left: number; top: number; width: number; height: number };
+type Point = { x: number; y: number };
+
+export function leaderPath(start: Point, end: Point, direction: 'horizontal' | 'up' | 'down') {
+  if (direction === 'horizontal') {
+    const reach = (end.x - start.x) * .45;
+    return `M${start.x} ${start.y}C${start.x + reach} ${start.y} ${end.x - reach} ${end.y} ${end.x} ${end.y}`;
+  }
+  const reach = Math.min(40, Math.abs(end.y - start.y) * .45);
+  const sign = direction === 'down' ? 1 : -1;
+  return `M${start.x} ${start.y}C${start.x + (direction === 'down' ? 28 : 0)} ${start.y + reach * sign} ${end.x} ${end.y - reach * sign} ${end.x} ${end.y}`;
+}
 
 /** Convert a point in the source photo to the displayed object-fit: cover frame. */
 export function projectCoverPoint(frame: Rect, image: { width: number; height: number }, point: { x: number; y: number }) {
@@ -32,24 +43,18 @@ if (typeof document !== 'undefined') {
         const start = projectCoverPoint(photoFrame, source, point);
         const box = panel.getBoundingClientRect();
         const end = mobile
-          ? { x: box.left - bounds.left + (name === 'depth' ? box.width / 2 : 22), y: (name === 'depth' ? box.top : box.bottom) - bounds.top }
+          ? { x: box.left - bounds.left + (name === 'depth' ? box.width / 2 : 25), y: (name === 'depth' ? box.top - 10 : box.bottom + 6) - bounds.top }
           : { x: box.left - bounds.left, y: box.top - bounds.top + (name === 'depth' ? box.height * .55 : 31) };
         const path = leaders.querySelector(`[data-${name}-leader]`)!;
-        const dot = leaders.querySelector(`[data-${name}-dot]`)!;
-        if (mobile) {
-          const mid = (start.y + end.y) / 2;
-          path.setAttribute('d', `M${start.x} ${start.y}C${start.x} ${mid} ${end.x} ${mid} ${end.x} ${end.y}`);
-        } else {
-          const gap = end.x - start.x;
-          const lead = Math.min(70, Math.max(0, gap * .3));
-          path.setAttribute('d', `M${start.x} ${start.y}H${start.x + lead}L${end.x - lead} ${end.y}H${end.x}`);
-        }
-        dot.setAttribute('cx', String(start.x));
-        dot.setAttribute('cy', String(start.y));
-        if (name === 'depth') leaders.querySelector('[data-depth-arrow]')!.setAttribute('d', mobile ? `M${end.x - 6} ${end.y - 8}l6 8 6-8` : '');
+        path.setAttribute('d', leaderPath(start, end, mobile ? (name === 'depth' ? 'down' : 'up') : 'horizontal'));
+        leaders.querySelectorAll(`[data-${name}-dot], [data-${name}-ring]`).forEach(dot => {
+          dot.setAttribute('cx', String(start.x));
+          dot.setAttribute('cy', String(start.y));
+        });
+        if (name === 'depth') leaders.querySelector('[data-depth-arrow]')!.setAttribute('d', mobile ? `M${end.x - 4.25} ${end.y - 5.5}l4.25 5.5 4.25-5.5` : '');
       };
       connect('surface', { x: .56, y: .26 }, surface);
-      connect('depth', { x: .52, y: mobile ? .91 : .65 }, depth);
+      connect('depth', { x: .52, y: mobile ? .83 : .65 }, depth);
       leaders.removeAttribute('hidden');
     };
     const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); };
