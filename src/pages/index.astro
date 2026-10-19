@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import Emblem from '../components/Emblem.astro';
+import Brand from '../components/Brand.astro';
 import FinancialReport from '../components/FinancialReport.astro';
 import Iceberg from '../components/Iceberg.astro';
 import CaseIllustration from '../components/CaseIllustration.astro';
@@ -19,7 +20,7 @@ const templates = [
 <a class="skip-link" href="#main">К содержанию</a>
 <header class="masthead" id="top"><div class="masthead-shell container">
  <div class="masthead-row">
-  <a class="identity" href="#top" aria-label="Наталья Городицкая — на главную"><span class="identity-name">Наталья<span class="identity-break"></span> Городицкая</span><span class="identity-role">Финансовый директор <span>на аутсорсе</span></span></a>
+  <Brand class="identity"/>
   <nav class="masthead-nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#experience">Кейс</a><a href="#approach">Как я работаю</a></nav>
   <a class="button button-yellow masthead-cta" href="#contact">Обсудить задачу <Icon/></a>
   <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
@@ -80,7 +81,7 @@ const templates = [
  <noscript><p class="form-note">Можно написать напрямую: <a href={'mailto:'+site.email}>{site.email}</a>.</p></noscript></div>
 </div></section>
 </main>
-<footer class="footer container"><div class="footer-top"><a class="footer-identity" href="#top"><strong>{site.name}</strong><span>Финансовый директор на аутсорсе</span></a><div class="footer-contacts"><a href={'mailto:'+site.email}><Icon name="mail"/>{site.email}</a><a href={'tel:'+site.phoneHref}><Icon name="phone"/>{site.phone}</a></div></div><div class="footer-bottom"><span>© 2026 Наталья Городицкая</span><button type="button" class="inline-link" data-info="privacy">Политика конфиденциальности</button><a href="#top">Наверх <span aria-hidden="true">↑</span></a></div></footer>
+<footer class="footer container"><div class="footer-top"><Brand footer/><div class="footer-contacts"><a href={'mailto:'+site.email}><Icon name="mail"/>{site.email}</a><a href={'tel:'+site.phoneHref}><Icon name="phone"/>{site.phone}</a></div></div><div class="footer-bottom"><span>© 2026 Наталья Городицкая</span><button type="button" class="inline-link" data-info="privacy">Политика конфиденциальности</button><a href="#top">Наверх <span aria-hidden="true">↑</span></a></div></footer>
 
   <dialog class="product-dialog" id="product-dialog" aria-labelledby="product-dialog-heading">
     <button type="button" class="dialog-close" aria-label="Закрыть состав работ"><Icon name="close"/></button>

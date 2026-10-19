@@ -22,6 +22,7 @@ h3{line-height:1.3}
  .masthead{top:14px}
  .masthead-shell.container{width:calc(100% - 28px);padding-inline:17px;border-radius:20px}
  .masthead-row{min-height:100px;padding-block:15px;align-items:start}
+ .masthead-row .menu-toggle{align-self:center}
  .identity-name{font-size:22px;line-height:1.05}
  .identity-role{font-size:13px;line-height:1.45;margin-top:8px}
  .identity-role>span{display:none}
