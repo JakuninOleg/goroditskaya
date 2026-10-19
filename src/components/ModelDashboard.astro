@@ -82,7 +82,6 @@ const sections = [
         </div>
       </div>
     </div>
-    <p class="dash-caption">Пример · условные данные</p>
     <p class="dash-sr-only" data-dash-summary aria-live="polite">Обзор за шесть месяцев. Выручка — 24,8 миллиона рублей, чистая прибыль — 6,4 миллиона рублей, рентабельность — 26 процентов.</p>
   </div>
 </div>
@@ -147,8 +146,8 @@ const sections = [
         });
         dashboard.querySelector('[data-dash-line]').setAttribute('d', line);
         dashboard.querySelectorAll('[data-dash-axis] span').forEach((label, index) => { label.textContent = selected.labels[index]; });
-        dashboard.querySelector('[data-dash-chart]').setAttribute('aria-label', `Условная динамика: ${model.legend.join(' и ')} за ${selected.spoken}`);
-        setText('[data-dash-summary]', `${model.heading} за ${selected.spoken}. ${model.labels.map((label, index) => `${label}: ${displayed[index].join(' ')}`).join('. ')}. Условные данные.`);
+        dashboard.querySelector('[data-dash-chart]').setAttribute('aria-label', `Динамика: ${model.legend.join(' и ')} за ${selected.spoken}`);
+        setText('[data-dash-summary]', `${model.heading} за ${selected.spoken}. ${model.labels.map((label, index) => `${label}: ${displayed[index].join(' ')}`).join('. ')}.`);
       };
       dashboard.querySelectorAll('[data-dash-section]').forEach((button) => button.addEventListener('click', () => { section = button.dataset.dashSection; render(); }));
       dashboard.querySelectorAll('[data-dash-period]').forEach((button) => button.addEventListener('click', () => { period = button.dataset.dashPeriod; render(); }));

@@ -25,7 +25,7 @@ for (const contour of ['accounting', 'capital', 'requirements']) {
 }
 assert(!/financial-templates\.xlsx|Или скачать комплект сразу/.test(html), 'Lead magnet must not bypass the contact form');
 await assert.rejects(stat('dist/downloads/financial-templates.xlsx'), { code: 'ENOENT' }, 'Lead magnet must not be published as a static download');
-assert(!/Данные ещё не отправлены|Запрос отправляется через вашу почту|Подготовить письмо|Письмо подготовлено/.test(html), 'Keep implementation notes out of the client interface');
+assert(!/Данные ещё не отправлены|Запрос отправляется через вашу почту|Подготовить письмо|Письмо подготовлено|Демонстрация|условные данные|Пример управленческого отчёта/i.test(html), 'Keep implementation notes out of the client interface');
 for (const field of ['templates-email', 'templates-phone']) {
   assert(new RegExp('<input[^>]+id="' + field + '"[^>]+required').test(html), 'Required lead field missing: ' + field);
 }
