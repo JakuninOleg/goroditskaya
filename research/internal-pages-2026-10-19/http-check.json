@@ -1,0 +1,86 @@
+{
+  "server": "http://127.0.0.1:4322",
+  "responses": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/o-natale/",
+      "status": 200
+    },
+    {
+      "path": "/uslugi/",
+      "status": 200
+    },
+    {
+      "path": "/kejsy/",
+      "status": 200
+    },
+    {
+      "path": "/finansovyy-direktor-na-autsorse/",
+      "status": 200
+    },
+    {
+      "path": "/nalogovyy-konsultant/",
+      "status": 200
+    },
+    {
+      "path": "/materialy/",
+      "status": 200
+    },
+    {
+      "path": "/kontakty/",
+      "status": 200
+    },
+    {
+      "path": "/yurist-dlya-biznesa/",
+      "status": 200
+    },
+    {
+      "path": "/kejsy/niokr-62-mln/",
+      "status": 200
+    },
+    {
+      "path": "/avtomatizatsiya-ucheta-1c/",
+      "status": 200
+    },
+    {
+      "path": "/vosstanovlenie-ucheta/",
+      "status": 200
+    },
+    {
+      "path": "/gotovnost-k-finansirovaniyu/",
+      "status": 200
+    },
+    {
+      "path": "/niokr-nma/",
+      "status": 200
+    },
+    {
+      "path": "/uchet-goz/",
+      "status": 200
+    },
+    {
+      "path": "/podgotovka-k-due-diligence/",
+      "status": 200
+    },
+    {
+      "path": "/finansovaya-diagnostika/",
+      "status": 200
+    },
+    {
+      "path": "/finansovaya-model/",
+      "status": 200
+    },
+    {
+      "path": "/upravlencheskiy-uchet-proizvodstva/",
+      "status": 200
+    },
+    {
+      "path": "/nalogovaya-proverka/",
+      "status": 200
+    }
+  ],
+  "missingStatus": 404
+}

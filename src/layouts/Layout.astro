@@ -9,8 +9,10 @@ import '@fontsource/prata/cyrillic-400.css';
 import '@fontsource/prata/latin-400.css';
 import '../styles/hybrid.css';
 import '../styles/refinements.css';
-interface Props { title?: string; description?: string; }
-const { title = 'Наталья Городицкая — финансовый директор для бизнеса', description = 'Финансовая модель, управленческий учёт, восстановление учёта и НМА. Наталья Городицкая: личное ведение проектов для среднего и крупного бизнеса по всей России.' } = Astro.props;
+import { primaryOrigin, searchIndexingEnabled } from '../data/seo';
+interface Props { title?: string; description?: string; structuredData?:Record<string,unknown>[]; noindex?:boolean; }
+const { title = 'Наталья Городицкая — финансовый директор для бизнеса', description = 'Финансовая модель, управленческий учёт, восстановление учёта и НМА. Наталья Городицкая: личное ведение проектов для среднего и крупного бизнеса по всей России.', structuredData=[], noindex=false } = Astro.props;
+const canonical = new URL(Astro.url.pathname,primaryOrigin).href;
 ---
 <!doctype html>
 <html lang="ru">
@@ -18,13 +20,19 @@ const { title = 'Наталья Городицкая — финансовый д
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content={noindex || !searchIndexingEnabled ? 'noindex, nofollow' : 'index, follow'} />
     <meta name="theme-color" content="#0f3d33" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:url" content={canonical} />
+    {!noindex&&<link rel="canonical" href={canonical}/>}
+    <meta property="og:image" content={primaryOrigin+'/brand/natalia-social.png'}/>
+    <meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Наталья Городицкая — финансовый директор на аутсорсе"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    {structuredData.map(data=><script type="application/ld+json" set:html={JSON.stringify(data).replace(/</g,'\\u003c')}/>)}
     <link rel="icon" type="image/svg+xml" href="/brand/natalia-avatar.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />

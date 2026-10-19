@@ -2,6 +2,7 @@
 import Emblem from './Emblem.astro';
 import Icon from './Icon.astro';
 import { specialTasks } from '../data/site';
+import { taskSlugs, serviceHref } from '../data/services';
 const contours = [
  {id:'accounting',title:'Учёт и 1С',subtitle:'Автоматизация 1С · Восстановление учёта',icon:'system',tasks:['automation','accounting']},
  {id:'capital',title:'Капитал и активы',subtitle:'Финансирование · НИОКР и НМА',icon:'clarity',tasks:['funding','assets']},
@@ -38,7 +39,7 @@ const reports=[{name:'ДДС',text:'Денежный поток',values:[28,35,2
     <div class="workbench-summary"><div><Icon name="check"/><p><strong>У документов есть система.</strong><span>Понятно, что подтверждает каждый показатель.</span></p></div><a class="button button-green" href="#contact" data-task="Раздельный учёт ГОЗ и подготовка к due diligence">Обсудить задачу <Icon/></a></div>
    </div>
   </div>
-  <div class="workbench-details">{contours.map((contour,i)=><div data-panel={contour.id} hidden={i!==0}><span>Состав работ:</span>{contour.tasks.map(id=>{const task=specialTasks.find(task=>task.id===id)!;return <button class="inline-link" type="button" data-info={id} aria-haspopup="dialog">{task.title}</button>})}</div>)}</div>
+  <div class="workbench-details">{contours.map((contour,i)=><div data-panel={contour.id} hidden={i!==0}><span>Состав работ:</span>{contour.tasks.map(id=>{const task=specialTasks.find(task=>task.id===id)!;return <a class="inline-link" href={serviceHref(taskSlugs[id])}>{task.title}</a>})}</div>)}</div>
  </div>
  <noscript><div class="workbench-noscript">{specialTasks.map(task=><article><h3>{task.title}</h3><p>{task.detail}</p></article>)}</div></noscript>
 </div></section>

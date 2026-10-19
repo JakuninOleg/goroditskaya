@@ -1,0 +1,7 @@
+---
+import Icon from './Icon.astro';
+interface Props { items: {question:string;answer:string}[]; }
+const { items } = Astro.props;
+---
+<div class="faq-list">{items.map((item,i)=><article class="faq-item"><h3><button type="button" id={'faq-toggle-'+i} aria-expanded={i===0?'true':'false'} aria-controls={'faq-answer-'+i} data-faq-toggle><span>{item.question}</span><span class="faq-toggle-art"><Icon name="plus"/></span></button></h3><div class="faq-answer" id={'faq-answer-'+i} role="region" aria-labelledby={'faq-toggle-'+i} hidden={i!==0}><p>{item.answer}</p></div></article>)}</div>
+<script>import '../scripts/hybrid';</script>

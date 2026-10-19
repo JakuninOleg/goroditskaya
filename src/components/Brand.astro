@@ -1,8 +1,8 @@
 ---
-interface Props { class?: string; footer?: boolean; }
-const { class: className, footer = false } = Astro.props;
+interface Props { class?: string; footer?: boolean; href?: string; }
+const { class: className, footer = false, href = '#top' } = Astro.props;
 ---
-<a class:list={['brand', { 'brand--footer': footer }, className]} href="#top" aria-label="Наталья Городицкая — на главную">
+<a class:list={['brand', { 'brand--footer': footer }, className]} href={href} aria-label="Наталья Городицкая — на главную">
   <img class="brand-mark" src="/brand/natalia-mark.svg" width="210" height="210" alt="" decoding="async"/>
   <span class="brand-copy">
     <strong class="brand-name"><span>Наталья</span><span>Городицкая</span></strong>

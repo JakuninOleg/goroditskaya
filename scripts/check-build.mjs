@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
+import { searchIndexingEnabled } from '../src/data/seo.ts';
 
 const html = await readFile('dist/index.html', 'utf8');
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
@@ -15,9 +16,12 @@ for (const match of html.matchAll(/\bsrcset="([^"]+)"/g)) {
     if (path.startsWith('/')) assets.add(path);
   }
 }
-for (const path of assets) assert((await stat(join('dist', path))).isFile(), 'Missing asset: ' + path);
+for (const path of assets) {
+  const pathname=new URL(path,'https://goroditskaya.vercel.app').pathname;
+  assert((await stat(join('dist',pathname,pathname.endsWith('/')?'index.html':''))).isFile(), 'Missing asset or page: ' + path);
+}
 assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
-assert(html.includes('noindex, nofollow'), 'Preserve draft indexing settings');
+assert(html.includes(searchIndexingEnabled ? 'index, follow' : 'noindex, nofollow'), 'Respect the agreed indexing setting');
 assert(!/Технор[эе]д|С 1996|Данные проекта предоставлены/i.test(html), 'Outdated or removed case copy');
 for (const contour of ['accounting', 'capital', 'requirements']) {
   assert(html.includes('aria-controls="contour-panel-' + contour + '"'), 'Missing contour control');

@@ -1,0 +1,13 @@
+---
+import Layout from './Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/pages.css';
+interface Props { title:string; description:string; structuredData?:Record<string,unknown>[]; }
+const { title,description,structuredData=[] }=Astro.props;
+---
+<Layout title={title+' — Наталья Городицкая'} description={description} structuredData={structuredData}>
+  <a class="skip-link" href="#main">К содержанию</a><SiteHeader/>
+  <main class="inner-page" id="main"><slot/></main>
+  <SiteFooter/>
+</Layout>

@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://natalia-goroditskaya-finance.ideal-morel-9819.chatgpt.site',
+  site: 'https://goroditskaya.vercel.app',
+  trailingSlash: 'always',
   output: 'static',
   devToolbar: { enabled: false },
 });

@@ -35,6 +35,8 @@ const lockup = svg(`<g transform="translate(0 6) scale(.82)">${paths}</g>${wordm
 await writeFile(`${directory}/natalia-logo.svg`, lockup);
 await writeFile(`${directory}/natalia-logo-reversed.svg`, lockup.replaceAll('#0f3d33', '#f5f2e8').replaceAll('#527464', '#c9d5c9').replaceAll('#92a39a', '#dce4d9'));
 await sharp(Buffer.from(lockup)).resize({ width: 1860 }).png().toFile(`${directory}/natalia-logo.png`);
+const social = svg(`<rect width="1200" height="630" fill="#f5f2e8"/><g transform="translate(135 149) scale(1.5)">${lockup.slice(lockup.indexOf('<g'), lockup.lastIndexOf('</svg>'))}</g>`, '0 0 1200 630');
+await sharp(Buffer.from(social)).png().toFile(`${directory}/natalia-social.png`);
 await sharp(Buffer.from(master)).resize(840, 840).png().toFile(`${directory}/natalia-mark.png`);
 
 // Optical small-size version: two solid stems, one unbroken ribbon, one gold tip.

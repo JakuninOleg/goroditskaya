@@ -7,6 +7,7 @@
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build",
     "check:build": "node scripts/check-build.mjs",
+    "check:pages": "node scripts/check-pages.mjs",
     "preview": "astro preview --host 127.0.0.1"
   },
   "dependencies": {

@@ -1,0 +1,23 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<footer class="footer container"><div class="footer-top"><Brand footer href="/"/>
+  <nav class="footer-site-nav" aria-label="Разделы сайта"><a href="/uslugi/">Услуги</a><a href="/kejsy/">Кейс</a><a href="/o-natale/">О Наталье</a><a href="/materialy/">Финансовые формы</a><a href="/kontakty/">Контакты</a></nav>
+  <div class="footer-contacts"><a href={'mailto:'+site.email}><Icon name="mail"/>{site.email}</a><a href={'tel:'+site.phoneHref}><Icon name="phone"/>{site.phone}</a></div>
+</div><div class="footer-bottom"><span>© 2026 Наталья Городицкая</span><button type="button" class="inline-link" data-privacy-open>Политика конфиденциальности</button><a href="#top">Наверх <span aria-hidden="true">↑</span></a></div></footer>
+<dialog class="info-dialog" id="privacy-dialog" aria-labelledby="privacy-heading"><button type="button" class="dialog-close privacy-close" aria-label="Закрыть политику конфиденциальности"><Icon name="close"/></button><h2 id="privacy-heading">Конфиденциальность</h2><p>Контактные данные из заявки используются для ответа на ваш запрос и отправки запрошенных материалов.</p><p>Данные компании и доступ к рабочим документам передаются отдельно, после согласования условий сотрудничества.</p><p>Контакт для вопросов: <a href={'mailto:'+site.email}>{site.email}</a>.</p></dialog>
+<script>
+  const privacy = document.getElementById('privacy-dialog') as HTMLDialogElement;
+  document.querySelectorAll('[data-privacy-open]').forEach(button => button.addEventListener('click', () => privacy.showModal()));
+  privacy.querySelector('.privacy-close')?.addEventListener('click', () => privacy.close());
+  privacy.addEventListener('click', event => { if (event.target !== privacy) return; const r=privacy.getBoundingClientRect(); if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)privacy.close(); });
+</script>
+<style>
+  .footer-site-nav{display:grid;grid-template-columns:repeat(2,auto);gap:8px 28px;font-size:14px}
+  .footer-site-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+  #privacy-dialog>p{margin-top:20px;font-size:17px;line-height:1.7}
+  @media(max-width:1180px){.footer-top{flex-wrap:wrap}.footer-contacts{display:grid}}
+  @media(max-width:640px){.footer-site-nav{margin-top:28px;gap:14px 24px;font-size:15px}}
+</style>
