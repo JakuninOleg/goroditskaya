@@ -18,10 +18,10 @@ const reports=[{name:'ДДС',text:'Денежный поток',values:[28,35,2
   <div class="workbench-surface">
    <div role="tabpanel" id="contour-panel-accounting" aria-labelledby="contour-tab-accounting" data-panel="accounting">
     <div class="accounting-map">
+     <svg class="hub-connections" aria-hidden="true"></svg>
      <div class="workbench-inputs"><h3>Данные бизнеса</h3><ul>{inputs.map(item=><li><Emblem name={item.icon}/><span>{item.name}</span><i aria-hidden="true"></i></li>)}</ul></div>
      <div class="accounting-hub">
-      <svg class="hub-connections" viewBox="0 0 400 380" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#69958a" stroke-width="1.5"><path d="M0 54h28q20 0 20 20v78q0 20 20 20h60M0 116h14q20 0 20 20v36q0 20 20 20h74M0 190h128M0 264h14q20 0 20-20v-36q0-20 20-20h74M0 326h28q20 0 20-20v-78q0-20 20-20h60M272 174h35q20 0 20-20V85q0-20 20-20h53M272 192h128M272 210h35q20 0 20 20v69q0 20 20 20h53"/></g><g fill="#edc94e" stroke="#fffdf1" stroke-width="2"><circle cx="128" cy="172" r="4"/><circle cx="128" cy="192" r="4"/><circle cx="128" cy="208" r="4"/><circle cx="272" cy="174" r="4"/><circle cx="272" cy="192" r="4"/><circle cx="272" cy="210" r="4"/></g></svg>
-      <div class="system-stack" aria-hidden="true"><span class="system-layer layer-back"></span><span class="system-layer layer-middle"></span><div class="system-module"><span class="module-label">1С</span><span class="module-lights"><i></i><i></i></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span></div><span class="module-base"></span></div>
+      <div class="system-stack" aria-hidden="true">{inputs.map((_,i)=><span class="hub-port hub-input-port" style={'--port:'+i}></span>)}{reports.map((_,i)=><span class="hub-port hub-output-port" style={'--port:'+i}></span>)}<span class="system-layer layer-back"></span><span class="system-layer layer-middle"></span><div class="system-module"><span class="module-label">1С</span><span class="module-lights"><i></i><i></i></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span></div><span class="module-base"></span></div>
       <div class="hub-caption"><strong>Единая система учёта</strong><span>ERP · КА · КОРП · Бит.Финанс</span></div>
      </div>
      <div class="workbench-reports">{reports.map(report=><div class="workbench-report"><div class="workbench-report-heading"><Emblem name={report.icon}/><div><h3>{report.name}</h3><p>{report.text}</p></div></div><div class="workbench-mini-chart" aria-hidden="true">{report.values.map((value,i)=><span style={'--height:'+value+'%'} class={i===report.values.length-1?'highlight':''}></span>)}</div></div>)}</div>
@@ -43,3 +43,45 @@ const reports=[{name:'ДДС',text:'Денежный поток',values:[28,35,2
  </div>
  <noscript><div class="workbench-noscript">{specialTasks.map(task=><article><h3>{task.title}</h3><p>{task.detail}</p></article>)}</div></noscript>
 </div></section>
+<script>
+ const ns='http://www.w3.org/2000/svg';
+ document.querySelectorAll<HTMLElement>('.accounting-map').forEach(map=>{
+  const svg=map.querySelector<SVGSVGElement>('.hub-connections')!;
+  const inputs=[...map.querySelectorAll<HTMLElement>('.workbench-inputs li i')];
+  const incoming=[...map.querySelectorAll<HTMLElement>('.hub-input-port')];
+  const outgoing=[...map.querySelectorAll<HTMLElement>('.hub-output-port')];
+  const reports=[...map.querySelectorAll<HTMLElement>('.workbench-report')];
+  const hub=map.querySelector<HTMLElement>('.accounting-hub')!;
+  const reportGroup=map.querySelector<HTMLElement>('.workbench-reports')!;
+  function draw(){
+   const box=svg.getBoundingClientRect();
+   if(!box.width||getComputedStyle(svg).display==='none')return;
+   const center=(element:Element)=>{const r=element.getBoundingClientRect();return {x:r.left+r.width/2-box.left,y:r.top+r.height/2-box.top};};
+   const fragment=document.createDocumentFragment();
+   const dot=(point:{x:number;y:number},color:string)=>{
+    const circle=document.createElementNS(ns,'circle');
+    for(const [name,value] of Object.entries({cx:point.x,cy:point.y,r:3,fill:color,stroke:'#fffdf1','stroke-width':2}))circle.setAttribute(name,String(value));
+    fragment.append(circle);
+   };
+   const connect=(start:{x:number;y:number},end:{x:number;y:number})=>{
+    const path=document.createElementNS(ns,'path');
+    const bend=(end.x-start.x)/2;
+    path.setAttribute('d',`M ${start.x} ${start.y} C ${start.x+bend} ${start.y}, ${end.x-bend} ${end.y}, ${end.x} ${end.y}`);
+    path.setAttribute('fill','none');path.setAttribute('stroke','#69958a');path.setAttribute('stroke-width','1.5');
+    fragment.append(path);
+   };
+   inputs.forEach((input,i)=>{const end=center(incoming[i]);connect(center(input),end);dot(end,'#edc94e');});
+   if(reportGroup.getBoundingClientRect().left>=hub.getBoundingClientRect().right-1){
+    reports.forEach((report,i)=>{
+     const start=center(outgoing[i]);const end=center(report);end.x=report.getBoundingClientRect().left-box.left;
+     connect(start,end);dot(start,'#edc94e');dot(end,'#235b4b');
+    });
+   }
+   svg.replaceChildren(fragment);
+  }
+  // Use rendered positions so resized layouts and fonts keep every endpoint aligned.
+  const observer=new ResizeObserver(draw);
+  [map,map.querySelector('.workbench-inputs ul')!,reportGroup].forEach(element=>observer.observe(element));
+  document.fonts.ready.then(draw);
+ });
+</script>
