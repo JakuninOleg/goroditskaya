@@ -1,13 +1,13 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import ServiceVisual from '../components/ServiceVisual.astro';
-import PageCta from '../components/PageCta.astro';
-import CaseIllustration from '../components/CaseIllustration.astro';
-import Faq from '../components/Faq.astro';
-import Emblem from '../components/Emblem.astro';
-import Icon from '../components/Icon.astro';
-import { services, serviceHref, type Service } from '../data/services';
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ServiceVisual from '../../components/ServiceVisual.astro';
+import PageCta from '../../components/PageCta.astro';
+import CaseIllustration from '../../components/CaseIllustration.astro';
+import Faq from '../../components/Faq.astro';
+import Emblem from '../../components/Emblem.astro';
+import Icon from '../../components/Icon.astro';
+import { services, serviceHref, type Service } from '../../data/services';
 export function getStaticPaths(){return services.map(service=>({params:{slug:service.slug},props:{service}}));}
 interface Props { service:Service; }
 const { service }=Astro.props;

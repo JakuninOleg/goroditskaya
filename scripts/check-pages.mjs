@@ -59,8 +59,9 @@ const queue=['/'];
 for(const path of queue)for(const next of graph.get(path)??[])if(!reachable.has(next)){reachable.add(next);queue.push(next);}
 for(const path of pages.keys())if(path!=='/404.html')assert(reachable.has(path),`Orphan page: ${path}`);
 for(const service of services){
-  const page=pages.get(`/${service.slug}/`);
+  const page=pages.get(`/uslugi/${service.slug}/`);
   assert(page,`Missing service ${service.slug}`);
+  assert(!pages.has(`/${service.slug}/`),`Service must be nested under /uslugi/: ${service.slug}`);
   assert(page.html.includes('application/ld+json')&&page.html.includes('BreadcrumbList'),`Missing service/breadcrumb schema: ${service.slug}`);
 }
 for(const path of ['/','/kontakty/','/materialy/']){
@@ -88,6 +89,10 @@ if(server){
   }));
   const missing=await fetch(new URL('/page-that-does-not-exist-20261019/',server));
   assert.equal(missing.status,404,'Unknown URLs must return 404');
+  await Promise.all(services.map(async service=>{
+    const old=await fetch(new URL(`/${service.slug}/`,server),{redirect:'manual'});
+    assert.equal(old.status,404,`Old service URL must be removed without a redirect: ${service.slug}`);
+  }));
   await mkdir('.sites-runtime',{recursive:true});
   await writeFile('.sites-runtime/http-check.json',JSON.stringify({server,responses,missingStatus:missing.status},null,2));
   console.log(`HTTP check passed: ${responses.length} content pages return 200; unknown URL returns 404.`);

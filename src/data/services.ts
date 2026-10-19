@@ -224,6 +224,6 @@ export const services: Service[] = [
     related:['nalogovyy-konsultant','nalogovaya-proverka','gotovnost-k-finansirovaniyu']
   }
 ];
-export const serviceHref = (slug: string) => `/${slug}/`;
+export const serviceHref = (slug: string) => `/uslugi/${slug}/`;
 export const productSlugs: Record<string,string> = {finance:'finansovyy-direktor-na-autsorse',tax:'nalogovyy-konsultant',legal:'yurist-dlya-biznesa'};
 export const taskSlugs: Record<string,string> = {automation:'avtomatizatsiya-ucheta-1c',accounting:'vosstanovlenie-ucheta',funding:'gotovnost-k-finansirovaniyu',goz:'uchet-goz',assets:'niokr-nma',diligence:'podgotovka-k-due-diligence'};
