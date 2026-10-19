@@ -139,25 +139,8 @@ form.addEventListener('submit', event => {
   const email = String(data.get('email') ?? '').trim();
   const message = String(data.get('message') ?? '').trim();
   const body = ['Наталья, добрый день!', '', 'Меня зовут ' + name + '.', 'Компания: ' + (company || 'не указана'), 'Рабочая почта: ' + email, '', 'Задача:', message || 'Хочу обсудить финансовую задачу бизнеса.', '', 'Прошу предложить возможный состав работ и формат сотрудничества.'].join('\n');
-  const prepared = document.getElementById('prepared-message')!;
-  const field = document.getElementById('prepared-text') as HTMLTextAreaElement;
-  field.value = body;
-  const link = document.getElementById('send-email') as HTMLAnchorElement;
-  link.href = 'mailto:gorodickaya@yandex.ru?subject=' + encodeURIComponent('Обсуждение проекта' + (company ? ': ' + company : '')) + '&body=' + encodeURIComponent(body);
-  prepared.hidden = false;
-  document.getElementById('form-note')!.textContent = 'Письмо подготовлено. Для отправки откройте его в почте или скопируйте текст.';
-  field.focus({ preventScroll: true });
-  prepared.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'nearest' });
-});
-document.getElementById('copy-email')?.addEventListener('click', async () => {
-  const field = document.getElementById('prepared-text') as HTMLTextAreaElement;
-  try {
-    await navigator.clipboard.writeText(field.value);
-    document.getElementById('form-note')!.textContent = 'Текст скопирован. Отправьте его Наталье из своей почты.';
-  } catch {
-    field.focus(); field.select();
-    document.getElementById('form-note')!.textContent = 'Выделенный текст можно скопировать вручную.';
-  }
+  // shortcut: retain mailto until the owner connects server delivery; never show a sent state here.
+  window.location.href = 'mailto:gorodickaya@yandex.ru?subject=' + encodeURIComponent('Обсуждение проекта' + (company ? ': ' + company : '')) + '&body=' + encodeURIComponent(body);
 });
 
 // shortcut: the site has no mail transport yet; the request is sent by the visitor's mail app.
@@ -173,9 +156,5 @@ templatesForm?.addEventListener('submit', event => {
   if (!templatesForm.reportValidity()) return;
   const email = String(new FormData(templatesForm).get('email') ?? '').trim();
   const body = ['Наталья, добрый день!', '', 'Пришлите, пожалуйста, комплект Excel-форм:', '— ДДС на 13 недель', '— Прибыль по проектам', '— План-факт бюджета', '', 'Моя почта: ' + email, 'Телефон: +' + phone].join('\n');
-  const link = document.getElementById('templates-mail') as HTMLAnchorElement;
-  link.href = 'mailto:gorodickaya@yandex.ru?subject=' + encodeURIComponent('Запрос Excel-форм') + '&body=' + encodeURIComponent(body);
-  document.getElementById('templates-request')!.hidden = false;
-  document.getElementById('templates-note')!.textContent = 'Данные ещё не отправлены. Откройте и отправьте подготовленное письмо.';
-  link.focus({ preventScroll: true });
+  window.location.href = 'mailto:gorodickaya@yandex.ru?subject=' + encodeURIComponent('Запрос Excel-форм') + '&body=' + encodeURIComponent(body);
 });

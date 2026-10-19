@@ -23,6 +23,10 @@ for (const contour of ['accounting', 'capital', 'requirements']) {
   assert(html.includes('aria-controls="contour-panel-' + contour + '"'), 'Missing contour control');
   assert(html.includes('aria-labelledby="contour-tab-' + contour + '"'), 'Missing contour label');
 }
-assert(html.includes('Данные ещё не отправлены.'), 'Mail preparation must not imply delivery');
-assert.equal((await readFile('dist/downloads/financial-templates.xlsx')).subarray(0, 2).toString(), 'PK', 'Invalid workbook');
+assert(!/financial-templates\.xlsx|Или скачать комплект сразу/.test(html), 'Lead magnet must not bypass the contact form');
+await assert.rejects(stat('dist/downloads/financial-templates.xlsx'), { code: 'ENOENT' }, 'Lead magnet must not be published as a static download');
+assert(!/Данные ещё не отправлены|Запрос отправляется через вашу почту|Подготовить письмо|Письмо подготовлено/.test(html), 'Keep implementation notes out of the client interface');
+for (const field of ['templates-email', 'templates-phone']) {
+  assert(new RegExp('<input[^>]+id="' + field + '"[^>]+required').test(html), 'Required lead field missing: ' + field);
+}
 console.log(`Build check passed: ${ids.length} unique IDs, ${assets.size} local assets, all controls and anchors resolved.`);
