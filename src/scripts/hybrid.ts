@@ -17,7 +17,7 @@ function setFaq(button:HTMLButtonElement,open:boolean){
  panel.style.height='auto';
  const to=open?panel.getBoundingClientRect().height:0;
  panel.style.height=from+'px';
- const animation=panel.animate([{height:from+'px',opacity},{height:to+'px',opacity:open?1:0}],{duration:240,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+ const animation=panel.animate([{height:from+'px',opacity},{height:to+'px',opacity:open?1:0}],{duration:open?360:260,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
  answerAnimations.set(panel,animation);
  animation.onfinish=()=>{
   if(answerAnimations.get(panel)!==animation)return;

@@ -10,7 +10,7 @@ const Heading=standalone?'h2':'h3';
     <div class="form-grid">
       <label>Ваше имя <span aria-hidden="true">*</span><input name="name" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100"/></label>
       <label>Компания {standalone&&<span aria-hidden="true">*</span>}<input name="company" autocomplete="organization" placeholder="Название компании" maxlength="180" required={standalone}/></label>
-      <label>Рабочая почта <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" placeholder="name@company.ru" required maxlength="254"/></label>
+      <label>Ваша почта <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" placeholder="ivan@mail.ru" required maxlength="254"/></label>
       <label for="contact-phone">Телефон <span aria-hidden="true">*</span><input id="contact-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="18" required/></label>
       <label class="form-wide">Что хотите решить?<textarea name="message" rows="4" placeholder="Коротко о задаче, текущей системе учёта и решении, которое предстоит принять" maxlength="3000"></textarea></label>
     </div>

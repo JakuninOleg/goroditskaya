@@ -1,6 +1,12 @@
 import { questions, questionCheckIcons } from '../data/site';
+import { transitionContent } from './content-motion';
 
 function selectTab(group: HTMLElement, value: string, focus = false) {
+  const selectedTab = group.querySelector<HTMLButtonElement>(`[role="tab"][data-tab="${value}"]`);
+  if (selectedTab?.getAttribute('aria-selected') === 'true') {
+    if (focus) selectedTab.focus();
+    return;
+  }
   group.querySelectorAll<HTMLButtonElement>('[role="tab"]').forEach(tab => {
     if (tab.closest('[data-tabs]') !== group) return;
     const selected = tab.dataset.tab === value;
@@ -8,9 +14,12 @@ function selectTab(group: HTMLElement, value: string, focus = false) {
     tab.tabIndex = selected ? 0 : -1;
     if (selected && focus) tab.focus();
   });
-  group.querySelectorAll<HTMLElement>('[data-panel]').forEach(panel => {
-    if (panel.closest('[data-tabs]') === group) panel.hidden = panel.dataset.panel !== value;
-  });
+  const surfaces = [...group.querySelectorAll<HTMLElement>('[data-tab-surface]')];
+  void transitionContent(surfaces, () => {
+    group.querySelectorAll<HTMLElement>('[data-panel]').forEach(panel => {
+      if (panel.closest('[data-tabs]') === group) panel.hidden = panel.dataset.panel !== value;
+    });
+  }, true);
 }
 
 document.querySelectorAll<HTMLElement>('[data-tabs]').forEach(group => {
@@ -37,23 +46,25 @@ function closeMoreQuestions(restoreFocus = false) {
   moreQuestions.open = false;
   if (restoreFocus) moreQuestions.querySelector('summary')?.focus({ preventScroll: true });
 }
+let currentQuestion = 0;
 function selectQuestion(index: number) {
   const question = questions[index];
   if (!question) return;
   closeMoreQuestions(!!moreQuestions?.contains(document.activeElement));
+  if (index === currentQuestion) return;
+  currentQuestion = index;
   document.querySelectorAll<HTMLElement>('[data-question]').forEach(item => item.setAttribute('aria-pressed', String(Number(item.dataset.question) === index)));
   if (questionSelect) questionSelect.value = String(index);
   document.querySelector('[data-selected-question]')!.textContent = question.title;
   document.querySelectorAll<HTMLElement>('[data-question-icon]').forEach(icon => { icon.hidden = Number(icon.dataset.questionIcon) !== index; });
-  document.querySelector('[data-iceberg-headline]')!.textContent = question.headline;
-  document.querySelectorAll<HTMLElement>('[data-iceberg-check]').forEach((item, i) => { item.textContent = question.checks[i]; });
-  document.querySelectorAll<HTMLElement>('[data-check-art]').forEach(item => { item.hidden = item.dataset.checkArt !== questionCheckIcons[index][Number(item.dataset.checkPosition)]; });
-  document.querySelector('[data-iceberg-explanation]')!.textContent = question.explanation;
+  void transitionContent([...document.querySelectorAll<HTMLElement>('.needs-surface, .needs-depth')], () => {
+    document.querySelector('[data-iceberg-headline]')!.textContent = question.headline;
+    document.querySelectorAll<HTMLElement>('[data-iceberg-check]').forEach((item, i) => { item.textContent = question.checks[i]; });
+    document.querySelectorAll<HTMLElement>('[data-check-art]').forEach(item => { item.hidden = item.dataset.checkArt !== questionCheckIcons[index][Number(item.dataset.checkPosition)]; });
+    document.querySelector('[data-iceberg-explanation]')!.textContent = question.explanation;
+  });
   const contact = document.querySelector<HTMLElement>('[data-iceberg-contact]');
   if (contact) contact.dataset.task = question.title;
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll<HTMLElement>('.needs-surface h3, .needs-check-list').forEach(item => item.animate([{ opacity: .5, transform: 'translateY(3px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' }));
-  }
 }
 document.querySelectorAll<HTMLButtonElement>('[data-question]').forEach(button => button.addEventListener('click', () => selectQuestion(Number(button.dataset.question))));
 questionSelect?.addEventListener('change', () => selectQuestion(Number(questionSelect.value)));

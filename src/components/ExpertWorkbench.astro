@@ -15,7 +15,7 @@ const reports=[{name:'ДДС',text:'Денежный поток',values:[28,35,2
  <div class="workbench-heading"><h2 id="special-heading">Для сложных задач</h2><p>Выберите контур, который нужно настроить.</p></div>
  <div class="expert-workbench" data-tabs>
   <div class="workbench-tabs" role="tablist" aria-label="Контуры финансовой системы">{contours.map((item,i)=><button type="button" role="tab" id={'contour-tab-'+item.id} aria-controls={'contour-panel-'+item.id} aria-selected={i===0?'true':'false'} tabindex={i===0?0:-1} data-tab={item.id}><Emblem name={item.icon}/><span><strong>{item.title}</strong><small>{item.subtitle}</small></span></button>)}</div>
-  <div class="workbench-surface">
+  <div class="workbench-surface" data-tab-surface>
    <div role="tabpanel" id="contour-panel-accounting" aria-labelledby="contour-tab-accounting" data-panel="accounting">
     <div class="accounting-map">
      <svg class="hub-connections" aria-hidden="true"></svg>
@@ -39,7 +39,7 @@ const reports=[{name:'ДДС',text:'Денежный поток',values:[28,35,2
     <div class="workbench-summary"><div><Icon name="check"/><p><strong>У документов есть система.</strong><span>Понятно, что подтверждает каждый показатель.</span></p></div><a class="button button-green" href="#contact" data-task="Раздельный учёт ГОЗ и подготовка к due diligence">Обсудить задачу <Icon/></a></div>
    </div>
   </div>
-  <div class="workbench-details">{contours.map((contour,i)=><div data-panel={contour.id} hidden={i!==0}><span>Состав работ:</span>{contour.tasks.map(id=>{const task=specialTasks.find(task=>task.id===id)!;return <a class="inline-link" href={serviceHref(taskSlugs[id])}>{task.title}</a>})}</div>)}</div>
+  <div class="workbench-details" data-tab-surface>{contours.map((contour,i)=><div data-panel={contour.id} hidden={i!==0}><span>Состав работ:</span>{contour.tasks.map(id=>{const task=specialTasks.find(task=>task.id===id)!;return <a class="inline-link" href={serviceHref(taskSlugs[id])}>{task.title}</a>})}</div>)}</div>
  </div>
  <noscript><div class="workbench-noscript">{specialTasks.map(task=><article><h3>{task.title}</h3><p>{task.detail}</p></article>)}</div></noscript>
 </div></section>
