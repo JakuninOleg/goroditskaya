@@ -18,6 +18,8 @@ for(const file of htmlFiles){
   const html=await readFile(file,'utf8');
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
   assert.equal(ids.length,new Set(ids).size,`Duplicate IDs: ${path}`);
+  assert.equal([...html.matchAll(/<form\b[^>]*id="contact-form"/g)].length,1,`One project form on every page: ${path}`);
+  if(path!=='/')assert(ids.includes('request'),`Local enquiry section: ${path}`);
   assert.equal([...html.matchAll(/<h1\b/g)].length,1,`One H1: ${path}`);
   const title=html.match(/<title>(.*?)<\/title>/s)?.[1];
   assert(title&&!titles.has(title),`Unique title: ${path}`);titles.add(title);

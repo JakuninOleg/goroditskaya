@@ -1,7 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import PageCta from '../components/PageCta.astro';
 import Icon from '../components/Icon.astro';
 ---
-<Layout title="Страница не найдена — Наталья Городицкая" description="Запрашиваемая страница не найдена. Перейдите на главную страницу сайта Натальи Городицкой, чтобы найти услуги и контакты." noindex>
-  <main class="container error-page"><p class="eyebrow">404 / Страница не найдена</p><h1>Вернёмся<br />к главному<span class="lime-dot">.</span></h1><p>Возможно, адрес изменился. Все решения и контакты доступны на главной странице.</p><a class="button" href="/">На главную <Icon /></a></main>
-</Layout>
+<PageLayout title="Страница не найдена" description="Запрашиваемая страница не найдена. Перейдите на главную страницу сайта Натальи Городицкой, чтобы найти услуги и контакты." noindex>
+  <section class="container error-page"><p class="eyebrow">404 / Страница не найдена</p><h1>Вернёмся<br />к главному.</h1><p>Возможно, адрес изменился. Все решения и контакты доступны на главной странице.</p><a class="button" href="/">На главную <Icon /></a></section>
+  <PageCta/>
+</PageLayout>

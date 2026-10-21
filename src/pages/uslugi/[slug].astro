@@ -12,7 +12,7 @@ export function getStaticPaths(){return services.map(service=>({params:{slug:ser
 interface Props { service:Service; }
 const { service }=Astro.props;
 const related=service.related.map(slug=>services.find(s=>s.slug===slug)!).filter(Boolean);
-const contact='/kontakty/?service='+encodeURIComponent(service.title)+'#request';
+const contact='#request';
 const origin=Astro.site!;
 const breadcrumbs=[{label:'Услуги',href:'/uslugi/'},{label:service.short}];
 const structuredData=[

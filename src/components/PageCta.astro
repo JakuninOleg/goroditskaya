@@ -1,7 +1,6 @@
 ---
-import Icon from './Icon.astro';
+import ContactForm from './ContactForm.astro';
 interface Props { title?:string; text?:string; service?:string; }
 const { title='Начнём с вашей задачи',text='Расскажите, какое решение предстоит принять. Определим, какие данные и формат работы для этого нужны.',service }=Astro.props;
-const href='/kontakty/'+(service?'?service='+encodeURIComponent(service):'')+'#request';
 ---
-<section class="page-cta"><div class="container"><div><p class="eyebrow">Личное ведение проекта</p><h2>{title}</h2><p>{text}</p></div><a class="button button-yellow" href={href}>Обсудить задачу <Icon/></a></div></section>
+<section class="page-cta page-request" id="request" aria-labelledby="request-heading"><div class="container"><div class="page-request-copy"><h2 id="request-heading">{title}</h2><p>{text}</p>{service&&<p class="request-subject">{service}</p>}</div><ContactForm service={service}/></div></section>

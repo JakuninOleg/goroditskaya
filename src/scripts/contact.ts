@@ -16,7 +16,8 @@ form?.addEventListener('submit',event=>{
   const company=String(data.get('company')??'').trim();
   const email=String(data.get('email')??'').trim();
   const task=String(data.get('message')??'').trim();
-  const body=['Наталья, добрый день!','','Меня зовут '+name+'.','Компания: '+(company||'не указана'),'Ваша почта: '+email,'Телефон: +'+phone,'','Задача:',task||'Хочу обсудить финансовую задачу бизнеса.','','Прошу предложить возможный состав работ и формат сотрудничества.'].join('\n');
+  const service=String(data.get('service')??requestedService??'').trim().slice(0,180);
+  const body=['Наталья, добрый день!','','Меня зовут '+name+'.','Компания: '+(company||'не указана'),'Ваша почта: '+email,'Телефон: +'+phone,...(service?['Услуга: '+service]:[]),'','Задача:',task||'Хочу обсудить финансовую задачу бизнеса.','','Прошу предложить возможный состав работ и формат сотрудничества.'].join('\n');
   // shortcut: retain mailto until the owner connects server delivery; never show a sent state here.
   window.location.href='mailto:gorodickaya@yandex.ru?subject='+encodeURIComponent('Обсуждение проекта'+(company?': '+company:''))+'&body='+encodeURIComponent(body);
 });

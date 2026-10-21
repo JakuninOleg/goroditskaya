@@ -2,7 +2,7 @@
 import Brand from './Brand.astro';
 import Icon from './Icon.astro';
 const home = Astro.url.pathname === '/';
-const contactHref = home ? '#contact' : '/kontakty/';
+const contactHref = home ? '#contact' : '#request';
 const active = (path: string) => Astro.url.pathname === path ? 'page' : undefined;
 ---
 <header class="masthead" id="top"><div class="masthead-shell container">

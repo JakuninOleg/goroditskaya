@@ -1,12 +1,13 @@
 ---
 import Icon from './Icon.astro';
 import { site } from '../data/site';
-interface Props { standalone?: boolean; }
-const { standalone=false }=Astro.props;
+interface Props { standalone?: boolean; service?: string; }
+const { standalone=false,service }=Astro.props;
 const Heading=standalone?'h2':'h3';
 ---
 <div class="contact-panel"><Heading>Обсудить проект</Heading>
   <form id="contact-form" action={'mailto:'+site.email} method="post" enctype="text/plain">
+    {service&&<input type="hidden" name="service" value={service}/>}
     <div class="form-grid">
       <label>Ваше имя <span aria-hidden="true">*</span><input name="name" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100"/></label>
       <label>Компания {standalone&&<span aria-hidden="true">*</span>}<input name="company" autocomplete="organization" placeholder="Название компании" maxlength="180" required={standalone}/></label>
