@@ -3,6 +3,7 @@ import Layout from './Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/pages.css';
+import '../styles/hero-art.css';
 interface Props { title:string; description:string; structuredData?:Record<string,unknown>[]; noindex?:boolean; }
 const { title,description,structuredData=[],noindex=false }=Astro.props;
 ---

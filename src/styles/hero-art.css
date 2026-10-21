@@ -1,0 +1,20 @@
+/* The illustration carries the atmosphere; copy stays on an uninterrupted paper surface. */
+.inner-hero{background:#f4f1e8;border-bottom:1px solid #d9d9cb}
+.inner-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:clamp(32px,4vw,72px)}
+.inner-hero-grid>.catalog-intro{max-width:none}
+.inner-hero-grid .inner-lead{max-width:52ch}
+.hero-artwork{position:relative;min-width:0;margin:0;align-self:center}
+.hero-artwork-image{display:block;width:100%;height:auto;mix-blend-mode:multiply;mask-image:linear-gradient(90deg,transparent,#000 2%,#000 98%,transparent),linear-gradient(transparent,#000 2%,#000 98%,transparent);mask-composite:intersect}
+.hero-artwork figcaption{margin:16px 20px 0;padding-top:20px;border-top:1px solid #bcc6b5;text-align:center}
+.hero-artwork-labels{display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;gap:8px 0;padding:0;list-style:none;color:#173f34;font-size:15px;line-height:1.5;font-weight:600}
+.hero-artwork-labels li+li{border-left:1px solid #aabca6;margin-left:16px;padding-left:16px}
+.hero-artwork figcaption p{font-size:15px;line-height:1.6;color:#456451;margin-top:12px;text-wrap:balance}
+.hero-artwork figcaption p:first-child{margin-top:0}
+.inner-hero .case-amount{font-size:clamp(58px,5.5vw,88px)}
+.inner-page:has(.contact-page){background:#f4f1e8}
+.contact-artwork{max-width:490px;margin:24px 0 0}
+.contact-artwork .hero-artwork-image{aspect-ratio:3/2;object-fit:contain}
+@media(min-width:1800px){.hero-artwork-image{width:calc(100% + 40px);max-width:none;margin-left:-20px}.hero-artwork figcaption{margin-inline:0}}
+@media(max-width:1180px){.inner-hero-grid{gap:32px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.hero-artwork figcaption{margin-inline:0}.hero-artwork-labels{font-size:13px}.hero-artwork-labels li+li{margin-left:10px;padding-left:10px}}
+@media(max-width:800px){.inner-hero-grid{grid-template-columns:minmax(0,1fr);gap:36px}.hero-artwork{width:100%;max-width:680px;margin-inline:auto}.hero-artwork-labels{font-size:15px}.hero-artwork figcaption{margin-top:8px;padding-top:18px}.contact-artwork{max-width:440px;margin-left:0}}
+@media(max-width:640px){.inner-hero{background:#f4f1e8}.inner-hero-grid{gap:28px}.hero-artwork figcaption{padding-top:16px}.hero-artwork-labels{display:grid;font-size:13px;gap:7px}.hero-artwork-labels li+li{border-left:0;margin-left:0;padding-left:0}.hero-artwork-labels li{max-width:100%}.hero-artwork figcaption p{font-size:14px;line-height:1.6}.contact-artwork{max-width:360px;margin-top:20px}}
