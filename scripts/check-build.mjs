@@ -2,8 +2,13 @@ import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { searchIndexingEnabled } from '../src/data/seo.ts';
+import { services, serviceHref } from '../src/data/services.ts';
 
 const html = await readFile('dist/index.html', 'utf8');
+const serviceSection = html.match(/<section\b[^>]*id="services"[\s\S]*?<\/section>/)?.[0] ?? '';
+for (const service of services) {
+  assert(serviceSection.includes(`href="${serviceHref(service.slug)}"`), 'Service missing from homepage: ' + service.title);
+}
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 assert.equal(ids.length, new Set(ids).size, 'Duplicate HTML IDs');
 for (const match of html.matchAll(/\b(?:href="#|aria-controls=")([^"\s]+)"/g)) {

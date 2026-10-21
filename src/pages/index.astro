@@ -5,12 +5,13 @@ import Emblem from '../components/Emblem.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { productSlugs, serviceHref } from '../data/services';
+import { serviceHref } from '../data/services';
+import HomeServices from '../components/HomeServices.astro';
 import FinancialReport from '../components/FinancialReport.astro';
 import Iceberg from '../components/Iceberg.astro';
 import CaseIllustration from '../components/CaseIllustration.astro';
 import ExpertWorkbench from '../components/ExpertWorkbench.astro';
-import { site, products, formats, faq } from '../data/site';
+import { site, formats, faq } from '../data/site';
 const processIcons = ['review','system','clarity'];
 const processPages = ['finansovaya-diagnostika','upravlencheskiy-uchet-proizvodstva','finansovyy-direktor-na-autsorse'];
 const processDescriptions = ['Проверяю данные, нахожу причины и определяю первые изменения.','Связываю учёт, финансовую модель, бюджет и отчётность.','Разбираю отклонения, обновляю прогноз и работаю с командой.'];
@@ -34,11 +35,7 @@ const templates = [
 
 <Iceberg/>
 
-<section class="section container products-section" id="services" aria-labelledby="products-heading">
- <div class="section-heading"><p class="eyebrow">Экспертиза для вашего бизнеса</p><h2 id="products-heading">Три направления работы</h2></div>
- <div class="products-list">{products.map(product=><article class={'product-card product-'+product.id}><Emblem name={product.id==='finance'?'clarity':product.id==='tax'?'tax':'legal'} class="product-emblem"/><div class="product-copy"><h3>{product.title} <span>на аутсорсе</span></h3><p>{product.text}</p><a class="product-button text-link" href={serviceHref(productSlugs[product.id])}>Состав работ <Icon/><span class="sr-only">: {product.title}</span></a></div></article>)}</div>
- <p class="products-note"><span></span>Профильных специалистов подключаю под задачу вашего проекта.</p>
-</section>
+<HomeServices/>
 
 <FinancialReport/>
 
