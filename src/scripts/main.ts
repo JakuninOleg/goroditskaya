@@ -57,7 +57,7 @@ function selectQuestion(index: number) {
   if (questionSelect) questionSelect.value = String(index);
   document.querySelector('[data-selected-question]')!.textContent = question.title;
   document.querySelectorAll<HTMLElement>('[data-question-icon]').forEach(icon => { icon.hidden = Number(icon.dataset.questionIcon) !== index; });
-  void transitionContent([...document.querySelectorAll<HTMLElement>('.needs-surface, .needs-depth')], () => {
+  void transitionContent([...document.querySelectorAll<HTMLElement>('[data-iceberg-headline], .needs-check-list')], () => {
     document.querySelector('[data-iceberg-headline]')!.textContent = question.headline;
     document.querySelectorAll<HTMLElement>('[data-iceberg-check]').forEach((item, i) => { item.textContent = question.checks[i]; });
     document.querySelectorAll<HTMLElement>('[data-check-art]').forEach(item => { item.hidden = item.dataset.checkArt !== questionCheckIcons[index][Number(item.dataset.checkPosition)]; });
