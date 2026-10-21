@@ -17,7 +17,10 @@ h3{line-height:1.3}
 .hero-visual img{object-position:58% 50%}
 .hero-copy{padding-top:clamp(165px,9vw,196px)}
 .hero h1{letter-spacing:-.04em}
-.hero-description{font-size:clamp(21px,1.35vw,24px);font-weight:500;line-height:1.55;letter-spacing:0;color:#153e39;max-width:570px;background:#f4f1e8f2;border-radius:8px;padding:12px 16px;margin-left:-16px}
+.hero-description{font-size:clamp(21px,1.35vw,24px);font-weight:500;line-height:1.55;letter-spacing:0;color:#153e39;max-width:570px}
+@media(min-width:641px){
+ .hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#f4f1e8ed 0%,#f4f1e8c7 28%,#f4f1e866 44%,#f4f1e800 62%);pointer-events:none}
+}
 .hero-fact .fact-short{display:none}
 .hero-description-mobile{display:none}
 /* Keep the facts in flow so wrapped copy cannot put the CTA underneath them. */
