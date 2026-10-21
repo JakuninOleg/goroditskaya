@@ -1,0 +1,83 @@
+/* Full-width surfaces restore the rhythm between the remaining home sections. */
+.home-main {
+  --home-sand: #e9e1d2;
+  --home-sage: #dce6da;
+  --home-cream: #faf8f0;
+}
+
+.home-main .service-atlas {
+  padding-block: clamp(72px, 7vw, 112px);
+}
+
+.home-main .case-section {
+  background: var(--home-sand);
+  padding-block: clamp(72px, 7vw, 112px);
+}
+
+.home-main .case-copy .eyebrow { color: #5f5a43; }
+.home-main .case-amount { color: #936c23; }
+.home-main .case-amount > span { color: var(--green); }
+.home-main .case-step { background: #f8f3e8; border-color: #d3c9b5; }
+.home-main .case-step-solution { background: #d9e3d3; border-color: #bdcdb6; }
+.home-main .case-step-result { background: var(--green); border-color: var(--green); }
+
+.home-main .process-section {
+  --line: #4e6d60;
+  background: var(--green);
+  color: #e4ecdf;
+}
+
+.home-main .process-section h2,
+.home-main .process-card h3 { color: #faf8ef; }
+.home-main .process-section .eyebrow { color: #c2d4c2; }
+.home-main .process-description { color: #d4e0d3; }
+.home-main .process-outputs { color: #e4ecdf; }
+.home-main .process-outputs svg { color: #e8cc7c; }
+.home-main .process-card .text-link { color: #f0d68f; }
+.home-main .process-section :focus-visible { outline-color: #f0d68f; }
+
+.home-main .process-card-title > .emblem {
+  background: #edf0e2;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.home-main .workbench-section {
+  background: var(--home-sage);
+  border: 0;
+}
+
+.home-main .workbench-heading > p { color: #405e4e; }
+.home-main .workbench-tabs button {
+  background: #eff3e9;
+  border-color: #afc2ac;
+}
+.home-main .workbench-tabs button:hover { background: #f9faf3; }
+.home-main .workbench-tabs button[aria-selected="true"] {
+  background: var(--green);
+  border-color: var(--green);
+}
+.home-main .workbench-surface { background: var(--home-cream); border-color: #bdcdb7; }
+.home-main .workbench-details > div { color: #405e4e; }
+
+.home-main .about-section {
+  padding-block: clamp(80px, 7.5vw, 120px);
+}
+
+.home-main .home-faq-band { background: #e9edde; }
+.home-main .faq-intro .eyebrow { color: #51654d; }
+.home-main .faq-item { background: #f6f8ef; border-color: #c2cdb6; }
+.home-main .faq-item:has([aria-expanded="true"]) {
+  background: #fffdf5;
+  border-color: #91a589;
+}
+.home-main .faq-toggle-art { background: #dfe8d5; }
+
+@media (max-width: 640px) {
+  .home-main .service-atlas,
+  .home-main .case-section,
+  .home-main .process-section,
+  .home-main .workbench-section,
+  .home-main .about-section,
+  .home-main .faq-section { padding-block: 56px; }
+}
