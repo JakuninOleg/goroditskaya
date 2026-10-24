@@ -1,8 +1,8 @@
 {
-  "pages": 21,
-  "internalPages": 19,
-  "checkedLinks": 615,
-  "reachableContentPages": 20,
+  "pages": 26,
+  "internalPages": 24,
+  "checkedLinks": 815,
+  "reachableContentPages": 25,
   "indexing": false,
   "origin": "https://goroditskaya.vercel.app",
   "sitemapUrls": [
@@ -13,6 +13,7 @@
     "https://goroditskaya.vercel.app/kejsy/niokr-62-mln/",
     "https://goroditskaya.vercel.app/kontakty/",
     "https://goroditskaya.vercel.app/materialy/",
+    "https://goroditskaya.vercel.app/stati/",
     "https://goroditskaya.vercel.app/uslugi/finansovyy-direktor-na-autsorse/",
     "https://goroditskaya.vercel.app/uslugi/finansovaya-diagnostika/",
     "https://goroditskaya.vercel.app/uslugi/upravlencheskiy-uchet-proizvodstva/",
@@ -25,6 +26,10 @@
     "https://goroditskaya.vercel.app/uslugi/podgotovka-k-due-diligence/",
     "https://goroditskaya.vercel.app/uslugi/nalogovyy-konsultant/",
     "https://goroditskaya.vercel.app/uslugi/nalogovaya-proverka/",
-    "https://goroditskaya.vercel.app/uslugi/yurist-dlya-biznesa/"
+    "https://goroditskaya.vercel.app/uslugi/yurist-dlya-biznesa/",
+    "https://goroditskaya.vercel.app/stati/prichiny-kassovogo-razryva/",
+    "https://goroditskaya.vercel.app/stati/analiz-osv-pered-vosstanovleniem-ucheta/",
+    "https://goroditskaya.vercel.app/stati/karta-vzaimosvyazey-uchastkov-ucheta/",
+    "https://goroditskaya.vercel.app/stati/rashozhdeniya-nds-i-naloga-na-pribyl/"
   ]
 }

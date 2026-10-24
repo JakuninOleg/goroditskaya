@@ -38,7 +38,7 @@ for(const file of htmlFiles){
   assert(!/Демонстрация|условные данные|отправка не подключена|данные ещё не отправлены|Или скачать комплект сразу|financial-templates\.xlsx|Технор[эе]д|С 1996/i.test(html),`Removed copy or ungated download: ${path}`);
   pages.set(path,{html,ids:new Set(ids),links:[...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map(match=>match[1].replaceAll('&amp;','&'))});
 }
-assert.equal(pages.size,21,'Expected home, 19 internal pages and 404');
+assert.equal(pages.size,26,'Expected home, 24 internal pages and 404');
 let checkedLinks=0;
 const graph=new Map();
 for(const [path,page] of pages){
@@ -73,7 +73,7 @@ for(const path of ['/','/kontakty/','/materialy/']){
 }
 const sitemap=await readFile('dist/sitemap.xml','utf8');
 const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-assert.equal(new Set(sitemapUrls).size,20,'Sitemap covers every content page exactly once');
+assert.equal(new Set(sitemapUrls).size,pages.size-1,'Sitemap covers every content page exactly once');
 for(const path of reachable)assert(sitemapUrls.includes(primaryOrigin+path),`Missing sitemap URL: ${path}`);
 const robots=await readFile('dist/robots.txt','utf8');
 assert(robots.includes(searchIndexingEnabled?'Allow: /':'Disallow: /'));

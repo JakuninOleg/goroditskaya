@@ -1,0 +1,27 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageCta from '../../components/PageCta.astro';
+import ArticleDiagram from '../../components/ArticleDiagram.astro';
+import Icon from '../../components/Icon.astro';
+import { articles,articleHref,type Article } from '../../data/articles';
+import { services,serviceHref } from '../../data/services';
+import { primaryOrigin } from '../../data/seo';
+import '../../styles/articles.css';
+export function getStaticPaths(){return articles.map(article=>({params:{slug:article.slug},props:{article}}));}
+interface Props { article:Article; }
+const { article }=Astro.props;
+const related=article.relatedServices.map(slug=>services.find(service=>service.slug===slug)!).filter(Boolean);
+const structuredData=[{'@context':'https://schema.org','@type':'Article',headline:article.title,description:article.description,inLanguage:'ru-RU',mainEntityOfPage:new URL(articleHref(article.slug),primaryOrigin).href,datePublished:'2026-10-24',author:{'@type':'Person',name:'Наталья Городицкая',url:new URL('/o-natale/',primaryOrigin).href}}];
+---
+<PageLayout title={article.title} description={article.description} structuredData={structuredData}>
+  <section class="inner-hero article-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи',href:'/stati/'},{label:article.title}]}/><div class="article-heading"><h1>{article.title}</h1><p class="inner-lead">{article.lead}</p></div></div></section>
+  <div class="container article-layout"><aside class="article-toc" aria-label="Содержание статьи"><strong>В этом материале</strong><ol>{article.sections.map(section=><li><a href={'#'+section.id}>{section.title}</a></li>)}</ol></aside>
+    <article class="article-body"><ArticleDiagram type={article.diagram}/>{article.sections.map(section=><section id={section.id}><h2>{section.title}</h2>{section.paragraphs.map(text=><p>{text}</p>)}{section.items&&<ul>{section.items.map(text=><li>{text}</li>)}</ul>}</section>)}
+      <section class="article-takeaway"><h2>С чего начать</h2><p>{article.takeaway}</p></section>
+      <section class="article-sources"><h2>Источники и дополнительные материалы</h2><ul>{article.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul><p>Материал обновлён 24 октября 2026 года.</p></section>
+    </article>
+  </div>
+  <section class="inner-section container article-related"><h2>Помощь с этой задачей</h2><div class="article-links">{related.map(service=><a href={serviceHref(service.slug)}><h3>{service.short}</h3><p>{service.question}</p><span class="text-link">Состав работы <Icon/></span></a>)}</div></section>
+  <PageCta title="Разберём ваш вопрос по данным компании" text="Расскажите, что не сходится в цифрах или какое решение нужно принять. Рабочие документы и доступы согласуем отдельно." service={related[0]?.title}/>
+</PageLayout>

@@ -56,7 +56,7 @@ export const services: Service[] = [
     related:['vosstanovlenie-ucheta','upravlencheskiy-uchet-proizvodstva','finansovyy-direktor-na-autsorse']
   },
   {
-    slug:'upravlencheskiy-uchet-proizvodstva',title:'Управленческий учёт для производства и проектов',short:'Управленческий учёт',category:'Учёт и системы',
+    slug:'upravlencheskiy-uchet-proizvodstva',title:'Постановка управленческого учёта для производства и проектов',short:'Управленческий учёт',category:'Учёт и системы',
     description:'Постановка управленческого и проектного учёта: себестоимость, прибыль направлений, бюджетирование, план-факт и отчётность группы компаний.',
     lead:'Выстраиваю учёт, который показывает результат каждого заказа, проекта и направления. Связываю себестоимость, бюджет и отчётность с данными вашей системы.',
     question:'Какой проект зарабатывает, а какой забирает ресурсы?',visual:'reports',labels:['Заказы','Себестоимость','Результат'],emblem:'profit',
@@ -71,7 +71,7 @@ export const services: Service[] = [
     related:['avtomatizatsiya-ucheta-1c','finansovaya-model','finansovyy-direktor-na-autsorse']
   },
   {
-    slug:'finansovaya-model',title:'Финансовая модель бизнеса',short:'Финансовая модель',category:'Финансовое управление',
+    slug:'finansovaya-model',title:'Разработка финансовой модели бизнеса',short:'Финансовая модель',category:'Финансовое управление',
     description:'Разработка финансовой модели бизнеса для решений о росте, найме, инвестициях и долге. Сценарии, прибыль, денежный поток и потребность в финансировании.',
     lead:'Перевожу планы бизнеса в связанные расчёты. Модель показывает, как изменения продаж, затрат, штата и условий оплаты отражаются на прибыли и деньгах.',
     question:'Что произойдёт с деньгами, если план изменится?',visual:'model',labels:['Допущения','Сценарии','Решение'],emblem:'clarity',

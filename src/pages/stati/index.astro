@@ -1,0 +1,13 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageCta from '../../components/PageCta.astro';
+import Icon from '../../components/Icon.astro';
+import { articles,articleHref } from '../../data/articles';
+import '../../styles/articles.css';
+---
+<PageLayout title="Финансы и учёт: материалы для собственника" description="Кассовые разрывы, анализ ОСВ, взаимосвязи участков учёта и расхождения налоговой отчётности. Материалы для разбора финансовых задач бизнеса.">
+  <section class="inner-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи'}]}/><div class="article-index-intro"><h1>Разобраться в цифрах бизнеса</h1><p class="inner-lead">Почему не хватает денег, где искать расхождения и как связать отчёт с решением. Разбираем вопросы, с которыми собственники и финансовые команды приходят в работу.</p></div></div></section>
+  <section class="inner-section container"><div class="article-index-list">{articles.map(article=><article><div><h2><a href={articleHref(article.slug)}>{article.title}</a></h2><p>{article.description}</p></div><a class="text-link" href={articleHref(article.slug)} aria-label={'Читать: '+article.title}>Читать материал <Icon/></a></article>)}</div></section>
+  <PageCta title="Нужен разбор вашей ситуации?" text="Опишите, какие показатели вызывают вопросы. Определим, с каких данных начать и какой формат работы подойдёт."/>
+</PageLayout>

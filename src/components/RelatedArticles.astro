@@ -1,0 +1,9 @@
+---
+import { articles,articleHref } from '../data/articles';
+import Icon from './Icon.astro';
+import '../styles/articles.css';
+interface Props { service?:string; limit?:number; home?:boolean; }
+const { service,limit=3,home=false }=Astro.props;
+const selected=articles.filter(article=>!service||article.relatedServices.includes(service)).slice(0,limit);
+---
+{selected.length>0&&<section class:list={[home?'section':'inner-section','container','article-related']}><div class="section-intro"><h2>Разобраться в причине</h2><p>Материалы о данных, расчётах и решениях, с которых начинается работа.</p></div><div class="article-links">{selected.map(article=><a href={articleHref(article.slug)}><h3>{article.title}</h3><p>{article.description}</p><span class="text-link">Читать материал <Icon/></span></a>)}</div></section>}
