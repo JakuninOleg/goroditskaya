@@ -1,0 +1,12 @@
+---
+import EditorialArt from './EditorialArt.astro';
+import Icon from './Icon.astro';
+import type { ArtKind } from '../data/editorial';
+interface Props { href:string; title:string; description:string; context:string; kind:ArtKind; cta?:string; heading?:'h2'|'h3'; }
+const {href,title,description,context,kind,cta='Читать материал',heading='h2'}=Astro.props;
+const Heading=heading;
+---
+<a class="story-card" href={href}>
+  <div class="story-card-art"><EditorialArt kind={kind} compact/></div>
+  <div class="story-card-copy"><p class="story-card-context">{context}</p><Heading>{title}</Heading><p class="story-card-description">{description}</p><span class="story-card-action"><span class="story-action-label">{cta}</span><span class="story-arrow"><Icon/></span></span></div>
+</a>

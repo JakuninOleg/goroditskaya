@@ -1,0 +1,6 @@
+---
+import { minuteLabel } from '../data/editorial';
+interface Props { minutes:number; date?:string; }
+const {minutes,date}=Astro.props;
+---
+<div class="reading-byline"><a href="/o-natale/">Наталья Городицкая</a><span>{minuteLabel(minutes)}</span>{date&&<time datetime="2026-10-24">{date}</time>}</div>

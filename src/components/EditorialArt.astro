@@ -1,0 +1,119 @@
+---
+import type { ArtKind } from '../data/editorial';
+interface Props { kind:ArtKind; caption?:string; compact?:boolean; }
+const {kind,caption,compact=false}=Astro.props;
+const labels:Record<ArtKind,string>={cash:'Продажа, отсрочка и поступление денег',ledger:'Путь от сводного отчёта к документу',connections:'Операции связаны с правилами и отчётностью',tax:'Сверка операций между двумя налоговыми регистрами',model:'Доходы, затраты и финансирование в трёхлетнем бюджете',review:'Проверка документов и финансовой картины',planning:'Смета, выполнение и контроль затрат',asset:'От затрат к отдельному объекту учёта',contracts:'Договор связан с документами и расчётами',guarantee:'Контракт, банк и банковская гарантия',research:'Разработка, права и созданный актив'};
+---
+<figure class:list={['editorial-art','art-'+kind,{'art-compact':compact}]}>
+  <svg viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg" role={compact?'presentation':'img'} aria-label={compact?undefined:labels[kind]} aria-hidden={compact?'true':undefined}>
+    <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    {kind==='cash'&&<>
+      <path class="art-hairline" d="M62 108H578M62 280H578"/>
+      <path class="art-route" d="M80 130H270Q292 130 292 152V224Q292 246 314 246H548"/>
+      <path class="art-route art-gold" d="M80 244H176M430 130H548"/>
+      <path class="art-dashed" d="M176 244H248M334 130H430"/>
+      <circle class="art-solid" cx="80" cy="130" r="7"/><circle class="art-solid" cx="548" cy="246" r="7"/>
+      <rect class="art-paper" x="70" y="42" width="156" height="48" rx="8"/><text x="148" y="73" text-anchor="middle">Продажа</text>
+      <rect class="art-paper" x="408" y="298" width="150" height="48" rx="8"/><text x="483" y="329" text-anchor="middle">Оплата</text>
+      <path class="art-gold" d="M344 173V190H488V173"/>
+      <text class="art-label" x="416" y="225" text-anchor="middle">Отсрочка</text>
+      <path class="art-mark" d="m534 234 14 12-14 12"/>
+    </>}
+    {kind==='ledger'&&<>
+      <path class="art-sheet-back" d="M86 64H326V316H86z"/>
+      <rect class="art-paper" x="66" y="84" width="248" height="254" rx="10"/>
+      <text x="94" y="125">ОСВ</text><path class="art-hairline" d="M94 144H286M94 189H286M94 233H286M94 277H286M150 160V307M238 160V307"/>
+      <rect class="art-highlight" x="83" y="197" width="212" height="29" rx="3"/>
+      <path class="art-route" d="M296 211H354Q378 211 378 187V170Q378 150 400 150H424"/>
+      <rect class="art-solid" x="424" y="101" width="145" height="178" rx="9"/>
+      <path class="art-light-line" d="M448 133H543M448 156H516M448 205H543M448 229H528"/>
+      <circle class="art-seal" cx="550" cy="271" r="29"/><path d="m536 271 10 10 18-21"/>
+      <text class="art-label" x="489" y="335" text-anchor="middle">Документ</text>
+    </>}
+    {kind==='connections'&&<>
+      <path class="art-route" d="M200 200H279M421 200H470M440 200V128Q440 105 463 105H470M440 200V274Q440 296 462 296H470"/>
+      <rect class="art-paper" x="40" y="152" width="160" height="97" rx="9"/><text x="120" y="211" text-anchor="middle">Операции</text>
+      <rect class="art-solid" x="279" y="152" width="142" height="97" rx="9"/><text class="art-light" x="350" y="211" text-anchor="middle">Правила</text>
+      <rect class="art-paper" x="470" y="63" width="116" height="83" rx="9"/><text class="art-small" x="528" y="112" text-anchor="middle">Прибыль</text>
+      <rect class="art-highlight" x="470" y="159" width="116" height="83" rx="9"/><text class="art-small" x="528" y="209" text-anchor="middle">Деньги</text>
+      <rect class="art-paper" x="470" y="255" width="116" height="83" rx="9"/><text class="art-small" x="528" y="305" text-anchor="middle">Баланс</text>
+      <text class="art-label" x="120" y="290" text-anchor="middle">Документы</text>
+    </>}
+    {kind==='tax'&&<>
+      <rect class="art-paper" x="58" y="70" width="195" height="255" rx="10"/>
+      <rect class="art-paper" x="387" y="70" width="195" height="255" rx="10"/>
+      <text class="art-small" x="155" y="113" text-anchor="middle">Налог на прибыль</text><text x="484" y="113" text-anchor="middle">НДС</text>
+      <path class="art-hairline" d="M84 141H225M84 171H201M84 268H225M84 296H174M414 141H554M414 171H527M414 268H554M414 296H502"/>
+      <rect class="art-highlight" x="78" y="191" width="154" height="44" rx="4"/><rect class="art-highlight" x="408" y="191" width="154" height="44" rx="4"/>
+      <path class="art-route" d="M232 213H288M352 213H408"/><circle class="art-solid" cx="320" cy="213" r="33"/>
+      <path class="art-light-line" d="M304 204h30m-7-7 7 7-7 7M336 222h-30m7-7-7 7 7 7"/>
+      <text class="art-label" x="320" y="367" text-anchor="middle">Сверка по операциям</text>
+    </>}
+    {kind==='model'&&<>
+      <rect class="art-paper" x="40" y="61" width="155" height="67" rx="9"/><text x="117" y="102" text-anchor="middle">Доходы</text>
+      <rect class="art-paper" x="242" y="61" width="155" height="67" rx="9"/><text x="319" y="102" text-anchor="middle">Затраты</text>
+      <rect class="art-paper" x="444" y="61" width="155" height="67" rx="9"/><text class="art-small" x="521" y="102" text-anchor="middle">Финансирование</text>
+      <path class="art-route" d="M117 128v28q0 22 22 22h360q22 0 22-22v-28M319 128v79"/>
+      <rect class="art-solid" x="104" y="207" width="432" height="126" rx="10"/><text class="art-light" x="320" y="246" text-anchor="middle">Бюджет на три года</text>
+      <path class="art-light-line" d="M130 268H510M256 283v28M385 283v28"/><text class="art-light" x="189" y="304" text-anchor="middle">1 год</text><text class="art-light" x="320" y="304" text-anchor="middle">2 год</text><text class="art-light" x="448" y="304" text-anchor="middle">3 год</text>
+    </>}
+    {kind==='review'&&<>
+      <rect class="art-sheet-back" x="112" y="49" width="295" height="274" rx="8"/>
+      <rect class="art-paper" x="88" y="73" width="295" height="274" rx="8"/>
+      <text x="118" y="119">Финансовая картина</text>
+      <path class="art-hairline" d="M118 140H353M156 178H353M156 226H353M156 274H295"/>
+      <path class="art-mark" d="m118 176 8 8 13-15m-21 55 8 8 13-15m-21 55 8 8 13-15"/>
+      <circle class="art-paper" cx="439" cy="208" r="73"/><circle class="art-route" cx="439" cy="208" r="54"/>
+      <path class="art-heavy" d="m492 262 57 57"/><path class="art-gold" d="m417 208 16 16 30-34"/>
+    </>}
+    {kind==='planning'&&<>
+      <rect class="art-paper" x="56" y="73" width="528" height="254" rx="10"/>
+      <text x="84" y="113">Смета</text><text x="430" y="113">Выполнение</text>
+      <path class="art-hairline" d="M82 137H558M248 154V304M348 154V304M448 154V304M82 192H558M82 245H558"/>
+      <path class="art-route" d="M108 166H248M174 219H348M275 273H488"/>
+      <circle class="art-seal" cx="248" cy="166" r="8"/><circle class="art-seal" cx="348" cy="219" r="8"/><circle class="art-seal" cx="488" cy="273" r="8"/>
+      <text class="art-label" x="320" y="369" text-anchor="middle">От объёма работ — к затратам</text>
+    </>}
+    {kind==='asset'&&<>
+      <rect class="art-paper" x="64" y="128" width="147" height="178" rx="9"/>
+      <text x="137" y="167" text-anchor="middle">Затраты</text><path class="art-hairline" d="M88 193H187M88 222H172M88 251H187M88 280H156"/>
+      <path class="art-route" d="M211 215H310Q338 215 338 187V125Q338 97 366 97H398"/>
+      <rect class="art-solid" x="398" y="68" width="167" height="237" rx="9"/>
+      <path class="art-light-line" d="M428 111H535M428 143H509M428 261H535"/>
+      <rect class="art-highlight" x="434" y="174" width="96" height="58" rx="4"/>
+      <text class="art-label" x="482" y="350" text-anchor="middle">Объект учёта</text>
+      <circle class="art-seal" cx="310" cy="215" r="9"/>
+    </>}
+    {kind==='contracts'&&<>
+      <rect class="art-paper" x="67" y="64" width="214" height="270" rx="9"/>
+      <text x="95" y="110">Договор</text><path class="art-hairline" d="M95 138H253M95 164H234M95 190H253M95 216H207"/>
+      <path class="art-route" d="M154 276c16-24 20 19 36-7s18 4 34-9"/>
+      <path class="art-route" d="M281 144H342Q362 144 362 164V263Q362 283 382 283H416"/>
+      <rect class="art-solid" x="402" y="224" width="172" height="102" rx="9"/><text class="art-light" x="488" y="284" text-anchor="middle">Расчёты</text>
+      <rect class="art-highlight" x="369" y="78" width="172" height="102" rx="9"/><text x="455" y="138" text-anchor="middle">Документы</text>
+      <path class="art-route" d="M455 180V224"/>
+    </>}
+    {kind==='guarantee'&&<>
+      <path class="art-route" d="M86 219H241M399 219H554"/>
+      <rect class="art-paper" x="59" y="103" width="164" height="177" rx="8"/><text class="art-small" x="141" y="143" text-anchor="middle">Контракт</text>
+      <path class="art-hairline" d="M85 166H197M85 191H179M85 216H197"/>
+      <path class="art-solid" d="m320 65 79 33v102c0 55-46 86-79 104-33-18-79-49-79-104V98z"/>
+      <path class="art-light-line" d="m283 181 25 25 48-53"/>
+      <rect class="art-paper" x="417" y="103" width="164" height="177" rx="8"/><text class="art-small" x="499" y="143" text-anchor="middle">Гарантия</text>
+      <path class="art-hairline" d="M443 166H555M443 191H537"/><circle class="art-seal" cx="538" cy="253" r="24"/>
+      <text class="art-label" x="320" y="354" text-anchor="middle">Компания · Банк · Обеспечение</text>
+    </>}
+    {kind==='research'&&<>
+      <circle class="art-hairline" cx="216" cy="200" r="118"/><circle class="art-hairline" cx="216" cy="200" r="78"/>
+      <path class="art-route" d="M112 244 159 128 258 107 302 204 218 289Z"/>
+      <circle class="art-seal" cx="159" cy="128" r="10"/><circle class="art-solid" cx="258" cy="107" r="10"/><circle class="art-solid" cx="302" cy="204" r="10"/><circle class="art-seal" cx="218" cy="289" r="10"/>
+      <path class="art-route" d="M302 204H386"/>
+      <rect class="art-paper" x="386" y="83" width="190" height="242" rx="9"/>
+      <text x="481" y="129" text-anchor="middle">Патенты</text><path class="art-hairline" d="M414 154H548M414 181H523M414 208H548"/>
+      <circle class="art-solid" cx="481" cy="267" r="29"/><path class="art-light-line" d="m468 267 9 9 18-20"/>
+      <text class="art-label" x="216" y="362" text-anchor="middle">Технология</text>
+    </>}
+    </g>
+  </svg>
+  {caption&&<figcaption>{caption}</figcaption>}
+</figure>

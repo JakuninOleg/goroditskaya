@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+interface Props { links:{id:string;title:string}[]; }
+const {links}=Astro.props;
+---
+<aside class="reading-nav">
+  <nav class="reading-nav-desktop" aria-label="Содержание материала"><p>Содержание</p><ol>{links.map(link=><li><a href={'#'+link.id}>{link.title}</a></li>)}</ol></nav>
+  <details class="reading-nav-mobile"><summary>Содержание материала <Icon name="plus"/></summary><nav aria-label="Содержание материала"><ol>{links.map(link=><li><a href={'#'+link.id}>{link.title}</a></li>)}</ol></nav></details>
+</aside>
+<script>
+  const nav=document.querySelector<HTMLElement>('.reading-nav');
+  if(nav){
+    const links=[...nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')];
+    const targets=[...new Set(links.map(a=>document.getElementById(a.hash.slice(1))).filter((el):el is HTMLElement=>Boolean(el)))];
+    const activate=(id:string)=>links.forEach(link=>{if(link.hash==='#'+id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+    if(targets[0])activate(targets[0].id);
+    const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)activate(entry.target.id);},{rootMargin:'-140px 0px -55% 0px',threshold:0});
+    targets.forEach(target=>observer.observe(target));
+    links.forEach(link=>link.addEventListener('click',()=>{activate(link.hash.slice(1));const disclosure=link.closest('details');if(disclosure)disclosure.open=false;}));
+  }
+</script>
