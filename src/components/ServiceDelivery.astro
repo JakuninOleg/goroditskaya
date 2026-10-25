@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import Emblem from './Emblem.astro';
+import type { Service } from '../data/services';
+import { serviceDelivery } from '../data/service-delivery';
+import '../styles/service-delivery.css';
+interface Props { service: Service; }
+const { service } = Astro.props;
+const delivery = serviceDelivery[service.slug];
+const monthly = service.slug === 'finansovyy-direktor-na-autsorse';
+---
+<section class="inner-section service-delivery" id="result" aria-labelledby="delivery-heading"><div class="container">
+  <div class="delivery-intro"><h2 id="delivery-heading">{delivery.heading}</h2><p>{monthly?'Отчётность, прогноз и разбор решений — в согласованном ритме работы с вашей командой.':service.result}</p></div>
+  <div class="delivery-layout">
+    <div class="delivery-outputs">{service.deliverables.map((item,index)=><article>
+      <Emblem name={index===0?'document':index===1?service.emblem:'review'}/>
+      <div><h3>{item.title}</h3><p>{item.text}</p></div>
+    </article>)}</div>
+    <aside class="delivery-roles" aria-labelledby="delivery-roles-heading">
+      <h3 id="delivery-roles-heading">Как распределяем работу</h3>
+      <dl><div><dt>Наталья</dt><dd>{delivery.natalia}</dd></div><div><dt>Ваша команда</dt><dd>{delivery.client}</dd></div>{delivery.specialist&&<div><dt>{delivery.specialist.title}</dt><dd>{delivery.specialist.text}</dd></div>}</dl>
+    </aside>
+  </div>
+  <div class="delivery-acceptance"><span class="delivery-check" aria-hidden="true"><Icon name="check"/></span><div><h3>Как проверяем результат</h3><p>{delivery.acceptance}</p></div></div>
+</div></section>
