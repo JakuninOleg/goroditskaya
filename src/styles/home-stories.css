@@ -1,0 +1,43 @@
+.home-practice .case-section-heading{margin-bottom:42px;align-items:end}
+.home-practice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px}
+.home-practice .story-card{display:flex;min-width:0;flex-direction:column;text-decoration:none;color:var(--green);padding-bottom:22px;border-bottom:1px solid #aebfa5}
+.home-practice .story-card-art{overflow:hidden;border-radius:12px}
+.home-practice .editorial-art{aspect-ratio:1.6;display:flex;align-items:center;justify-content:center}
+.home-practice .story-card-art svg{width:100%;height:auto;transition:transform 450ms var(--ease)}
+.home-practice .story-card-copy{display:flex;flex:1;flex-direction:column;align-items:start;padding-top:23px}
+.home-practice .story-card-context{font-size:13px;line-height:1.6;color:#496354;margin-bottom:13px}
+.home-practice .story-card h3{font:500 clamp(24px,2vw,30px)/1.32 var(--sans);letter-spacing:-.025em;margin-bottom:17px;text-wrap:pretty}
+.home-practice .story-card-description{font-size:16px;line-height:1.75;color:#496354;margin-bottom:25px}
+.home-practice .story-card-action,.home-story-action{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;margin-top:auto;font-size:14px;font-weight:600;line-height:1.5}
+.home-practice .story-arrow,.home-story-arrow{display:grid;place-items:center;flex-shrink:0;width:42px;height:42px;border:1px solid #a7b99b;border-radius:50%;overflow:hidden;transition:background 220ms,color 220ms,border-color 220ms}
+.home-practice .story-arrow svg,.home-story-arrow svg{width:21px;height:21px;color:inherit}
+.home-practice .story-action-label,.home-story-action>span:first-child{position:relative;padding-bottom:3px}
+.home-practice .story-action-label::after,.home-story-action>span:first-child::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform 340ms var(--ease)}
+.home-practice .story-card:is(:hover,:focus-visible) .story-arrow{background:#153e35;border-color:#153e35;color:#faf7ed}
+.home-practice .story-card:is(:hover,:focus-visible) .story-action-label::after,.home-reading-story:is(:hover,:focus-visible) .home-story-action>span:first-child::after{transform:scaleX(1);transform-origin:left}
+.home-practice .story-card:is(:hover,:focus-visible) .story-card-art svg{transform:scale(1.025)}
+.home-practice .story-card:is(:hover,:focus-visible) .story-arrow svg,.home-reading-story:is(:hover,:focus-visible) .home-story-arrow svg{animation:home-story-arrow 420ms var(--ease)}
+@keyframes home-story-arrow{0%{transform:translateX(0)}45%{transform:translateX(28px)}46%{transform:translateX(-28px)}100%{transform:translateX(0)}}
+.home-reading{background:#153e35;color:#f8f4e7}
+.home-reading-heading{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:42px}
+.home-reading-heading h2{color:#f8f4e7;margin:0}.home-reading-heading p{font-size:19px;line-height:1.7;color:#d0dfce;margin-top:18px}
+.home-reading-heading>.text-link{color:#efd582;flex-shrink:0}
+.home-reading-grid{display:grid;grid-template-columns:1.08fr 1fr;gap:0 60px}
+.home-reading-story{display:flex;text-decoration:none;color:#f8f4e7;padding-block:30px;border-top:1px solid #587464;min-width:0}
+.home-reading-feature{grid-row:span 2;display:flex;flex-direction:column;padding:0 0 26px;border:0}
+.home-reading-art{overflow:hidden;border-radius:12px}.home-reading-art svg{transition:transform 450ms var(--ease)}
+.home-reading-copy{display:flex;flex-direction:column;align-items:start;width:100%}.home-reading-feature .home-reading-copy{padding-top:25px;flex:1}
+.home-reading-time{font-size:13px;line-height:1.5;color:#d0dfce;margin-bottom:14px}
+.home-reading-story h3{font:500 clamp(24px,2.15vw,32px)/1.35 var(--sans);letter-spacing:-.025em;color:#f8f4e7;margin-bottom:18px;text-wrap:pretty}
+.home-reading-description{font-size:16px;line-height:1.75;color:#d0dfce;margin-bottom:24px;max-width:55ch}
+.home-story-action{color:#efd582}.home-story-arrow{border-color:#9daf8c}
+.home-reading-story:is(:hover,:focus-visible) .home-story-arrow{background:#efd582;border-color:#efd582;color:#153e35}
+.home-reading-story:is(:hover,:focus-visible) .home-reading-art svg{transform:scale(1.025)}
+.home-reading :focus-visible{outline-color:#efd582}
+@media(max-width:1050px){.home-practice-grid{gap:24px}.home-practice .story-card h3{font-size:24px}.home-reading-grid{gap:0 36px}.home-reading-story h3{font-size:26px}}
+@media(max-width:1050px){.home-practice-grid{grid-template-columns:1fr;gap:32px}.home-practice .story-card{display:grid;grid-template-columns:.85fr 1fr;gap:26px}.home-practice .story-card-copy{padding:0}.home-practice .editorial-art{height:100%;aspect-ratio:auto}.home-practice .story-card-context{margin-bottom:10px}.home-reading-heading{display:block}.home-reading-heading>.text-link{margin-top:22px}.home-reading-grid{grid-template-columns:1fr;gap:0}.home-reading-feature{grid-row:auto;display:grid;grid-template-columns:.85fr 1fr;gap:28px;padding-bottom:34px}.home-reading-feature .home-reading-copy{padding:0}.home-reading-art{display:flex;align-items:center;background:#e6ecdc}}
+@media(max-width:560px){.home-practice .case-section-heading{margin-bottom:28px}.home-practice .story-card{display:flex;gap:0}.home-practice .editorial-art{aspect-ratio:1.6;height:auto}.home-practice .story-card-copy{padding-top:21px}.home-practice .story-card h3{font-size:27px}.home-reading{padding-block:56px}.home-reading-heading{margin-bottom:30px}.home-reading-heading p{font-size:17px}.home-reading-feature{display:flex;gap:0}.home-reading-feature .home-reading-copy{padding-top:24px}.home-reading-story h3{font-size:27px}.home-reading-story{padding-block:27px}.home-reading-feature{padding-top:0}.home-reading-time{margin-bottom:11px}}
+@media(prefers-reduced-motion:reduce){.home-practice .story-card-art svg,.home-reading-art svg,.home-practice .story-arrow,.home-story-arrow,.home-practice .story-action-label::after,.home-story-action>span:first-child::after{transition:none}.home-practice .story-card:is(:hover,:focus-visible) .story-card-art svg,.home-reading-story:is(:hover,:focus-visible) .home-reading-art svg{transform:none}.home-practice .story-card:is(:hover,:focus-visible) .story-arrow svg,.home-reading-story:is(:hover,:focus-visible) .home-story-arrow svg{animation:none}}
+
+@media(min-width:1051px){.home-practice .story-card h3{min-height:3.96em}}
+@media(max-width:1050px){.home-practice .case-section-heading{align-items:start}}

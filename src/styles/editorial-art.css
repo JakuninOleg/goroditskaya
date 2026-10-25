@@ -1,0 +1,20 @@
+.editorial-art{margin:0;min-width:0;width:100%;color:#23594b;background:#e7ecdf;overflow:hidden}
+.editorial-art>svg{display:block;width:100%;height:auto;font-family:var(--sans);font-size:20px;font-weight:500;letter-spacing:-.015em}
+.editorial-art text{fill:#1d4a3d;stroke:none}
+.editorial-art .art-small{font-size:18px}.editorial-art .art-label{font-size:18px;fill:#45634f}
+.editorial-art .art-paper{fill:#faf7ed;stroke:#a4b69a}
+.editorial-art .art-sheet-back{fill:#ccd9be;stroke:#a4b69a}
+.editorial-art .art-highlight,.editorial-art .art-seal{fill:#ebd17b;stroke:#b38b35}
+.editorial-art .art-solid{fill:#245647;stroke:#245647}
+.editorial-art .art-hairline{stroke:#afbf9f;stroke-width:1}
+.editorial-art .art-route{stroke:#285e4b;stroke-width:2.5}
+.editorial-art .art-heavy{stroke:#285e4b;stroke-width:12}
+.editorial-art .art-gold{stroke:#a27a24;stroke-width:3}
+.editorial-art .art-dashed{stroke:#a7b79a;stroke-width:2;stroke-dasharray:4 8}
+.editorial-art .art-mark{stroke:#285e4b;stroke-width:2.5}
+.editorial-art .art-light{fill:#f6f3e7}
+.editorial-art .art-light-line{stroke:#f0ebd9;stroke-width:2}
+.editorial-art figcaption{padding:0 24px 22px;font-size:15px;line-height:1.6;color:#496354;max-width:50ch}
+.art-cash{background:#e6ecdc}.art-tax{background:#ede8d9}.art-ledger{background:#e1e8dc}.art-connections{background:#e6ebdf}
+.art-review{background:#e9e4d8}.art-planning{background:#e4e9db}.art-asset{background:#ece8da}.art-contracts{background:#e6eadd}.art-guarantee{background:#e1e9db}.art-research{background:#eae6da}
+.art-model{background:#e4eadd}

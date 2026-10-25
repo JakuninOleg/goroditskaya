@@ -22,6 +22,8 @@ export function projectCoverPoint(frame: Rect, image: { width: number; height: n
   };
 }
 
+export const depthSourcePoint = (mobile: boolean) => ({ x: .52, y: mobile ? .60 : .65 });
+
 if (typeof document !== 'undefined') {
   const section = document.getElementById('tasks');
   const leaders = section?.querySelector<SVGSVGElement>('.needs-leaders');
@@ -54,7 +56,7 @@ if (typeof document !== 'undefined') {
         if (name === 'depth') leaders.querySelector('[data-depth-arrow]')!.setAttribute('d', mobile ? `M${end.x - 4.25} ${end.y - 5.5}l4.25 5.5 4.25-5.5` : '');
       };
       connect('surface', { x: .56, y: .26 }, surface);
-      connect('depth', { x: .52, y: mobile ? .83 : .65 }, depth);
+      connect('depth', depthSourcePoint(mobile), depth);
       leaders.removeAttribute('hidden');
     };
     const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); };

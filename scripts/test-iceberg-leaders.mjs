@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { projectCoverPoint, leaderPath } from '../src/scripts/iceberg-leaders.ts';
+import { projectCoverPoint, leaderPath, depthSourcePoint } from '../src/scripts/iceberg-leaders.ts';
 
 test('An uncropped photo preserves its source coordinates', () => {
   const point=projectCoverPoint({left:20,top:40,width:1000,height:500},{width:1000,height:500},{x:.56,y:.26});
@@ -14,6 +14,14 @@ test('A narrow cover frame accounts for the 52% horizontal crop', () => {
 });
 
 const coordinates=path=>path.match(/-?\d+(?:\.\d+)?/g).map(Number);
+test('Mobile depth leader starts inside the underwater mass, above the bottom tip',()=>{
+  for(const [width,height] of [[375,445],[440,480]]){
+    const p=projectCoverPoint({left:0,top:0,width,height},{width:1916,height:821},depthSourcePoint(true));
+    assert(p.y>=height*.5&&p.y<=height*.65);
+    assert(p.x>width*.35&&p.x<width*.65);
+  }
+  assert.equal(depthSourcePoint(false).y,.65);
+});
 test('Desktop callouts reach the panel horizontally without a corner',()=>{
   const values=coordinates(leaderPath({x:300,y:90},{x:580,y:160},'horizontal'));
   assert.deepEqual(values.slice(0,2),[300,90]);

@@ -1,4 +1,5 @@
 ---
+import '../styles/editorial-art.css';
 import type { ArtKind } from '../data/editorial';
 interface Props { kind:ArtKind; caption?:string; compact?:boolean; }
 const {kind,caption,compact=false}=Astro.props;

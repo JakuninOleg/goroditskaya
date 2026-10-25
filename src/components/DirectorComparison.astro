@@ -4,9 +4,10 @@ interface Props { home?:boolean; }
 const { home=false }=Astro.props;
 import '../styles/comparison.css';
 const rows=[
-  ['Бюджет на работу','Оклад, страховые взносы и рабочее место','От 50 000 ₽ в месяц'],
+  ['Страховые взносы','Дополнительно к окладу','Нет расходов на найм в штат'],
+  ['Рабочее место','Техника, программы и организация рабочего места','Удалённая работа'],
   ['Загрузка','Полная занятость в компании','Согласованный объём задач и участия'],
-  ['Подбор и организация работы','Поиск сотрудника, адаптация, рабочее место','Работу лично ведёт Наталья'],
+  ['Кто ведёт работу','Нанятый сотрудник','Наталья Городицкая лично'],
   ['Работа с командой','Собственная финансовая функция','Взаимодействие с вашей бухгалтерией и руководителями'],
   ['Состав работы','Закреплён в должностных обязанностях','Закреплён в предложении: задачи, отчёты и порядок встреч'],
 ];
@@ -15,8 +16,12 @@ const rows=[
   <div class="comparison-intro"><h2 id="director-comparison-heading">Финансовый директор без найма в штат</h2><p>Подключайте финансовую экспертизу в том объёме, который нужен вашему бизнесу.</p></div>
   <div class="comparison-scroll" role="region" aria-label="Сравнение форматов финансового управления" tabindex="0"><table>
     <caption class="sr-only">Штатный финансовый директор и сопровождение Натальи Городицкой</caption>
-    <thead><tr><td></td><th scope="col">Финдиректор в штате</th><th scope="col">Наталья на аутсорсе</th></tr></thead>
-    <tbody>{rows.map((row,i)=><tr class:list={{'comparison-price-row':i===0}}><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}</tbody>
+    <thead><tr><td>Что сравниваем</td><th scope="col"><span class="comparison-desktop-name">Финдиректор<br/>в штате</span><span class="comparison-mobile-name">В штате</span></th><th scope="col">Наталья<br/>на аутсорсе</th></tr></thead>
+    <tbody>
+      <tr class="comparison-price-row"><th scope="row">Ежемесячный бюджет</th><td><strong>250 000 <span>₽</span></strong><span class="comparison-price-caption">оклад в примере сравнения</span></td><td><strong><small>от</small> 50 000 <span>₽</span></strong><span class="comparison-price-caption">сопровождение в месяц</span></td></tr>
+      {rows.map(row=><tr><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}
+    </tbody>
   </table></div>
-  <div class="comparison-bottom"><p>От 50 000 ₽ в месяц — за согласованный объём сопровождения. На стоимость влияют число компаний, состояние данных и глубина участия. Восстановление учёта, внедрение 1С и правовые проекты оцениваются отдельно.</p><a class="button button-yellow" href={home?'#contact':'#request'}>Обсудить сопровождение <Icon/></a></div>
+  <div class="comparison-bottom"><div><p>Платите за нужный объём участия.</p><p>Стоимость сопровождения зависит от числа компаний, состояния данных и задач. Восстановление учёта, внедрение 1С и правовые проекты оцениваются отдельно.</p></div><a class="button button-yellow" href={home?'#contact':'#request'}>Обсудить сопровождение <Icon/></a></div>
+  <p class="comparison-assumption">Сравнение при окладе штатного директора 250 000 ₽ в месяц, без страховых взносов и организации рабочего места.</p>
 </div></section>
