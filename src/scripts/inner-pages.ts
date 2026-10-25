@@ -13,3 +13,18 @@ if (page && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       { duration: 900, easing: 'cubic-bezier(.22,1,.36,1)' });
   });
 }
+
+// One quiet sequence shows the three parts of the result; content stays visible without JS.
+const resultSequence = page?.querySelector<HTMLElement>('.delivery-outputs');
+if (resultSequence && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver(entries => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    resultSequence.querySelectorAll<HTMLElement>('[data-delivery-reveal]').forEach((item, index) => {
+      item.animate([{transform:'translateY(14px)'},{transform:'translateY(0)'}], {
+        duration:560, delay:index*70, easing:'cubic-bezier(.22,1,.36,1)'
+      });
+    });
+    observer.disconnect();
+  }, {threshold:0.12});
+  observer.observe(resultSequence);
+}

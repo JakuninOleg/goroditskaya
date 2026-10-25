@@ -41,3 +41,9 @@
 
 @media(min-width:1051px){.home-practice .story-card h3{min-height:3.96em}}
 @media(max-width:1050px){.home-practice .case-section-heading{align-items:start}}
+
+.home-reading-grid.reading-single{grid-template-columns:1fr}
+.reading-single .home-reading-feature{grid-row:auto;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.reading-single .home-reading-copy{padding-top:0}
+@media(max-width:760px){.reading-single .home-reading-feature{grid-template-columns:.85fr 1fr;gap:28px}}
+@media(max-width:560px){.reading-single .home-reading-feature{display:flex;gap:0}.reading-single .home-reading-copy{padding-top:24px}}

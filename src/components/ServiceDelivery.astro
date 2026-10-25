@@ -8,18 +8,25 @@ interface Props { service: Service; }
 const { service } = Astro.props;
 const delivery = serviceDelivery[service.slug];
 const monthly = service.slug === 'finansovyy-direktor-na-autsorse';
+const roles = [
+  { title:'Наталья', emblem:'personal', text:delivery.natalia },
+  { title:'Ваша команда', emblem:'team', text:delivery.client },
+  ...(delivery.specialist ? [{ title:delivery.specialist.title, emblem:'system', text:delivery.specialist.text }] : [])
+];
 ---
-<section class="inner-section service-delivery" id="result" aria-labelledby="delivery-heading"><div class="container">
-  <div class="delivery-intro"><h2 id="delivery-heading">{delivery.heading}</h2><p>{monthly?'Отчётность, прогноз и разбор решений — в согласованном ритме работы с вашей командой.':service.result}</p></div>
-  <div class="delivery-layout">
-    <div class="delivery-outputs">{service.deliverables.map((item,index)=><article>
-      <Emblem name={index===0?'document':index===1?service.emblem:'review'}/>
-      <div><h3>{item.title}</h3><p>{item.text}</p></div>
+<section class="service-delivery" id="result" aria-labelledby="delivery-heading">
+  <div class="delivery-results inner-section"><div class="container">
+    <div class="delivery-intro"><h2 id="delivery-heading">{delivery.heading}</h2><p>{monthly?'Отчётность, прогноз и разбор решений — в согласованном ритме работы с вашей командой.':service.result}</p></div>
+    <div class="delivery-outputs">{service.deliverables.map((item,index)=><article data-delivery-reveal>
+      <span class="delivery-art"><Emblem name={index===0?'document':index===1?(service.emblem==='review'||service.emblem==='document'?'clarity':service.emblem):'review'}/></span>
+      <h3>{item.title}</h3><p>{item.text}</p>
     </article>)}</div>
-    <aside class="delivery-roles" aria-labelledby="delivery-roles-heading">
-      <h3 id="delivery-roles-heading">Как распределяем работу</h3>
-      <dl><div><dt>Наталья</dt><dd>{delivery.natalia}</dd></div><div><dt>Ваша команда</dt><dd>{delivery.client}</dd></div>{delivery.specialist&&<div><dt>{delivery.specialist.title}</dt><dd>{delivery.specialist.text}</dd></div>}</dl>
-    </aside>
-  </div>
-  <div class="delivery-acceptance"><span class="delivery-check" aria-hidden="true"><Icon name="check"/></span><div><h3>Как проверяем результат</h3><p>{delivery.acceptance}</p></div></div>
-</div></section>
+  </div></div>
+  <div class="delivery-cooperation"><div class="container">
+    <div class="delivery-roles-heading"><h3>Как распределяем работу</h3><span class="delivery-role-line" aria-hidden="true"></span></div>
+    <dl class:list={['delivery-roles',{'delivery-two-roles':roles.length===2}]}>{roles.map(role=><div>
+      <dt><Emblem name={role.emblem}/><span>{role.title}</span></dt><dd>{role.text}</dd>
+    </div>)}</dl>
+    <div class="delivery-acceptance"><span class="delivery-check" aria-hidden="true"><Icon name="check"/></span><h3>Как проверяем<br class="delivery-check-break"/> результат</h3><p>{delivery.acceptance}</p></div>
+  </div></div>
+</section>

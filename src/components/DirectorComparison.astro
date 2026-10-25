@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Emblem from './Emblem.astro';
 interface Props { home?:boolean; }
 const { home=false }=Astro.props;
 import '../styles/comparison.css';
@@ -23,7 +24,7 @@ const rows=[
       {rows.map(row=><tr><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}
     </tbody>
   </table></div>
-  {home&&<div class="comparison-included"><div><h3>Что входит в сопровождение</h3><a class="text-link" href="/uslugi/finansovyy-direktor-na-autsorse/#result">Результат каждого месяца <Icon/></a></div><ul><li><Icon name="check"/>Прибыль и отчётность</li><li><Icon name="check"/>Прогноз денег</li><li><Icon name="check"/>Разбор решений</li></ul></div>}
+  {home&&<div class="comparison-included"><div><h3>Что входит в сопровождение</h3><a class="text-link" href="/uslugi/finansovyy-direktor-na-autsorse/#result">Результат каждого месяца <Icon/></a></div><ul><li><Emblem name="document"/>Прибыль и отчётность</li><li><Emblem name="clarity"/>Прогноз денег</li><li><Emblem name="review"/>Разбор решений</li></ul></div>}
   <div class="comparison-bottom"><div><p>Платите за нужный объём участия.</p><p>Стоимость сопровождения зависит от числа компаний, состояния данных и задач. Восстановление учёта, внедрение 1С и правовые проекты оцениваются отдельно.</p></div><a class="button button-yellow" href={home?'#contact':'#request'}>Обсудить сопровождение <Icon/></a></div>
   <p class="comparison-assumption">Сравнение при окладе штатного директора 250 000 ₽ в месяц, без страховых взносов и организации рабочего места.</p>
 </div></section>
