@@ -11,7 +11,7 @@
 .hero-artwork-labels li+li{border-left:1px solid #aabca6;margin-left:16px;padding-left:16px}
 .hero-artwork figcaption p{font-size:15px;line-height:1.6;color:#456451;margin-top:12px;text-wrap:balance}
 .hero-artwork figcaption p:first-child{margin-top:0}
-.inner-hero .case-amount{font-size:clamp(58px,5.5vw,88px)}
+.inner-hero .case-amount{font-size:clamp(58px,5.5vw,88px);color:#936c23}
 .inner-page:has(.contact-page){background:#f4f1e8}
 .contact-artwork{max-width:490px;margin:24px 0 0}
 .contact-artwork .hero-artwork-image{aspect-ratio:3/2;object-fit:contain}

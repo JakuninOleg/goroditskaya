@@ -120,7 +120,7 @@
 
 /* Reading stays independent of imagery; motion belongs to links and diagrams. */
 .inner-hero .inner-lead{color:#294e42;font-weight:500}
-.inner-hero .eyebrow,.inner-meta,.breadcrumbs{color:#466152}
+.inner-hero .eyebrow,.contact-page .eyebrow,.inner-meta,.breadcrumbs{color:#466152}
 .inner-page .text-link{font-size:16px}
 .inner-page .text-link svg,.related-arrow svg{transition:transform 320ms var(--ease)}
 .catalog-card,.related-card{transition:transform 280ms var(--ease),background-color 220ms ease,border-color 220ms ease}
