@@ -1,0 +1,17 @@
+---
+import { caseStudies,casesForServices,caseHref } from '../data/cases';
+import Icon from './Icon.astro';
+interface Props { service?:string; services?:string[]; exclude?:string; home?:boolean; limit?:number; }
+const { service,services=[],exclude,home=false,limit=2 }=Astro.props;
+const selected=home
+  ? ['erp-proektnyy-uchet','vosstanovlenie-ucheta-it-gruppy','kontrol-zatrat-stroitelstva'].map(slug=>caseStudies.find(study=>study.slug===slug)!)
+  : casesForServices(service?[service]:services,exclude).slice(0,limit);
+import '../styles/cases.css';
+---
+{selected.length>0&&<section class:list={['container',home?'section':'inner-section','case-related']} aria-labelledby="related-cases-heading">
+  <div class="case-section-heading"><h2 id="related-cases-heading">{home?'Другие задачи из практики':'Как это выглядит в работе'}</h2><a class="text-link" href="/kejsy/">Все кейсы <Icon/></a></div>
+  <div class:list={['case-links',{'case-links-home':home}]}>{selected.map(study=><a class="case-link" href={caseHref(study.slug)}>
+    <p class="case-link-context">{study.sector}{study.period&&<> · {study.period}</>}</p>
+    <h3>{study.title}</h3><p>{study.summary}</p><span class="text-link">Разобрать проект <Icon/></span>
+  </a>)}</div>
+</section>}

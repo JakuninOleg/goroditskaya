@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile,readdir,stat,writeFile,mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { services } from '../src/data/services.ts';
+import { caseStudies,caseHref } from '../src/data/cases.ts';
 import { primaryOrigin,searchIndexingEnabled } from '../src/data/seo.ts';
 
 async function files(directory){
@@ -38,7 +39,7 @@ for(const file of htmlFiles){
   assert(!/Демонстрация|условные данные|отправка не подключена|данные ещё не отправлены|Или скачать комплект сразу|financial-templates\.xlsx|Технор[эе]д|С 1996/i.test(html),`Removed copy or ungated download: ${path}`);
   pages.set(path,{html,ids:new Set(ids),links:[...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map(match=>match[1].replaceAll('&amp;','&'))});
 }
-assert.equal(pages.size,26,'Expected home, 24 internal pages and 404');
+assert.equal(pages.size,25+caseStudies.length,'Expected existing routes plus the complete case library and 404');
 let checkedLinks=0;
 const graph=new Map();
 for(const [path,page] of pages){
@@ -65,6 +66,14 @@ for(const service of services){
   assert(page,`Missing service ${service.slug}`);
   assert(!pages.has(`/${service.slug}/`),`Service must be nested under /uslugi/: ${service.slug}`);
   assert(page.html.includes('application/ld+json')&&page.html.includes('BreadcrumbList'),`Missing service/breadcrumb schema: ${service.slug}`);
+  const relevant=caseStudies.filter(study=>study.services.includes(service.slug));
+  assert(relevant.length>0,`Every service has relevant practical experience: ${service.slug}`);
+  assert(relevant.some(study=>page.html.includes(`href="${caseHref(study.slug)}"`)),`Service links to a relevant case: ${service.slug}`);
+}
+for(const study of caseStudies){
+  const page=pages.get(caseHref(study.slug));
+  assert(page,`Missing case: ${study.slug}`);
+  for(const slug of study.services)assert(page.html.includes(`/uslugi/${slug}/`),`Case links back to service ${slug}: ${study.slug}`);
 }
 for(const path of ['/','/kontakty/','/materialy/']){
   const html=pages.get(path).html;

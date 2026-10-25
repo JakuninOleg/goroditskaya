@@ -6,7 +6,7 @@ const { standalone=false,service }=Astro.props;
 const Heading=standalone?'h2':'h3';
 ---
 <div class="contact-panel"><Heading>Обсудить проект</Heading>
-  <form id="contact-form" action={'mailto:'+site.email} method="post" enctype="text/plain">
+  <form id="contact-form" method="post">
     {service&&<input type="hidden" name="service" value={service}/>}
     <div class="form-grid">
       <label>Ваше имя <span aria-hidden="true">*</span><input name="name" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100"/></label>
@@ -18,6 +18,6 @@ const Heading=standalone?'h2':'h3';
     <label class="consent-label"><input type="checkbox" name="consent" required/><span>Согласен с <button type="button" class="inline-link" data-privacy-open>политикой конфиденциальности</button> и обработкой персональных данных</span></label>
     <button class="button button-yellow form-submit" type="submit">Отправить заявку <Icon/></button>
   </form>
-  <noscript><p class="form-note">Можно написать напрямую: <a href={'mailto:'+site.email}>{site.email}</a>.</p></noscript>
+  <noscript><style>#contact-form{display:none}</style><p class="form-note">Можно написать напрямую: <a href={'mailto:'+site.email}>{site.email}</a>.</p></noscript>
 </div>
 <script>import '../scripts/contact';</script>

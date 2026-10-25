@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import PageCta from '../../components/PageCta.astro';
 import ArticleDiagram from '../../components/ArticleDiagram.astro';
 import Icon from '../../components/Icon.astro';
+import RelatedCases from '../../components/RelatedCases.astro';
 import { articles,articleHref,type Article } from '../../data/articles';
 import { services,serviceHref } from '../../data/services';
 import { primaryOrigin } from '../../data/seo';
@@ -23,5 +24,6 @@ const structuredData=[{'@context':'https://schema.org','@type':'Article',headlin
     </article>
   </div>
   <section class="inner-section container article-related"><h2>Помощь с этой задачей</h2><div class="article-links">{related.map(service=><a href={serviceHref(service.slug)}><h3>{service.short}</h3><p>{service.question}</p><span class="text-link">Состав работы <Icon/></span></a>)}</div></section>
+  <RelatedCases services={article.relatedServices}/>
   <PageCta title="Разберём ваш вопрос по данным компании" text="Расскажите, что не сходится в цифрах или какое решение нужно принять. Рабочие документы и доступы согласуем отдельно." service={related[0]?.title}/>
 </PageLayout>

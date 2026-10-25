@@ -8,6 +8,8 @@ import Faq from '../../components/Faq.astro';
 import Emblem from '../../components/Emblem.astro';
 import Icon from '../../components/Icon.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
+import RelatedCases from '../../components/RelatedCases.astro';
+import DirectorComparison from '../../components/DirectorComparison.astro';
 import { serviceEngagement } from '../../data/service-engagement';
 import { services, serviceHref, type Service } from '../../data/services';
 export function getStaticPaths(){return services.map(service=>({params:{slug:service.slug},props:{service}}));}
@@ -46,8 +48,10 @@ const structuredData=[
       </aside>
     </div>
   </div></section>
+  {service.slug==='finansovyy-direktor-na-autsorse'&&<DirectorComparison/>}
   <section class="inner-section situation-section service-purchase"><div class="container scope-layout"><div class="scope-intro"><h2>Формат, сроки и стоимость работы</h2><p>До начала проекта определяем состав результата, участие команды и порядок его проверки.</p></div><div class="scope-list">{serviceEngagement[service.slug].map(item=><article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>
   {service.case&&<section class="inner-section situation-section"><div class="container case-feature"><div><p class="eyebrow">Из практики</p><h2>Разработки, которые стали активами</h2><p class="case-amount">62 млн ₽</p><p>После анализа затраты на результативные НИОКР были выделены из расходов. Созданная технология и патенты стали видны в составе активов компании.</p><a class="text-link" href="/kejsy/niokr-62-mln/">Проблема, решение и результат <Icon/></a></div><div class="case-art"><CaseIllustration/></div></div></section>}
+  <RelatedCases service={service.slug} exclude={service.case?'niokr-62-mln':undefined}/>
   <section class="inner-section container"><div class="service-faq"><div><p class="eyebrow">Перед началом</p><h2>Вопросы по услуге</h2></div><Faq items={service.faq}/></div>{service.source&&<p class="service-source">По теме: <a href={service.source.url} target="_blank" rel="noopener noreferrer">{service.source.title}</a></p>}</section>
   <section class="inner-section container related-section"><p class="eyebrow">Следующий шаг</p><h2>Связанные задачи</h2><div class="related-grid">{related.map(s=><a class="related-card" href={serviceHref(s.slug)}><Emblem name={s.emblem}/><h3>{s.short}</h3><p>{s.question}</p><span class="related-arrow">Подробнее <Icon/></span></a>)}</div></section>
   <RelatedArticles service={service.slug}/>

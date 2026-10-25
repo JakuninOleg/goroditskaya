@@ -1,0 +1,9 @@
+---
+import Emblem from './Emblem.astro';
+interface Props { items:{title:string;text:string}[]; focus?:{value:string;label:string}; }
+const {items,focus}=Astro.props;
+---
+<aside class="case-map" aria-label="Контур проекта">
+  {focus&&<p class="case-map-focus"><strong>{focus.value}</strong><span>{focus.label}</span></p>}
+  <ol>{items.map((item,i)=><li><Emblem name={['document','system','clarity'][i]}/><div><strong>{item.title}</strong><span>{item.text}</span></div></li>)}</ol>
+</aside>

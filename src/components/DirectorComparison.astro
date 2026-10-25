@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+interface Props { home?:boolean; }
+const { home=false }=Astro.props;
+import '../styles/comparison.css';
+const rows=[
+  ['Бюджет на работу','Оклад, страховые взносы и рабочее место','От 50 000 ₽ в месяц'],
+  ['Загрузка','Полная занятость в компании','Согласованный объём задач и участия'],
+  ['Подбор и организация работы','Поиск сотрудника, адаптация, рабочее место','Работу лично ведёт Наталья'],
+  ['Работа с командой','Собственная финансовая функция','Взаимодействие с вашей бухгалтерией и руководителями'],
+  ['Состав работы','Закреплён в должностных обязанностях','Закреплён в предложении: задачи, отчёты и порядок встреч'],
+];
+---
+<section class:list={[home?'section':'inner-section','director-comparison']} aria-labelledby="director-comparison-heading"><div class="container">
+  <div class="comparison-intro"><h2 id="director-comparison-heading">Финансовый директор без найма в штат</h2><p>Подключайте финансовую экспертизу в том объёме, который нужен вашему бизнесу.</p></div>
+  <div class="comparison-scroll" role="region" aria-label="Сравнение форматов финансового управления" tabindex="0"><table>
+    <caption class="sr-only">Штатный финансовый директор и сопровождение Натальи Городицкой</caption>
+    <thead><tr><td></td><th scope="col">Финдиректор в штате</th><th scope="col">Наталья на аутсорсе</th></tr></thead>
+    <tbody>{rows.map((row,i)=><tr class:list={{'comparison-price-row':i===0}}><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}</tbody>
+  </table></div>
+  <div class="comparison-bottom"><p>От 50 000 ₽ в месяц — за согласованный объём сопровождения. На стоимость влияют число компаний, состояние данных и глубина участия. Восстановление учёта, внедрение 1С и правовые проекты оцениваются отдельно.</p><a class="button button-yellow" href={home?'#contact':'#request'}>Обсудить сопровождение <Icon/></a></div>
+</div></section>

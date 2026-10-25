@@ -7,7 +7,7 @@ if (!artwork) throw new Error('Missing hero artwork: ' + name);
 const source = '/images/editorial/' + name;
 ---
 <figure class:list={['hero-artwork', className]}>
-  <img class="hero-artwork-image" src={source+'.webp'} srcset={`${source}-640.webp 640w, ${source}-960.webp 960w, ${source}.webp 1536w`} sizes="(max-width:800px) 100vw, (min-width:1800px) 760px, 48vw" width="1536" height="1024" alt={artwork.alt} fetchpriority="high" decoding="async"/>
+  <picture><source type="image/avif" srcset={`${source}-640.avif 640w, ${source}-960.avif 960w, ${source}.avif 1536w`} sizes="(max-width:800px) 100vw, (min-width:1800px) 760px, 48vw"/><img class="hero-artwork-image" src={source+'.webp'} srcset={`${source}-640.webp 640w, ${source}-960.webp 960w, ${source}.webp 1536w`} sizes="(max-width:800px) 100vw, (min-width:1800px) 760px, 48vw" width="1536" height="1024" alt={artwork.alt} fetchpriority="high" decoding="async"/></picture>
   {(labels || caption) && <figcaption>
     {labels && <ul class="hero-artwork-labels" role="list">{labels.map(label=><li>{label}</li>)}</ul>}
     {caption && <p>{caption}</p>}
