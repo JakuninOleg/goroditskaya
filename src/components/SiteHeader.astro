@@ -4,6 +4,7 @@ import Icon from './Icon.astro';
 const home = Astro.url.pathname === '/';
 const contactHref = home ? '#contact' : '#request';
 const active = (path: string) => Astro.url.pathname === path ? 'page' : undefined;
+const articlesCurrent = active('/stati/') ?? (Astro.url.pathname.startsWith('/stati/') ? 'location' : undefined);
 ---
 <header class="masthead" id="top"><div class="masthead-shell container">
   <div class="masthead-row">
@@ -12,6 +13,7 @@ const active = (path: string) => Astro.url.pathname === path ? 'page' : undefine
       <a href="/o-natale/" aria-current={active('/o-natale/')}>Обо мне</a>
       <a href="/uslugi/" aria-current={active('/uslugi/')}>Услуги</a>
       <a href="/kejsy/" aria-current={active('/kejsy/')}>Кейсы</a>
+      <a href="/stati/" aria-current={articlesCurrent}>Статьи</a>
       <a href="/#approach">Как я работаю</a>
     </nav>
     <a class="button button-yellow masthead-cta" href={contactHref}>Обсудить задачу <Icon/></a>
@@ -20,7 +22,7 @@ const active = (path: string) => Astro.url.pathname === path ? 'page' : undefine
   <nav class="masthead-mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden>
     <a href="/#tasks">Ваша задача</a><a href="/uslugi/">Все услуги</a>
     <a href="/uslugi/finansovyy-direktor-na-autsorse/">Финансовый директор</a><a href="/uslugi/nalogovyy-konsultant/">Налоговый консультант</a>
-    <a href="/kejsy/">Кейс НИОКР</a><a href="/o-natale/">О Наталье</a><a href="/materialy/">Финансовые формы</a><a href="/kontakty/">Контакты <Icon/></a>
+    <a href="/kejsy/">Кейсы</a><a href="/stati/" aria-current={articlesCurrent}>Статьи</a><a href="/o-natale/">О Наталье</a><a href="/materialy/">Финансовые формы</a><a href="/kontakty/">Контакты <Icon/></a>
   </nav>
 </div></header>
 <div class="masthead-scrim" aria-hidden="true" hidden></div>

@@ -23,4 +23,4 @@ masthead?.querySelector('.identity')?.addEventListener('click', () => closeMenu(
 menuScrim?.addEventListener('click', () => closeMenu(true));
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && menuToggle?.getAttribute('aria-expanded') === 'true') closeMenu(true); });
 document.addEventListener('focusin', event => { if (menuToggle?.getAttribute('aria-expanded') === 'true' && !masthead?.contains(event.target as Node)) closeMenu(); });
-window.matchMedia('(min-width: 1181px)').addEventListener('change', () => closeMenu());
+window.matchMedia('(min-width: 1281px)').addEventListener('change', () => closeMenu());
