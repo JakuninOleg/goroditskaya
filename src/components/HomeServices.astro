@@ -12,7 +12,7 @@ import { serviceGroups } from '../data/service-groups';
       <div class="atlas-card-footer"><span>Все {group.products.length} {group.products.length===3?'услуги':'услуг'} направления</span><span class="service-arrow" aria-hidden="true"><Icon/><Icon class="service-arrow-next"/></span></div>
     </a>)}
   </div>
-  <div class="atlas-footer"><p>Четыре направления. Специалисты под вашу задачу.</p><a class="text-link" href="/uslugi/">Все услуги <Icon/></a></div>
+  <div class="atlas-footer"><a class="button button-yellow" href="/uslugi/">Все услуги <Icon/></a></div>
 </section>
 <style>
   .atlas-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
@@ -34,10 +34,10 @@ import { serviceGroups } from '../data/service-groups';
   .atlas-group:is(:hover,:focus-visible) .service-arrow :global(svg:first-child){opacity:0;transform:translateX(32px)}
   .atlas-group:is(:hover,:focus-visible) .service-arrow :global(.service-arrow-next){opacity:1;transform:none}
   .atlas-group:active{transform:translateY(2px)}
-  .atlas-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:28px}
-  .atlas-footer p{font-size:16px;line-height:1.6;color:#405b50}
+  .atlas-footer{display:flex;justify-content:center;margin-top:32px}
+  .atlas-footer .button{min-width:220px}
   @media(max-width:900px){.atlas-group{padding:26px}.atlas-card-heading{grid-template-columns:minmax(0,1fr) 64px;gap:12px}.atlas-card-heading h2{font-size:26px}.atlas-card-heading :global(.emblem){width:64px;height:64px}}
-  @media(max-width:640px){.atlas-group>:is(.atlas-card-heading,.atlas-description,ul,.atlas-card-footer){grid-row:auto}.atlas-groups{grid-template-columns:1fr;gap:20px}.atlas-group{grid-row:auto;grid-template-rows:auto;gap:20px;padding:24px}.atlas-card-heading h2{font-size:27px}.atlas-footer{align-items:start;flex-direction:column;gap:10px}}
+  @media(max-width:640px){.atlas-group>:is(.atlas-card-heading,.atlas-description,ul,.atlas-card-footer){grid-row:auto}.atlas-groups{grid-template-columns:1fr;gap:20px}.atlas-group{grid-row:auto;grid-template-rows:auto;gap:20px;padding:24px}.atlas-card-heading h2{font-size:27px}.atlas-footer .button{width:100%;min-width:0}}
   @media(max-width:375px){.atlas-group{padding:20px}.atlas-card-heading h2{font-size:24px}.atlas-card-heading{grid-template-columns:minmax(0,1fr) 54px}.atlas-card-heading :global(.emblem){width:54px;height:54px}}
   @media(prefers-reduced-motion:reduce){.atlas-group,.service-arrow,.service-arrow :global(svg){transition:none}.atlas-group:is(:hover,:focus-visible) .service-arrow :global(svg:first-child){opacity:1;transform:none}.atlas-group:is(:hover,:focus-visible) .service-arrow :global(.service-arrow-next){opacity:0}}
 </style>
