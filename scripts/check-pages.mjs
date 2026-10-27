@@ -88,7 +88,8 @@ const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1
 assert.equal(new Set(sitemapUrls).size,pages.size-1,'Sitemap covers every content page exactly once');
 for(const path of reachable)assert(sitemapUrls.includes(primaryOrigin+path),`Missing sitemap URL: ${path}`);
 const robots=await readFile('dist/robots.txt','utf8');
-assert(robots.includes(searchIndexingEnabled?'Allow: /':'Disallow: /'));
+assert(robots.includes('Allow: /'),'Crawlers can read the page indexing directive');
+assert.equal(robots.includes('Sitemap:'),searchIndexingEnabled,'Advertise sitemap only after indexing is enabled');
 await mkdir('research/internal-pages-2026-10-19',{recursive:true});
 await writeFile('research/internal-pages-2026-10-19/build-check.json',JSON.stringify({pages:pages.size,internalPages:pages.size-2,checkedLinks,reachableContentPages:reachable.size,indexing:searchIndexingEnabled,origin:primaryOrigin,sitemapUrls},null,2));
 console.log(`Page check passed: ${pages.size} HTML pages, ${checkedLinks} internal links, ${reachable.size} reachable content pages, unique metadata and valid assets.`);

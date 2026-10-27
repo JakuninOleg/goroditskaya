@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://goroditskaya.vercel.app',
+  site: 'https://gorodickaya.ru',
   trailingSlash: 'always',
   output: 'static',
   build: { inlineStylesheets: 'always' },

@@ -1,2 +1,2 @@
-export const primaryOrigin = 'https://goroditskaya.vercel.app';
+export const primaryOrigin = 'https://gorodickaya.ru';
 export const searchIndexingEnabled = false;

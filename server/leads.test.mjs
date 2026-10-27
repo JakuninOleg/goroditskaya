@@ -117,3 +117,13 @@ test('CORS preflight и ограничение частоты не отправ�
   for (let count = 0; count < 5; count++) assert.equal((await post({ ...lead(), consent: false })).status, 400);
   assert.equal((await post(lead())).status, 429); assert.equal(received.length, 0);
 });
+
+test('собственный домен принимает заявку и сохраняет источник в письме', async t => {
+  const { api, post, received } = await harness(t);
+  const domain = 'https://gorodickaya.ru';
+  const preflight = await fetch(api, { method: 'OPTIONS', headers: { Origin: domain } });
+  assert.equal(preflight.status, 204);
+  assert.equal(preflight.headers.get('access-control-allow-origin'), domain);
+  assert.equal((await post(lead(), domain)).status, 200);
+  assert(received.find(item => item.path === '/emails').body.html.includes(domain + '/uslugi/finansovaya-diagnostika/'));
+});

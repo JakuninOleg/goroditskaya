@@ -4,6 +4,7 @@ import { renderLeadEmail } from './email-template.mjs';
 const recipient = 'Gorodickaya@yandex.ru';
 const consentVersion = '2026-10-28';
 const origins = new Set([
+  'https://gorodickaya.ru',
   'https://jakuninoleg-goroditskaya-8680.twc1.net',
   'https://goroditskaya.vercel.app',
   'https://natalia-goroditskaya-finance.ideal-morel-9819.chatgpt.site',
