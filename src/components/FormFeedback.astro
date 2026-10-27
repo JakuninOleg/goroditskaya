@@ -1,0 +1,14 @@
+---
+interface Props { id: string; }
+const { id } = Astro.props;
+---
+<div class="form-trap" aria-hidden="true"><label>Ваш сайт<input name="website" type="text" tabindex="-1" autocomplete="off" maxlength="200"/></label></div>
+<p id={id} class="form-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+<style>
+  .form-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .form-feedback{margin-top:16px;font-size:15px;line-height:1.65;color:inherit}
+  .form-feedback:empty{display:none}
+  .form-feedback[data-state="error"]{color:#923e2b}
+  :global(.materials-form) .form-feedback[data-state="error"]{color:#ffddba}
+  :global(form[aria-busy="true"] button[type="submit"]){cursor:progress;opacity:.75}
+</style>

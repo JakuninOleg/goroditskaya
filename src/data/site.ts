@@ -2,6 +2,7 @@ export const showFaq = false;
 export const site = {
   brand: 'Городицкая и партнёры',
   name: 'Наталья Городицкая', email: 'Gorodickaya@yandex.ru', phone: '+7 (915) 015-15-08', phoneHref: '+79150151508',
+  leadEndpoint: 'https://jakuninoleg.dev/api/natalia-lead',
   messengerPhone: '+7 (918) 859-38-00', messengerDigits: '79188593800',
   role: 'Независимый финансовый директор',
   experienceSince: 2003,

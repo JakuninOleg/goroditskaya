@@ -1,11 +1,41 @@
 import { site } from '../data/site';
 import { attachRuPhoneMask, normalizeRuPhone } from '../lib/ru-phone';
 
-function consentRecord(data:FormData):string[]{
-  const version=String(data.get('consent_version')??'');
-  const path=String(data.get('consent_path')??'');
-  if(!version||!path)return [];
-  return ['', 'Согласие на обработку персональных данных: предоставлено.', 'Редакция согласия: '+version, 'Документ: '+new URL(path,window.location.origin).href, 'Время подтверждения (МСК): '+new Date().toLocaleString('ru-RU',{timeZone:'Europe/Moscow'})];
+async function sendLead(form:HTMLFormElement,fields:Record<string,string>,successText:string){
+  if(form.dataset.submitting==='true')return;
+  const status=form.querySelector<HTMLElement>('.form-feedback');
+  const button=form.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const label=button?.querySelector<HTMLElement>('[data-submit-label]');
+  const initialLabel=label?.textContent??'';
+  const data=new FormData(form);
+  const payload={...fields,consent:data.get('consent')==='on',consentVersion:String(data.get('consent_version')??''),website:String(data.get('website')??'')};
+  const serialized=JSON.stringify(payload);
+  if(form.dataset.lastPayload!==serialized){form.dataset.requestId=crypto.randomUUID();form.dataset.lastPayload=serialized;}
+  form.dataset.submitting='true';
+  form.setAttribute('aria-busy','true');
+  if(button)button.disabled=true;
+  if(label)label.textContent='Отправляем…';
+  if(status){status.dataset.state='pending';status.textContent='Отправляем вашу заявку…';}
+  let failureMessage='';
+  try{
+    const response=await fetch(import.meta.env.PUBLIC_LEAD_API_URL||site.leadEndpoint,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({...payload,requestId:form.dataset.requestId}),signal:AbortSignal.timeout(20_000),
+    });
+    const result=await response.json();
+    if(!response.ok||result.ok!==true){
+      failureMessage=response.status===429?'Слишком много попыток. Подождите минуту и отправьте заявку ещё раз.':response.status===400?'Проверьте контакт и согласие. Если страница была открыта давно, обновите её перед отправкой.':'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами по телефону.';
+      throw new Error('delivery_failed');
+    }
+    form.reset();
+    delete form.dataset.lastPayload;delete form.dataset.requestId;
+    if(status){status.dataset.state='success';status.textContent=successText;}
+  }catch{
+    if(status){status.dataset.state='error';status.textContent=failureMessage||'Не удалось связаться с сервером. Данные сохранены в форме — попробуйте отправить ещё раз.';}
+  }finally{
+    delete form.dataset.submitting;form.removeAttribute('aria-busy');
+    if(button)button.disabled=false;if(label)label.textContent=initialLabel;
+  }
 }
 
 
@@ -42,14 +72,10 @@ form?.addEventListener('submit',event=>{
   if(useEmail)contactEmail.value=contactEmail.value.trim();
   if(!form.reportValidity())return;
   const data=new FormData(form);
-  const name=String(data.get('name')??'').trim();
-  const email=String(data.get('email')??'').trim();
-  const task=String(data.get('message')??'').trim();
-  const service=String(data.get('service')??'').trim().slice(0,180);
-  const page=String(data.get('page')??'').trim();
-  const body=['Наталья, добрый день!','',...(name?['Меня зовут '+name+'.']:[]),useEmail?'Почта для связи: '+email:'Телефон для связи: +'+phone,...(service?['Услуга: '+service]:[]),...(page?['Страница обращения: '+page]:[]),'','Задача:',task||'Нужна консультация по финансовой задаче бизнеса.','','Прошу предложить возможный состав работ и формат сотрудничества.',...consentRecord(data)].join('\n');
-  // Retain the existing delivery route until server delivery is connected.
-  window.location.href='mailto:'+site.email+'?subject='+encodeURIComponent('Заявка на консультацию'+(service?': '+service:''))+'&body='+encodeURIComponent(body);
+  void sendLead(form,{kind:'consultation',name:String(data.get('name')??'').trim(),
+    email:useEmail?String(data.get('email')??'').trim():'',phone:useEmail?'':phone!,
+    message:String(data.get('message')??'').trim(),service:String(data.get('service')??'').trim().slice(0,180),
+    page:window.location.pathname},'Заявка отправлена. Мы свяжемся с вами по указанному контакту.');
 });
 const templatesForm=document.getElementById('templates-form') as HTMLFormElement|null;
 const templatesPhone=document.getElementById('templates-phone') as HTMLInputElement|null;
@@ -60,7 +86,6 @@ templatesForm?.addEventListener('submit',event=>{
   templatesPhone?.setCustomValidity(phone?'':'Укажите телефон полностью: +7 (999) 123-45-67.');
   if(!templatesForm.reportValidity())return;
   const data=new FormData(templatesForm);
-  const email=String(data.get('email')??'').trim();
-  const body=['Наталья, добрый день!','','Пришлите, пожалуйста, комплект Excel-форм:','— ДДС на 13 недель','— Прибыль по проектам','— План-факт бюджета','','Моя почта: '+email,'Телефон: +'+phone,...consentRecord(data)].join('\n');
-  window.location.href='mailto:'+site.email+'?subject='+encodeURIComponent('Запрос Excel-форм')+'&body='+encodeURIComponent(body);
+  void sendLead(templatesForm,{kind:'templates',email:String(data.get('email')??'').trim(),phone:phone!,
+    page:window.location.pathname},'Запрос отправлен. Пришлём комплект на указанную почту.');
 });

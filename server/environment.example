@@ -1,0 +1,11 @@
+# Server-only variables on the existing Timeweb Next.js application (262097).
+# Existing email credentials are reused; never use PUBLIC_ or NEXT_PUBLIC_ names.
+RESEND_API_KEY=
+CONTACT_FROM_EMAIL=
+
+# Separate bot for Natalia. No tokens or chat IDs are embedded in the static site.
+NATALIA_TELEGRAM_BOT_TOKEN=
+NATALIA_TELEGRAM_CHAT_ID=
+
+# Optional: another verified sender in the same Resend account.
+NATALIA_FROM_EMAIL=

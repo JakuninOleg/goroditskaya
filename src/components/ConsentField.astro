@@ -6,4 +6,4 @@ import { legalAvailable, legalHref, legalVersion } from '../data/legal';
   <p class="consent-policy-note"><a href={legalHref('politika-konfidentsialnosti')} target="_blank" rel="noopener noreferrer">Политика обработки персональных данных</a></p>
   <input type="hidden" name="consent_version" value={legalVersion}/><input type="hidden" name="consent_path" value={legalHref('soglasie-na-obrabotku-dannyh')}/>
 </>:<label class="consent-label"><input type="checkbox" name="consent" required/><span>Согласен с <button type="button" class="inline-link" data-privacy-open>политикой конфиденциальности</button> и обработкой персональных данных</span></label>}
-<style>.consent-policy-note{font-size:12px;line-height:1.65;color:#496354;margin-top:8px}.consent-policy-note a{color:inherit;text-underline-offset:4px;text-decoration-color:#a2b39b}</style>
+<style>.consent-policy-note{font-size:12px;line-height:1.65;color:#496354;margin-top:8px}.consent-policy-note a{color:inherit;text-underline-offset:4px;text-decoration-color:#a2b39b}:global(.materials-form) .consent-policy-note{color:#d8e4ce}</style>
