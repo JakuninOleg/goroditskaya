@@ -3,7 +3,7 @@ import EditorialArt from './EditorialArt.astro';
 import Icon from './Icon.astro';
 import type { ArtKind } from '../data/editorial';
 interface Props { href:string; title:string; description:string; context:string; kind:ArtKind; cta?:string; heading?:'h2'|'h3'; }
-const {href,title,description,context,kind,cta='Читать материал',heading='h2'}=Astro.props;
+const {href,title,description,context,kind,cta='Подробнее',heading='h2'}=Astro.props;
 const Heading=heading;
 ---
 <a class="story-card" href={href}>
