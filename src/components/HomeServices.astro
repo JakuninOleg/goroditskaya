@@ -3,15 +3,11 @@ import Icon from './Icon.astro';
 import Emblem from './Emblem.astro';
 import { serviceGroups } from '../data/service-groups';
 ---
-<section class="section container service-atlas" id="services" aria-labelledby="products-heading">
-  <div class="atlas-heading">
-    <h2 id="products-heading">Видеть бизнес целиком.<br/>Управлять, а не «тушить пожары»</h2>
-    <div><p class="atlas-industry">Подберём специалиста из вашей отрасли.</p></div>
-  </div>
+<section class="section container service-atlas" id="services" aria-label="Направления услуг">
   <div class="atlas-groups">
     {serviceGroups.map(group=><a class={'atlas-group atlas-'+group.id} href={'/uslugi/#'+group.id}>
-      <div class="atlas-card-heading"><h3>{group.title}</h3><Emblem name={group.emblem}/></div>
-      {group.description&&<p class="atlas-description">{group.description}</p>}
+      <div class="atlas-card-heading"><h2>{group.title}</h2><Emblem name={group.emblem}/></div>
+      {group.description&&<p class="atlas-description">{group.id==='finance'?<>Видеть бизнес целиком.<br/>Управлять, а не «тушить пожары»</>:group.description}</p>}
       <ul>{group.preview.map(item=><li>{item}</li>)}</ul>
       <div class="atlas-card-footer"><span>Все {group.products.length} {group.products.length===3?'услуги':'услуг'} направления</span><span class="service-arrow" aria-hidden="true"><Icon/><Icon class="service-arrow-next"/></span></div>
     </a>)}
@@ -19,16 +15,12 @@ import { serviceGroups } from '../data/service-groups';
   <div class="atlas-footer"><p>Четыре направления. Специалисты под вашу задачу.</p><a class="text-link" href="/uslugi/">Все услуги <Icon/></a></div>
 </section>
 <style>
-  .atlas-heading{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end;margin-bottom:40px}
-  .atlas-heading>div{max-width:510px;justify-self:end}
-  .atlas-heading p{font-size:19px;line-height:1.65;color:#405b50}
-  .atlas-heading .atlas-industry{margin-top:12px;font-weight:600;color:var(--green)}
   .atlas-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
   .atlas-group{display:grid;grid-template-rows:subgrid;grid-row:span 4;gap:22px;min-width:0;padding:32px;border-radius:16px;background:#e3e9d8;color:var(--green);text-decoration:none;transition:background-color 240ms ease,transform 280ms var(--ease)}
   .atlas-accounting,.atlas-legal{background:#153e39;color:#f6f3e7}
   .atlas-tax{background:#ede6d7}
   .atlas-card-heading{grid-row:1;display:grid;grid-template-columns:minmax(0,1fr) 84px;align-items:start;gap:20px}
-  .atlas-card-heading h3{font-family:var(--sans);font-size:30px;line-height:1.2;font-weight:600;letter-spacing:-.025em;color:inherit}
+  .atlas-card-heading h2{font-family:var(--sans);font-size:30px;line-height:1.2;font-weight:600;letter-spacing:-.025em;color:inherit}
   .atlas-card-heading :global(.emblem){width:84px;height:84px}
   .atlas-description{grid-row:2;font-size:17px;line-height:1.65;color:#405b50}
   .atlas-accounting .atlas-description,.atlas-legal .atlas-description{grid-row:2;color:#d9e4d5}
@@ -44,8 +36,8 @@ import { serviceGroups } from '../data/service-groups';
   .atlas-group:active{transform:translateY(2px)}
   .atlas-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:28px}
   .atlas-footer p{font-size:16px;line-height:1.6;color:#405b50}
-  @media(max-width:900px){.atlas-heading{grid-template-columns:1fr;gap:24px}.atlas-heading>div{max-width:none;justify-self:start}.atlas-group{padding:26px}.atlas-card-heading{grid-template-columns:minmax(0,1fr) 64px;gap:12px}.atlas-card-heading h3{font-size:26px}.atlas-card-heading :global(.emblem){width:64px;height:64px}}
-  @media(max-width:640px){.atlas-group>:is(.atlas-card-heading,.atlas-description,ul,.atlas-card-footer){grid-row:auto}.atlas-groups{grid-template-columns:1fr;gap:20px}.atlas-group{grid-row:auto;grid-template-rows:auto;gap:20px;padding:24px}.atlas-heading{margin-bottom:28px}.atlas-heading p{font-size:18px}.atlas-card-heading h3{font-size:27px}.atlas-footer{align-items:start;flex-direction:column;gap:10px}}
-  @media(max-width:375px){.atlas-group{padding:20px}.atlas-card-heading h3{font-size:24px}.atlas-card-heading{grid-template-columns:minmax(0,1fr) 54px}.atlas-card-heading :global(.emblem){width:54px;height:54px}}
+  @media(max-width:900px){.atlas-group{padding:26px}.atlas-card-heading{grid-template-columns:minmax(0,1fr) 64px;gap:12px}.atlas-card-heading h2{font-size:26px}.atlas-card-heading :global(.emblem){width:64px;height:64px}}
+  @media(max-width:640px){.atlas-group>:is(.atlas-card-heading,.atlas-description,ul,.atlas-card-footer){grid-row:auto}.atlas-groups{grid-template-columns:1fr;gap:20px}.atlas-group{grid-row:auto;grid-template-rows:auto;gap:20px;padding:24px}.atlas-card-heading h2{font-size:27px}.atlas-footer{align-items:start;flex-direction:column;gap:10px}}
+  @media(max-width:375px){.atlas-group{padding:20px}.atlas-card-heading h2{font-size:24px}.atlas-card-heading{grid-template-columns:minmax(0,1fr) 54px}.atlas-card-heading :global(.emblem){width:54px;height:54px}}
   @media(prefers-reduced-motion:reduce){.atlas-group,.service-arrow,.service-arrow :global(svg){transition:none}.atlas-group:is(:hover,:focus-visible) .service-arrow :global(svg:first-child){opacity:1;transform:none}.atlas-group:is(:hover,:focus-visible) .service-arrow :global(.service-arrow-next){opacity:0}}
 </style>
