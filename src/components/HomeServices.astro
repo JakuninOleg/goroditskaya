@@ -13,7 +13,7 @@ import { serviceGroups } from '../data/service-groups';
       <div class="atlas-card-heading"><h3>{group.title}</h3><Emblem name={group.emblem}/></div>
       {group.description&&<p class="atlas-description">{group.description}</p>}
       <ul>{group.preview.map(item=><li>{item}</li>)}</ul>
-      <div class="atlas-card-footer"><span>Услуги направления</span><span class="service-arrow" aria-hidden="true"><Icon/><Icon class="service-arrow-next"/></span></div>
+      <div class="atlas-card-footer"><span>Все {group.products.length} {group.products.length===3?'услуги':'услуг'} направления</span><span class="service-arrow" aria-hidden="true"><Icon/><Icon class="service-arrow-next"/></span></div>
     </a>)}
   </div>
   <div class="atlas-footer"><p>Четыре направления. Специалисты под вашу задачу.</p><a class="text-link" href="/uslugi/">Все услуги <Icon/></a></div>
@@ -27,7 +27,7 @@ import { serviceGroups } from '../data/service-groups';
   .atlas-group{display:grid;grid-template-rows:subgrid;grid-row:span 4;gap:22px;min-width:0;padding:32px;border-radius:16px;background:#e3e9d8;color:var(--green);text-decoration:none;transition:background-color 240ms ease,transform 280ms var(--ease)}
   .atlas-accounting,.atlas-legal{background:#153e39;color:#f6f3e7}
   .atlas-tax{background:#ede6d7}
-  .atlas-card-heading{grid-row:1;display:grid;grid-template-columns:minmax(0,1fr) 84px;align-items:center;gap:20px}
+  .atlas-card-heading{grid-row:1;display:grid;grid-template-columns:minmax(0,1fr) 84px;align-items:start;gap:20px}
   .atlas-card-heading h3{font-family:var(--sans);font-size:30px;line-height:1.2;font-weight:600;letter-spacing:-.025em;color:inherit}
   .atlas-card-heading :global(.emblem){width:84px;height:84px}
   .atlas-description{grid-row:2;font-size:17px;line-height:1.65;color:#405b50}
