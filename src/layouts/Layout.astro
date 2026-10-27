@@ -28,7 +28,7 @@ const canonical = new URL(Astro.url.pathname,primaryOrigin).href;
     <link rel="preload" as="font" type="font/woff2" href={manropeCyrillic} crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href={prataCyrillic} crossorigin/>
     {preloadHero&&<>
-      <link rel="preload" as="image" type="image/avif" media="(max-width:640px)" imagesrcset="/images/hybrid/hero-mobile-desktop-companion-v8-480.avif 480w, /images/hybrid/hero-mobile-desktop-companion-v8-640.avif 640w, /images/hybrid/hero-mobile-desktop-companion-v8.avif 850w" imagesizes="100vw" fetchpriority="high"/>
+      <link rel="preload" as="image" type="image/avif" media="(max-width:640px)" href="/images/hybrid/hero-neck-v4.avif" fetchpriority="high"/>
       <link rel="preload" as="image" type="image/avif" media="(min-width:641px) and (max-width:1180px)" imagesrcset="/images/hybrid/hero-neck-tablet-v4-768.avif 768w, /images/hybrid/hero-neck-tablet-v4-1024.avif 1024w, /images/hybrid/hero-neck-tablet-v4.avif 1536w" imagesizes="100vw" fetchpriority="high"/>
       <link rel="preload" as="image" type="image/avif" media="(min-width:1181px)" imagesrcset="/images/hybrid/hero-neck-v4-1280.avif 1280w, /images/hybrid/hero-neck-v4-1600.avif 1600w, /images/hybrid/hero-neck-v4.avif 2048w" imagesizes="100vw" fetchpriority="high"/>
     </>}
