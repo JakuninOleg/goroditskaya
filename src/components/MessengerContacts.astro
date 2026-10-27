@@ -4,9 +4,9 @@ import { site } from '../data/site';
 <div class="messenger-contacts">
   <p class="messenger-label">В мессенджерах</p><p class="messenger-number">{site.messengerPhone}</p>
   <div class="messenger-actions">
-    <a href={'https://t.me/+'+site.messengerDigits} target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span></a>
-    <a href={'https://wa.me/'+site.messengerDigits} target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
-    <button type="button" data-copy-max>Скопировать номер для MAX</button>
+    <a href={'https://t.me/+'+site.messengerDigits} target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram" title="Написать в Telegram"><img src="/brand/messengers/telegram.svg" width="26" height="26" alt="" loading="lazy" decoding="async"/></a>
+    <a href={'https://wa.me/'+site.messengerDigits} target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp" title="Написать в WhatsApp"><img src="/brand/messengers/whatsapp.svg" width="26" height="26" alt="" loading="lazy" decoding="async"/></a>
+    <button type="button" data-copy-max aria-label="Скопировать номер для MAX" title="Скопировать номер для MAX"><img src="/brand/messengers/max.svg" width="26" height="26" alt="" loading="lazy" decoding="async"/></button>
   </div>
   <p class="messenger-status" role="status" aria-live="polite"></p>
 </div>
@@ -26,10 +26,12 @@ import { site } from '../data/site';
   .messenger-contacts{font-family:var(--sans);font-size:15px;line-height:1.5}
   .messenger-label{font-size:13px;color:#496354;margin-bottom:4px}
   .messenger-number{font-size:18px;font-weight:500;letter-spacing:.01em;user-select:all}
-  .messenger-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:10px}
-  .messenger-actions a,.messenger-actions button{display:inline-flex;align-items:center;gap:5px;min-height:36px;color:var(--green);font:inherit;text-decoration:underline;text-decoration-color:#a9b8a5;text-underline-offset:5px;transition:text-decoration-color 180ms ease}
-  .messenger-actions button{padding:0;border:0;background:none;text-align:left;cursor:pointer;font-size:13px}
-  .messenger-actions :is(a,button):hover{text-decoration-color:var(--green)}
-  .messenger-actions :is(a,button):focus-visible{outline:2px solid var(--green);outline-offset:4px;border-radius:2px}
+  .messenger-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:14px}
+  .messenger-actions a,.messenger-actions button{display:grid;place-items:center;flex:none;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:#153e39;color:#fff;text-decoration:none;cursor:pointer;transition:background-color 180ms ease,transform 220ms var(--ease)}
+  .messenger-actions img{display:block;width:26px;height:26px;object-fit:contain}
+  .messenger-actions :is(a,button):hover{background:#2b5d50;transform:translateY(-2px)}
+  .messenger-actions :is(a,button):active{transform:translateY(0)}
+  .messenger-actions :is(a,button):focus-visible{outline:2px solid #98731b;outline-offset:4px}
   .messenger-status{font-size:13px;max-width:350px;margin-top:6px}.messenger-status:empty{display:none}
+  @media(prefers-reduced-motion:reduce){.messenger-actions a,.messenger-actions button{transition:none}.messenger-actions :is(a,button):hover{transform:none}}
 </style>
