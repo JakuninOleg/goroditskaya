@@ -27,10 +27,10 @@ function lettering(text, font, size, x, y, spacing = 0, color = '#0f3d33') {
     return path;
   }).join('');
 }
-const wordmark = lettering('Наталья', serif, 56, 195, 70, -1.8)
-  + lettering('Городицкая', serif, 56, 195, 133, -1.8)
-  + lettering('ФИНАНСОВЫЙ ДИРЕКТОР', sans, 13, 197, 170, 2.2)
-  + lettering('НА АУТСОРСЕ', sans, 13, 197, 195, 2.2);
+const wordmark = lettering('Городицкая', serif, 56, 195, 70, -1.8)
+  + lettering('и партнёры', serif, 56, 195, 133, -1.8)
+  + lettering('НЕЗАВИСИМЫЙ', sans, 13, 197, 170, 2.2)
+  + lettering('ФИНАНСОВЫЙ ДИРЕКТОР', sans, 13, 197, 195, 2.2);
 const lockup = svg(`<g transform="translate(0 6) scale(.82)">${paths}</g>${wordmark}`, '0 0 620 222');
 await writeFile(`${directory}/natalia-logo.svg`, lockup);
 await writeFile(`${directory}/natalia-logo-reversed.svg`, lockup.replaceAll('#0f3d33', '#f5f2e8').replaceAll('#527464', '#c9d5c9').replaceAll('#92a39a', '#dce4d9'));

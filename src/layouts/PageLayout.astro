@@ -2,12 +2,13 @@
 import Layout from './Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
 import '../styles/pages.css';
 import '../styles/hero-art.css';
 interface Props { title:string; description:string; structuredData?:Record<string,unknown>[]; noindex?:boolean; }
 const { title,description,structuredData=[],noindex=false }=Astro.props;
 ---
-<Layout title={title+' — Наталья Городицкая'} description={description} structuredData={structuredData} noindex={noindex}>
+<Layout title={title+' — '+site.brand} description={description} structuredData={structuredData} noindex={noindex}>
   <a class="skip-link" href="#main">К содержанию</a><SiteHeader/>
   <main class="inner-page" id="main"><slot/></main>
   <SiteFooter/>
