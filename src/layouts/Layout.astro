@@ -13,7 +13,7 @@ import { primaryOrigin, searchIndexingEnabled } from '../data/seo';
 import manropeCyrillic from '@fontsource/manrope/files/manrope-cyrillic-400-normal.woff2?url';
 import prataCyrillic from '@fontsource/prata/files/prata-cyrillic-400-normal.woff2?url';
 interface Props { title?: string; description?: string; structuredData?:Record<string,unknown>[]; noindex?:boolean; preloadHero?:boolean; }
-const { title = 'Наталья Городицкая — финансовый директор для бизнеса', description = 'Финансовая модель, управленческий учёт, восстановление учёта и НМА. Наталья Городицкая: личное ведение проектов для среднего и крупного бизнеса по всей России.', structuredData=[], noindex=false,preloadHero=false } = Astro.props;
+const { title = 'Наталья Городицкая — финансовый директор на аутсорсе', description = 'Финансовый директор на аутсорсе: управленческий учёт, бюджетирование, финансовые модели и восстановление учёта. Личное сопровождение бизнеса по всей России.', structuredData=[], noindex=false,preloadHero=false } = Astro.props;
 const canonical = new URL(Astro.url.pathname,primaryOrigin).href;
 ---
 <!doctype html>

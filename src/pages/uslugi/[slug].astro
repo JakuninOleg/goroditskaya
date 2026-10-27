@@ -28,14 +28,14 @@ const structuredData=[
 ];
 ---
 <PageLayout title={service.title} description={service.description} structuredData={structuredData}>
-  <section class="inner-hero"><div class="container"><Breadcrumbs items={breadcrumbs}/><div class="inner-hero-grid"><div>
+  <section class="inner-hero service-hero"><div class="container"><Breadcrumbs items={breadcrumbs}/><div class="inner-hero-grid"><div>
     <p class="eyebrow">{service.category}</p><h1>{service.title}</h1><p class="inner-lead">{service.lead}</p>
     <div class="inner-actions"><a class="button button-yellow" href={contact}>Обсудить задачу <Icon/></a><a class="text-link" href="#scope">Что входит в работу <Icon/></a></div>
     <div class="inner-meta"><span>С 2003 года в финансах</span><span>По всей России</span></div>
     <a class="service-practice-link" href={caseHref(serviceDelivery[service.slug].proof.slug)}><Emblem name="review"/><div><span>Из практики Натальи</span><strong>{serviceDelivery[service.slug].proof.label}</strong></div><Icon/></a>
   </div><ServiceVisual service={service}/></div></div></section>
   <section class="inner-section situation-section"><div class="container"><p class="eyebrow">Когда обращаться</p><h2>В каких ситуациях это поможет</h2><div class="situation-grid">{service.situations.map((s,i)=><article><span class="situation-number">{'0'+(i+1)}</span><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></div></section>
-  <section class="inner-section container" id="scope"><div class="scope-layout"><div class="scope-intro"><p class="eyebrow">Содержание проекта</p><h2>Что входит в работу</h2><p>Периметр согласуем по задаче бизнеса, состоянию данных и роли вашей команды.</p></div><div class="scope-list">{service.scope.map(s=><article><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></div></section>
+  <section class="inner-section container" id="scope"><div class="scope-layout"><div class="scope-intro"><p class="eyebrow">Содержание проекта</p><h2>Что входит в работу</h2><p>До начала проекта определяем задачи, результат и участие вашей команды.</p></div><div class="scope-list">{service.scope.map(s=><article><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></div></section>
   <ServiceDelivery service={service}/>
   <section class="inner-section service-workflow" id="work-process" aria-labelledby="workflow-heading"><div class="container">
     <h2 id="workflow-heading">Как строится работа</h2>
@@ -48,13 +48,13 @@ const structuredData=[
         <div class="workflow-preparation"><div class="workflow-preparation-heading"><Emblem name="document"/><h3>Что обсудим на старте</h3></div>
           <ul>{service.inputs.map(item=><li><Icon name="check"/><span>{item}</span></li>)}</ul>
         </div>
-        <div class="workflow-boundary"><h3>Состав и границы проекта</h3><p>{service.boundary}</p></div>
+        <div class="workflow-boundary"><h3>Что важно до начала работы</h3><p>{service.boundary}</p></div>
       </aside>
     </div>
   </div></section>
   {service.slug==='finansovyy-direktor-na-autsorse'&&<DirectorComparison/>}
   <section class="inner-section service-purchase" aria-labelledby="engagement-heading"><div class="container">
-    <div class="engagement-intro"><h2 id="engagement-heading">Формат, сроки и стоимость работы</h2><p>До начала проекта определяем состав результата, участие команды и порядок его проверки.</p></div>
+    <div class="engagement-intro"><h2 id="engagement-heading">Формат, сроки и стоимость работы</h2><p>Стоимость и сроки определяем по задаче, состоянию учёта и объёму работ.</p></div>
     <div class="engagement-grid">{serviceEngagement[service.slug].map((item,index)=><article class:list={['engagement-item',{'engagement-cost':index===2}]}>
       <Emblem name={index===0?'review':index===1?'document':'clarity'}/><h3>{item.title}</h3><p>{item.text}</p>
     </article>)}</div>

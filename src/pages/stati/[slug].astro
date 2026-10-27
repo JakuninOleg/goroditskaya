@@ -18,7 +18,7 @@ export function getStaticPaths(){return articles.map(article=>({params:{slug:art
 interface Props { article:Article; }
 const { article }=Astro.props;
 const related=article.relatedServices.map(slug=>services.find(service=>service.slug===slug)!).filter(Boolean);
-const structuredData=[{'@context':'https://schema.org','@type':'Article',headline:article.title,description:article.description,inLanguage:'ru-RU',mainEntityOfPage:new URL(articleHref(article.slug),primaryOrigin).href,datePublished:'2026-10-24',author:{'@type':'Person',name:'Наталья Городицкая',url:new URL('/o-natale/',primaryOrigin).href}}];
+const structuredData=[{'@context':'https://schema.org','@type':'Article',headline:article.title,description:article.description,inLanguage:'ru-RU',mainEntityOfPage:new URL(articleHref(article.slug),primaryOrigin).href,datePublished:'2026-10-24',dateModified:'2026-10-27',author:{'@type':'Person',name:'Наталья Городицкая',url:new URL('/o-natale/',primaryOrigin).href}}];
 ---
 <PageLayout title={article.title} description={article.description} structuredData={structuredData}>
  <div class="publication">
@@ -26,7 +26,7 @@ const structuredData=[{'@context':'https://schema.org','@type':'Article',headlin
   <div class="container reading-layout"><ReadingNav links={article.sections}/>
     <article class="article-body reading-body">{article.sections.map((section,i)=><section id={section.id}><h2>{section.title}</h2>{section.paragraphs.map(text=><p>{text}</p>)}{section.items&&<ul>{section.items.map(text=><li>{text.includes(': ')?<><strong>{text.slice(0,text.indexOf(': ')+1)}</strong>{text.slice(text.indexOf(': ')+1)}</>:text}</li>)}</ul>}{i===0&&<ArticleDiagram type={article.diagram}/>}</section>)}
       <section class="article-takeaway"><h2>С чего начать</h2><p>{article.takeaway}</p></section>
-      <section class="article-sources"><h2>Источники и дополнительные материалы</h2><ul>{article.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul><p>Материал обновлён 24 октября 2026 года.</p></section>
+      <section class="article-sources"><h2>Источники и дополнительные материалы</h2><ul>{article.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul><p>Материал обновлён 27 октября 2026 года.</p></section>
     </article>
   </div>
   <section class="inner-section container article-related"><h2>Помощь с этой задачей</h2><div class="article-links">{related.map(service=><a href={serviceHref(service.slug)}><h3>{service.short}</h3><p>{service.question}</p><span class="text-link">Состав работы <Icon/></span></a>)}</div></section>
