@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+interface Props { home?: boolean; }
+const { home=false }=Astro.props;
+---
+<section id="pricing" class:list={[home?'section':'inner-section','service-pricing']} aria-labelledby="pricing-heading">
+  <div class="container"><div class="pricing-panel">
+    <div class="pricing-intro">
+      <p class="eyebrow">Понятные условия</p><h2 id="pricing-heading">Ценообразование</h2>
+      <p class="pricing-description">Стоимость зависит от задач вашего бизнеса, состояния учёта и объёма работы.</p>
+      <a class="button button-yellow" href={home?'#contact':'#request'}>Узнать стоимость <Icon/></a>
+    </div>
+    <div class="pricing-rate">
+      <p class="pricing-label">Стоимость услуг</p>
+      <p class="pricing-amount"><span>от</span> 5 000 <span>₽</span></p>
+      <p class="pricing-unit">за 1 час работы</p>
+      <div class="pricing-agreement"><span aria-hidden="true">↗</span><p>До начала работы согласуем задачи, необходимое время и итоговую стоимость.</p></div>
+    </div>
+  </div></div>
+</section>
+<style>
+  .service-pricing{background:#e3e9da;border-block:1px solid #ced8c5}
+  .pricing-panel{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,84px);padding:clamp(28px,4.5vw,64px);border-radius:18px;background:#153e39;color:#f6f3e7}
+  .pricing-intro{display:flex;flex-direction:column;align-items:flex-start}
+  .pricing-intro .eyebrow{color:#cedacb;margin-bottom:18px}
+  .pricing-intro h2{color:inherit;font-size:clamp(29px,3.3vw,44px);line-height:1.2;letter-spacing:-.035em;overflow-wrap:anywhere}
+  .pricing-description{max-width:440px;margin-top:22px;font-size:18px;line-height:1.65;color:#e1e9db}
+  .pricing-intro .button{margin-top:30px}
+  .pricing-rate{display:flex;flex-direction:column;justify-content:center;border-left:1px solid #6a8976;padding-left:clamp(28px,4vw,56px)}
+  .pricing-label{font-size:18px;color:#e1e9db}
+  .pricing-amount{margin-top:18px;color:#f1d474;font-size:clamp(56px,6.6vw,88px);line-height:1.1;letter-spacing:-.055em;font-weight:500;white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+  .pricing-amount span{font-size:.44em;letter-spacing:-.02em}
+  .pricing-unit{margin-top:12px;font-size:18px;line-height:1.5}
+  .pricing-agreement{display:flex;align-items:flex-start;gap:18px;margin-top:32px;padding-top:24px;border-top:1px solid #6a8976}
+  .pricing-agreement>span{font-size:28px;line-height:1;color:#f1d474}
+  .pricing-agreement p{max-width:340px;font-size:15px;line-height:1.65;color:#e1e9db}
+  @media(max-width:760px){.pricing-panel{grid-template-columns:1fr;gap:28px}.pricing-rate{border-left:0;border-top:1px solid #6a8976;padding:28px 0 0}.pricing-amount{font-size:clamp(58px,14vw,80px)}.pricing-description{font-size:17px}.pricing-intro .button{margin-top:24px}.pricing-agreement{margin-top:24px}.pricing-intro h2{font-size:clamp(26px,6.9vw,38px)}}
+  @media(max-width:360px){.pricing-panel{padding:24px 20px}.pricing-intro .button{padding-inline:20px;gap:14px;font-size:14px}}
+</style>

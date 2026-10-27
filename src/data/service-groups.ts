@@ -1,7 +1,7 @@
 export const serviceGroups = [
   {
     id: 'accounting', title: 'Бухгалтерский учёт и отчётность', emblem: 'document',
-    description: 'Бухгалтерский и налоговый учёт ведут профильные специалисты команды. Наталья координирует работу и отвечает за финансовую методологию.',
+    description: '',
     preview: ['Ведение учёта и отчётность', 'Восстановление учёта', 'Раздельный учёт по ГОЗ', 'НИОКР и нематериальные активы'],
     services: ['vosstanovlenie-ucheta', 'uchet-goz', 'niokr-nma'],
     details: [
@@ -14,8 +14,8 @@ export const serviceGroups = [
   },
   {
     id: 'finance', title: 'Финансовое управление', emblem: 'clarity',
-    description: 'Связываем стратегию, управленческий учёт и ежедневные решения. Показываем прибыль, движение денег и результат направлений.',
-    preview: ['Финансовый директор на аутсорсе', 'Управленческий учёт и 1С', 'Финансовые модели и финансирование'],
+    description: 'Связываем стратегию и управленческий учёт для ежедневных решений.',
+    preview: ['Независимый финансовый директор', 'Управленческий учёт и 1С', 'Финансовые модели и финансирование'],
     services: ['finansovyy-direktor-na-autsorse', 'upravlencheskiy-uchet-proizvodstva', 'avtomatizatsiya-ucheta-1c', 'finansovaya-diagnostika', 'finansovaya-model', 'gotovnost-k-finansirovaniyu', 'podgotovka-k-due-diligence'],
     details: [
       'Финансовая структура компании или холдинга, консолидация отчётности с исключением внутригрупповых оборотов.',
@@ -26,7 +26,7 @@ export const serviceGroups = [
     ]
   },
   {
-    id: 'tax', title: 'Налоговая безопасность бизнеса', emblem: 'tax',
+    id: 'tax', title: 'Налоговая безопасность вашего бизнеса', emblem: 'tax',
     description: 'Проверяем риски, готовим ответы на требования и подтверждение операций. Сопровождаем налоговые проверки и споры.',
     preview: ['Налоговые риски и требования', 'Камеральные и выездные проверки', 'Доказательства по спорным операциям'],
     services: ['nalogovyy-konsultant', 'nalogovaya-proverka'],
@@ -37,7 +37,7 @@ export const serviceGroups = [
     ]
   },
   {
-    id: 'legal', title: 'Юридическая помощь бизнесу', emblem: 'legal',
+    id: 'legal', title: 'Юридическая помощь вашему бизнесу', emblem: 'legal',
     description: 'Подключаем юриста под отрасль и предмет вопроса: договоры, претензии, судебные споры и консультации.',
     preview: ['Экспертиза договоров', 'Претензионная и судебная работа', 'Юридические консультации'],
     services: ['yurist-dlya-biznesa'],

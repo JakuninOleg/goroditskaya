@@ -10,7 +10,7 @@ import Emblem from '../../components/Emblem.astro';
 import Icon from '../../components/Icon.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import RelatedCases from '../../components/RelatedCases.astro';
-import DirectorComparison from '../../components/DirectorComparison.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
 import ServiceDelivery from '../../components/ServiceDelivery.astro';
 import { serviceDelivery } from '../../data/service-delivery';
 import { caseHref } from '../../data/cases';
@@ -53,7 +53,7 @@ const structuredData=[
       </aside>
     </div>
   </div></section>
-  {service.slug==='finansovyy-direktor-na-autsorse'&&<DirectorComparison/>}
+  {service.slug==='finansovyy-direktor-na-autsorse'&&<ServicePricing/>}
   <section class="inner-section service-purchase" aria-labelledby="engagement-heading"><div class="container">
     <div class="engagement-intro"><h2 id="engagement-heading">Формат, сроки и стоимость работы</h2><p>Стоимость и сроки определяем по задаче, состоянию учёта и объёму работ.</p></div>
     <div class="engagement-grid">{serviceEngagement[service.slug].map((item,index)=><article class:list={['engagement-item',{'engagement-cost':index===2}]}>

@@ -13,7 +13,7 @@ import { primaryOrigin, searchIndexingEnabled } from '../data/seo';
 import manropeCyrillic from '@fontsource/manrope/files/manrope-cyrillic-400-normal.woff2?url';
 import prataCyrillic from '@fontsource/prata/files/prata-cyrillic-400-normal.woff2?url';
 interface Props { title?: string; description?: string; structuredData?:Record<string,unknown>[]; noindex?:boolean; preloadHero?:boolean; }
-const { title = 'Наталья Городицкая — финансовый директор на аутсорсе', description = 'Финансовый директор на аутсорсе: управленческий учёт, бюджетирование, финансовые модели и восстановление учёта. Финансовая команда для бизнеса по всей России.', structuredData=[], noindex=false,preloadHero=false } = Astro.props;
+const { title = 'Наталья Городицкая — независимый финансовый директор', description = 'Независимый финансовый директор: управленческий учёт, бюджетирование, финансовые модели и восстановление учёта. Финансовая команда для вашего бизнеса по всей России.', structuredData=[], noindex=false,preloadHero=false } = Astro.props;
 const canonical = new URL(Astro.url.pathname,primaryOrigin).href;
 ---
 <!doctype html>
@@ -39,7 +39,7 @@ const canonical = new URL(Astro.url.pathname,primaryOrigin).href;
     {!noindex&&<link rel="canonical" href={canonical}/>}
     <meta property="og:image" content={primaryOrigin+'/brand/natalia-social.png'}/>
     <meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
-    <meta property="og:image:alt" content="Наталья Городицкая — финансовый директор на аутсорсе"/>
+    <meta property="og:image:alt" content="Наталья Городицкая — независимый финансовый директор"/>
     <meta name="twitter:card" content="summary_large_image"/>
     {structuredData.map(data=><script type="application/ld+json" set:html={JSON.stringify(data).replace(/</g,'\\u003c')}/>)}
     <link rel="icon" type="image/svg+xml" href="/brand/natalia-avatar.svg" />

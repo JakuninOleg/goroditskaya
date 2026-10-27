@@ -1,0 +1,35 @@
+---
+import { site } from '../data/site';
+---
+<div class="messenger-contacts">
+  <p class="messenger-label">В мессенджерах</p><p class="messenger-number">{site.messengerPhone}</p>
+  <div class="messenger-actions">
+    <a href={'https://t.me/+'+site.messengerDigits} target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span></a>
+    <a href={'https://wa.me/'+site.messengerDigits} target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
+    <button type="button" data-copy-max>Скопировать номер для MAX</button>
+  </div>
+  <p class="messenger-status" role="status" aria-live="polite"></p>
+</div>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-max]').forEach(button=>{
+    button.addEventListener('click',async()=>{
+      const box=button.closest('.messenger-contacts');
+      const number=box?.querySelector('.messenger-number')?.textContent?.trim();
+      const status=box?.querySelector('.messenger-status');
+      if(!number||!status)return;
+      try{await navigator.clipboard.writeText(number);status.textContent='Номер скопирован. Откройте MAX и найдите контакт.';}
+      catch{status.textContent='Не удалось скопировать. Выделите номер выше и скопируйте его вручную.';}
+    });
+  });
+</script>
+<style>
+  .messenger-contacts{font-family:var(--sans);font-size:15px;line-height:1.5}
+  .messenger-label{font-size:13px;color:#496354;margin-bottom:4px}
+  .messenger-number{font-size:18px;font-weight:500;letter-spacing:.01em;user-select:all}
+  .messenger-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:10px}
+  .messenger-actions a,.messenger-actions button{display:inline-flex;align-items:center;gap:5px;min-height:36px;color:var(--green);font:inherit;text-decoration:underline;text-decoration-color:#a9b8a5;text-underline-offset:5px;transition:text-decoration-color 180ms ease}
+  .messenger-actions button{padding:0;border:0;background:none;text-align:left;cursor:pointer;font-size:13px}
+  .messenger-actions :is(a,button):hover{text-decoration-color:var(--green)}
+  .messenger-actions :is(a,button):focus-visible{outline:2px solid var(--green);outline-offset:4px;border-radius:2px}
+  .messenger-status{font-size:13px;max-width:350px;margin-top:6px}.messenger-status:empty{display:none}
+</style>

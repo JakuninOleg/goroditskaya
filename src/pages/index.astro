@@ -8,7 +8,7 @@ import ContactForm from '../components/ContactForm.astro';
 import { serviceHref } from '../data/services';
 import HomeServices from '../components/HomeServices.astro';
 import RelatedArticles from '../components/RelatedArticles.astro';
-import DirectorComparison from '../components/DirectorComparison.astro';
+import ServicePricing from '../components/ServicePricing.astro';
 import ExpertWorkbench from '../components/ExpertWorkbench.astro';
 import { site, formats, faq, showFaq } from '../data/site';
 import '../styles/home-surfaces.css';
@@ -23,7 +23,7 @@ const processDescriptions = ['Проверяем данные, находим п
 <section class="hero" aria-labelledby="hero-heading">
  <div class="hero-stage">
   <picture class="hero-visual"><source media="(max-width:640px)" type="image/avif" srcset="/images/hybrid/hero-mobile-desktop-companion-v8-480.avif 480w, /images/hybrid/hero-mobile-desktop-companion-v8-640.avif 640w, /images/hybrid/hero-mobile-desktop-companion-v8.avif 850w" sizes="100vw" width="850" height="1851"/><source media="(max-width:640px)" srcset="/images/hybrid/hero-mobile-desktop-companion-v8.webp" width="850" height="1851"/><source media="(max-width:1180px)" type="image/avif" srcset="/images/hybrid/hero-neck-tablet-v4-768.avif 768w, /images/hybrid/hero-neck-tablet-v4-1024.avif 1024w, /images/hybrid/hero-neck-tablet-v4.avif 1536w" sizes="100vw" width="1536" height="1024"/><source media="(max-width:1180px)" srcset="/images/hybrid/hero-neck-tablet-v4.webp" width="1536" height="1024"/><source type="image/avif" srcset="/images/hybrid/hero-neck-v4-1280.avif 1280w, /images/hybrid/hero-neck-v4-1600.avif 1600w, /images/hybrid/hero-neck-v4.avif 2048w" sizes="100vw"/><img src="/images/hybrid/hero-neck-v4.webp" width="2048" height="768" alt="Наталья Городицкая за рабочим столом" fetchpriority="high" decoding="async"/></picture>
-  <div class="container hero-copy"><div class="hero-text"><h1 id="hero-heading"><span>Видеть бизнес</span><span>целиком.</span><span>Управлять <em>точнее.</em></span></h1><p class="hero-description"><span class="hero-description-full">Помогаем собственникам производства и проектного бизнеса видеть прибыль, управлять деньгами и принимать решения на основе цифр.</span><span class="hero-description-mobile">Порядок в финансах.<br/>Решения на основе цифр.</span></p><a class="button button-yellow hero-cta" href="#contact">Получить консультацию <Icon/></a></div></div>
+  <div class="container hero-copy"><div class="hero-text"><h1 id="hero-heading"><span>Учёт и защита</span><span>вашего бизнеса</span><span>в любой отрасли</span></h1><p class="hero-description">Помогаем вашему бизнесу видеть прибыль, управлять деньгами и принимать решения на основе цифр.</p><a class="button button-yellow hero-cta" href="#contact">Получить консультацию <Icon/></a></div></div>
  </div>
  <div class="container hero-facts"><div class="hero-fact"><Emblem name="experience"/><div><strong>С {site.experienceSince} года</strong><span class="fact-full">в финансах и учёте</span><span class="fact-short">в финансах</span></div></div><div class="hero-fact"><Emblem name="system"/><div><strong>1С ERP</strong><span class="fact-full">внедрение и сопровождение</span><span class="fact-short">внедрение</span></div></div><div class="hero-fact"><Emblem name="remote"/><div><strong>Вся Россия</strong><span class="fact-full">работаем удалённо</span><span class="fact-short">удалённо</span></div></div></div>
 </section>
@@ -37,7 +37,7 @@ const processDescriptions = ['Проверяем данные, находим п
  <div class="process-grid">{formats.map((format,i)=><article class="process-card"><div class="process-card-title"><Emblem name={processIcons[i]}/><h3>{format.label}</h3></div><p class="process-description">{processDescriptions[i]}</p><ul class="process-outputs">{format.items.map(item=><li><Icon name="check"/>{item.title}</li>)}</ul><a class="text-link" href={serviceHref(processPages[i])}>Подробнее о формате <Icon/><span class="sr-only">: {format.label}</span></a></article>)}</div>
 </div></section>
 
-<DirectorComparison home/>
+<ServicePricing home/>
 
 <ExpertWorkbench/>
 

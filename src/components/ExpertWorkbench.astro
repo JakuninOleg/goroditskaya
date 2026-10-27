@@ -19,7 +19,7 @@ const reports=[{name:'ДДС',text:'Денежный поток',values:[28,35,2
    <div role="tabpanel" id="contour-panel-accounting" aria-labelledby="contour-tab-accounting" data-panel="accounting">
     <div class="accounting-map">
      <svg class="hub-connections" aria-hidden="true"></svg>
-     <div class="workbench-inputs"><h3>Данные бизнеса</h3><ul>{inputs.map(item=><li><Emblem name={item.icon}/><span>{item.name}</span><i aria-hidden="true"></i></li>)}</ul></div>
+     <div class="workbench-inputs"><h3>Данные вашего бизнеса</h3><ul>{inputs.map(item=><li><Emblem name={item.icon}/><span>{item.name}</span><i aria-hidden="true"></i></li>)}</ul></div>
      <div class="accounting-hub">
       <div class="system-stack" aria-hidden="true">{inputs.map((_,i)=><span class="hub-port hub-input-port" style={'--port:'+i}></span>)}{reports.map((_,i)=><span class="hub-port hub-output-port" style={'--port:'+i}></span>)}<span class="system-layer layer-back"></span><span class="system-layer layer-middle"></span><div class="system-module"><span class="module-label">1С</span><span class="module-lights"><i></i><i></i></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span><span class="module-line"></span></div><span class="module-base"></span></div>
       <div class="hub-caption"><strong>Единая система учёта</strong><span>ERP · КА · КОРП · Бит.Финанс</span></div>
