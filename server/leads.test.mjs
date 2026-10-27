@@ -61,6 +61,26 @@ test('чужой origin, отсутствие согласия и неверны
   assert.equal(received.length, 0);
 });
 
+test('HTML-письмо экранирует обращение, содержит подходящее действие и встроенные изображения', async t => {
+  const { post, received } = await harness(t);
+  assert.equal((await post({ ...lead(), email: '', message: '<script>alert("x")</script> & расходы' })).status, 200);
+  const phoneMail = received.find(item => item.path === '/emails').body;
+  assert.equal(typeof phoneMail.html, 'string');
+  assert(phoneMail.html.includes('href="tel:+79181234567"'));
+  assert(phoneMail.html.includes('&lt;script&gt;'));
+  assert(!phoneMail.html.includes('<script>'));
+  assert(phoneMail.html.includes(origin + '/uslugi/finansovaya-diagnostika/'));
+  for (const attachment of phoneMail.attachments) {
+    assert(phoneMail.html.includes('cid:' + attachment.content_id));
+    assert.equal(Buffer.from(attachment.content, 'base64').subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  }
+  assert.equal((await post({ ...lead(), phone: '', email: 'visitor+finance@example.test' })).status, 200);
+  const emailMail = received.filter(item => item.path === '/emails').at(-1).body;
+  assert(emailMail.html.includes('href="mailto:visitor%2Bfinance@example.test"'));
+  assert(!emailMail.html.includes('href="tel:'));
+  assert.equal(emailMail.reply_to, 'visitor+finance@example.test');
+});
+
 test('формы требуют оба контакта; спам-ловушка и размер запроса проверяются сервером', async t => {
   const { post, received } = await harness(t);
   assert.equal((await post({ ...lead(), kind: 'templates', phone: '' })).status, 400);

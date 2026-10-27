@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { renderLeadEmail } from './email-template.mjs';
 
 const recipient = 'Gorodickaya@yandex.ru';
 const consentVersion = '2026-10-28';
@@ -35,6 +36,7 @@ export function createLeadHandler({ env = process.env, transport = fetch, logger
       '', 'Согласие на обработку данных: предоставлено.', `Редакция: ${consentVersion}`,
       `Документ: ${origin}/dokumenty/soglasie-na-obrabotku-dannyh/`,
     ].join('\n');
+    const { html, attachments } = renderLeadEmail(lead, origin, { consentVersion });
 
     const from = env.NATALIA_FROM_EMAIL || env.CONTACT_FROM_EMAIL || '';
     const address = from.match(/<([^<>]+)>/)?.[1] || from;
@@ -58,7 +60,7 @@ export function createLeadHandler({ env = process.env, transport = fetch, logger
       previous?.email || (mailReady && send('email', 'https://api.resend.com/emails', {
         method: 'POST', headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json', 'Idempotency-Key': `natalia-${lead.requestId}` },
         body: JSON.stringify({ from: `Городицкая и партнёры <${address}>`, to: [recipient], subject: title,
-          ...(lead.email ? { reply_to: lead.email } : {}), text }),
+          ...(lead.email ? { reply_to: lead.email } : {}), text, html, attachments }),
       }, data => typeof data.id === 'string')),
       previous?.telegram || (telegramReady && send('telegram', `https://api.telegram.org/bot${env.NATALIA_TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
