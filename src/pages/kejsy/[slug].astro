@@ -26,7 +26,7 @@ const structuredData=[
 <PageLayout title={study.title} description={study.description} structuredData={structuredData}>
  <div class="publication">
   <section class="inner-hero"><div class="container"><Breadcrumbs items={[{label:'Кейсы',href:'/kejsy/'},{label:study.sector}]}/>
-    <div class="inner-hero-grid story-hero-grid"><div><p class="case-context">{study.sector}{study.period&&<> · {study.period}</>}</p><h1>{study.title}</h1><p class="inner-lead">{study.summary}</p><ReadingByline minutes={caseMinutes(study)}/><div class="inner-actions"><a class="button button-yellow" href="#request">Обсудить похожую задачу <Icon/></a><a class="text-link" href="#case-result">К результату <Icon/></a></div></div><div class="case-hero-visual"><EditorialArt kind={caseArtKind(study.slug)}/>{study.focus&&<p class="case-hero-fact"><strong>{study.focus.value}</strong><span>{study.focus.label}</span></p>}</div></div>
+    <div class="inner-hero-grid story-hero-grid"><div><p class="case-context">{study.sector}{study.period&&<> · {study.period}</>}</p><h1>{study.title}</h1><p class="inner-lead">{study.summary}</p><ReadingByline minutes={caseMinutes(study)}/><div class="inner-actions"><a class="button button-yellow" href="#request">Получить консультацию <Icon/></a><a class="text-link" href="#case-result">К результату <Icon/></a></div></div><div class="case-hero-visual"><EditorialArt kind={caseArtKind(study.slug)}/>{study.focus&&<p class="case-hero-fact"><strong>{study.focus.value}</strong><span>{study.focus.label}</span></p>}</div></div>
   </div></section>
   <div class="container reading-layout case-reading"><ReadingNav links={[{id:'case-role',title:'Роль Натальи'},{id:'case-problem',title:'Задача'},{id:'case-work',title:'Что было сделано'},{id:'case-result',title:'Результат'}]}/><article class="reading-body">
     <section class="reading-role" id="case-role"><h2>Роль Натальи в проекте</h2><p>{study.role}</p></section>
@@ -36,6 +36,6 @@ const structuredData=[
   </article></div>
   <section class="inner-section container case-service-links"><h2>Помощь с похожей задачей</h2><div class="case-service-list">{related.map(service=><a href={serviceHref(service.slug)}><span>{service.short}</span><Icon/></a>)}</div></section>
   <RelatedCases services={study.services} exclude={study.slug} illustrated/>
-  <PageCta title="Разберём вашу задачу по данным компании" text="Расскажите, что сейчас мешает работе. Обсудим исходные данные, результат и подходящий состав проекта." service={related[0]?.title}/>
+  <PageCta title="Разберём вашу задачу по данным компании" text="Расскажите, что сейчас мешает работе. Определим исходные данные, результат и подходящий состав проекта." service={related[0]?.title}/>
  </div>
 </PageLayout>

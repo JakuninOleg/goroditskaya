@@ -1,3 +1,4 @@
+import { site } from '../data/site';
 import { attachRuPhoneMask, normalizeRuPhone } from '../lib/ru-phone';
 
 const form=document.getElementById('contact-form') as HTMLFormElement|null;
@@ -38,9 +39,9 @@ form?.addEventListener('submit',event=>{
   const task=String(data.get('message')??'').trim();
   const service=String(data.get('service')??'').trim().slice(0,180);
   const page=String(data.get('page')??'').trim();
-  const body=['Наталья, добрый день!','',...(name?['Меня зовут '+name+'.']:[]),useEmail?'Почта для связи: '+email:'Телефон для связи: +'+phone,...(service?['Услуга: '+service]:[]),...(page?['Страница обращения: '+page]:[]),'','Задача:',task||'Хочу обсудить финансовую задачу бизнеса.','','Прошу предложить возможный состав работ и формат сотрудничества.'].join('\n');
+  const body=['Наталья, добрый день!','',...(name?['Меня зовут '+name+'.']:[]),useEmail?'Почта для связи: '+email:'Телефон для связи: +'+phone,...(service?['Услуга: '+service]:[]),...(page?['Страница обращения: '+page]:[]),'','Задача:',task||'Нужна консультация по финансовой задаче бизнеса.','','Прошу предложить возможный состав работ и формат сотрудничества.'].join('\n');
   // Retain the existing delivery route until server delivery is connected.
-  window.location.href='mailto:gorodickaya@yandex.ru?subject='+encodeURIComponent('Обсуждение задачи'+(service?': '+service:''))+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:'+site.email+'?subject='+encodeURIComponent('Заявка на консультацию'+(service?': '+service:''))+'&body='+encodeURIComponent(body);
 });
 const templatesForm=document.getElementById('templates-form') as HTMLFormElement|null;
 const templatesPhone=document.getElementById('templates-phone') as HTMLInputElement|null;
@@ -52,5 +53,5 @@ templatesForm?.addEventListener('submit',event=>{
   if(!templatesForm.reportValidity())return;
   const email=String(new FormData(templatesForm).get('email')??'').trim();
   const body=['Наталья, добрый день!','','Пришлите, пожалуйста, комплект Excel-форм:','— ДДС на 13 недель','— Прибыль по проектам','— План-факт бюджета','','Моя почта: '+email,'Телефон: +'+phone].join('\n');
-  window.location.href='mailto:gorodickaya@yandex.ru?subject='+encodeURIComponent('Запрос Excel-форм')+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:'+site.email+'?subject='+encodeURIComponent('Запрос Excel-форм')+'&body='+encodeURIComponent(body);
 });

@@ -3,12 +3,17 @@ import { readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { searchIndexingEnabled } from '../src/data/seo.ts';
 import { services, serviceHref } from '../src/data/services.ts';
+import { serviceGroups } from '../src/data/service-groups.ts';
 
 const html = await readFile('dist/index.html', 'utf8');
 const serviceSection = html.match(/<section\b[^>]*id="services"[\s\S]*?<\/section>/)?.[0] ?? '';
-for (const service of services) {
-  assert(serviceSection.includes(`href="${serviceHref(service.slug)}"`), 'Service missing from homepage: ' + service.title);
+const catalog = await readFile('dist/uslugi/index.html', 'utf8');
+for (const group of serviceGroups) {
+  assert(serviceSection.includes(`href="/uslugi/#${group.id}"`), 'Direction missing from homepage: ' + group.title);
+  assert(catalog.includes(`id="${group.id}"`), 'Direction missing from catalog: ' + group.title);
 }
+for (const service of services) assert(catalog.includes(`href="${serviceHref(service.slug)}"`), 'Service missing from catalog: ' + service.title);
+assert(!html.includes('data-iceberg-headline')&&!html.includes('class="case-section"'), 'Iceberg and case sections must stay off the homepage');
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 assert.equal(ids.length, new Set(ids).size, 'Duplicate HTML IDs');
 for (const match of html.matchAll(/\b(?:href="#|aria-controls=")([^"\s]+)"/g)) {

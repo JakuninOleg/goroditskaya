@@ -6,7 +6,7 @@ interface Props { standalone?: boolean; service?: string; }
 const { standalone=false,service }=Astro.props;
 const Heading=standalone?'h2':'h3';
 ---
-<div class="contact-panel"><Heading>Обсудить задачу</Heading>
+<div class="contact-panel"><Heading>Заявка на консультацию</Heading>
   <form id="contact-form" method="post">
     <input type="hidden" name="service" value={service??''}/>
     <input type="hidden" name="page" value={Astro.url.pathname}/>
@@ -26,7 +26,7 @@ const Heading=standalone?'h2':'h3';
       <div class="contact-details-body"><label for="contact-message">Что хотите решить?<textarea id="contact-message" name="message" rows="3" placeholder="Например: прибыль есть, а денег на платежи не хватает" maxlength="3000"></textarea></label></div>
     </details>
     <label class="consent-label"><input type="checkbox" name="consent" required/><span>Согласен с <button type="button" class="inline-link" data-privacy-open>политикой конфиденциальности</button> и обработкой персональных данных</span></label>
-    <button class="button button-yellow form-submit" type="submit">Обсудить задачу <Icon/></button>
+    <button class="button button-yellow form-submit" type="submit">Отправить заявку<Icon/></button>
   </form>
   <noscript><style>#contact-form{display:none}</style><p class="form-note">Можно написать напрямую: <a href={'mailto:'+site.email}>{site.email}</a>.</p></noscript>
 </div>

@@ -10,19 +10,19 @@ const articlesCurrent = active('/stati/') ?? (Astro.url.pathname.startsWith('/st
   <div class="masthead-row">
     <Brand class="identity" href={home ? '#top' : '/'}/>
     <nav class="masthead-nav" aria-label="Основная навигация">
-      <a href="/o-natale/" aria-current={active('/o-natale/')}>Обо мне</a>
+      <a href="/o-natale/" aria-current={active('/o-natale/')}>О нас</a>
       <a href="/uslugi/" aria-current={active('/uslugi/')}>Услуги</a>
       <a href="/kejsy/" aria-current={active('/kejsy/')}>Кейсы</a>
       <a href="/stati/" aria-current={articlesCurrent}>Статьи</a>
-      <a href="/#approach">Как я работаю</a>
+      <a href="/#approach">Как мы работаем</a>
     </nav>
-    <a class="button button-yellow masthead-cta" href={contactHref}>Обсудить задачу <Icon/></a>
+    <a class="button button-yellow masthead-cta" href={contactHref}>Получить консультацию <Icon/></a>
     <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
   </div>
   <nav class="masthead-mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden>
-    <a href="/#tasks">Ваша задача</a><a href="/uslugi/">Все услуги</a>
+    <a href="/#services">Направления работы</a><a href="/uslugi/">Все услуги</a>
     <a href="/uslugi/finansovyy-direktor-na-autsorse/">Финансовый директор</a><a href="/uslugi/nalogovyy-konsultant/">Налоговый консультант</a>
-    <a href="/kejsy/">Кейсы</a><a href="/stati/" aria-current={articlesCurrent}>Статьи</a><a href="/o-natale/">О Наталье</a><a href="/materialy/">Финансовые формы</a><a href="/kontakty/">Контакты <Icon/></a>
+    <a href="/kejsy/">Кейсы</a><a href="/stati/" aria-current={articlesCurrent}>Статьи</a><a href="/o-natale/">О команде</a><a href="/materialy/">Финансовые формы</a><a href="/kontakty/">Контакты <Icon/></a>
   </nav>
 </div></header>
 <div class="masthead-scrim" aria-hidden="true" hidden></div>

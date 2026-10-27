@@ -1,4 +1,3 @@
-import { questions, questionCheckIcons } from '../data/site';
 import { transitionContent } from './content-motion';
 
 function selectTab(group: HTMLElement, value: string, focus = false) {
@@ -38,46 +37,6 @@ document.querySelectorAll<HTMLElement>('[data-tabs]').forEach(group => {
     });
   });
 });
-
-const questionSelect = document.querySelector<HTMLSelectElement>('[data-question-select]');
-const moreQuestions = document.querySelector<HTMLDetailsElement>('.needs-more');
-function closeMoreQuestions(restoreFocus = false) {
-  if (!moreQuestions?.open) return;
-  moreQuestions.open = false;
-  if (restoreFocus) moreQuestions.querySelector('summary')?.focus({ preventScroll: true });
-}
-let currentQuestion = 0;
-function selectQuestion(index: number) {
-  const question = questions[index];
-  if (!question) return;
-  closeMoreQuestions(!!moreQuestions?.contains(document.activeElement));
-  if (index === currentQuestion) return;
-  currentQuestion = index;
-  document.querySelectorAll<HTMLElement>('[data-question]').forEach(item => item.setAttribute('aria-pressed', String(Number(item.dataset.question) === index)));
-  if (questionSelect) questionSelect.value = String(index);
-  document.querySelector('[data-selected-question]')!.textContent = question.title;
-  document.querySelectorAll<HTMLElement>('[data-question-icon]').forEach(icon => { icon.hidden = Number(icon.dataset.questionIcon) !== index; });
-  void transitionContent([...document.querySelectorAll<HTMLElement>('[data-iceberg-headline], .needs-check-list')], () => {
-    document.querySelector('[data-iceberg-headline]')!.textContent = question.headline;
-    document.querySelectorAll<HTMLElement>('[data-iceberg-check]').forEach((item, i) => { item.textContent = question.checks[i]; });
-    document.querySelectorAll<HTMLElement>('[data-check-art]').forEach(item => { item.hidden = item.dataset.checkArt !== questionCheckIcons[index][Number(item.dataset.checkPosition)]; });
-    document.querySelector('[data-iceberg-explanation]')!.textContent = question.explanation;
-  });
-  const contact = document.querySelector<HTMLElement>('[data-iceberg-contact]');
-  if (contact) contact.dataset.task = question.title;
-}
-document.querySelectorAll<HTMLButtonElement>('[data-question]').forEach(button => button.addEventListener('click', () => selectQuestion(Number(button.dataset.question))));
-questionSelect?.addEventListener('change', () => selectQuestion(Number(questionSelect.value)));
-document.addEventListener('pointerdown', event => {
-  if (!moreQuestions?.contains(event.target as Node)) closeMoreQuestions();
-});
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && moreQuestions?.open) closeMoreQuestions(true);
-});
-document.addEventListener('focusin', event => {
-  if (!moreQuestions?.contains(event.target as Node)) closeMoreQuestions();
-});
-window.matchMedia('(max-width: 760px)').addEventListener('change', () => closeMoreQuestions());
 
 document.addEventListener('click', event => {
   const link = (event.target as Element).closest<HTMLElement>('[data-dialog-contact], [data-task]');

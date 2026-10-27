@@ -28,6 +28,7 @@ for(const file of htmlFiles){
   assert(description&&!descriptions.has(description),`Unique description: ${path}`);descriptions.add(description);
   const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
   assert.equal(canonical,path==='/404.html'?undefined:primaryOrigin+path,`Canonical: ${path}`);
+  assert(!/data-faq-toggle|FAQPage|Лично веду|Обсудить (?:ваш )?проект|первые шаги/.test(html),`Removed sections or copy: ${path}`);
   const robots=path==='/404.html'||!searchIndexingEnabled?'noindex, nofollow':'index, follow';
   assert(html.includes(`name="robots" content="${robots}"`),`Index setting: ${path}`);
   for(const match of html.matchAll(/<script type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs))JSON.parse(match[1]);

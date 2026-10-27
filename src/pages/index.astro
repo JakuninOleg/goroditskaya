@@ -8,16 +8,13 @@ import ContactForm from '../components/ContactForm.astro';
 import { serviceHref } from '../data/services';
 import HomeServices from '../components/HomeServices.astro';
 import RelatedArticles from '../components/RelatedArticles.astro';
-import RelatedCases from '../components/RelatedCases.astro';
 import DirectorComparison from '../components/DirectorComparison.astro';
-import Iceberg from '../components/Iceberg.astro';
-import CaseIllustration from '../components/CaseIllustration.astro';
 import ExpertWorkbench from '../components/ExpertWorkbench.astro';
-import { site, formats, faq } from '../data/site';
+import { site, formats, faq, showFaq } from '../data/site';
 import '../styles/home-surfaces.css';
 const processIcons = ['review','system','clarity'];
 const processPages = ['finansovaya-diagnostika','upravlencheskiy-uchet-proizvodstva','finansovyy-direktor-na-autsorse'];
-const processDescriptions = ['Проверяю данные, нахожу причины и определяю первые изменения.','Связываю учёт, финансовую модель, бюджет и отчётность.','Разбираю отклонения, обновляю прогноз и работаю с командой.'];
+const processDescriptions = ['Проверяем данные, находим причины и определяем первые изменения.','Связываем учёт, финансовую модель, бюджет и отчётность.','Разбираем отклонения, обновляем прогноз и работаем с командой.'];
 ---
 <Layout preloadHero>
 <a class="skip-link" href="#main">К содержанию</a>
@@ -26,28 +23,17 @@ const processDescriptions = ['Проверяю данные, нахожу при
 <section class="hero" aria-labelledby="hero-heading">
  <div class="hero-stage">
   <picture class="hero-visual"><source media="(max-width:640px)" type="image/avif" srcset="/images/hybrid/hero-mobile-desktop-companion-v8-480.avif 480w, /images/hybrid/hero-mobile-desktop-companion-v8-640.avif 640w, /images/hybrid/hero-mobile-desktop-companion-v8.avif 850w" sizes="100vw" width="850" height="1851"/><source media="(max-width:640px)" srcset="/images/hybrid/hero-mobile-desktop-companion-v8.webp" width="850" height="1851"/><source media="(max-width:1180px)" type="image/avif" srcset="/images/hybrid/hero-neck-tablet-v4-768.avif 768w, /images/hybrid/hero-neck-tablet-v4-1024.avif 1024w, /images/hybrid/hero-neck-tablet-v4.avif 1536w" sizes="100vw" width="1536" height="1024"/><source media="(max-width:1180px)" srcset="/images/hybrid/hero-neck-tablet-v4.webp" width="1536" height="1024"/><source type="image/avif" srcset="/images/hybrid/hero-neck-v4-1280.avif 1280w, /images/hybrid/hero-neck-v4-1600.avif 1600w, /images/hybrid/hero-neck-v4.avif 2048w" sizes="100vw"/><img src="/images/hybrid/hero-neck-v4.webp" width="2048" height="768" alt="Наталья Городицкая за рабочим столом" fetchpriority="high" decoding="async"/></picture>
-  <div class="container hero-copy"><div class="hero-text"><h1 id="hero-heading"><span>Видеть бизнес</span><span>целиком.</span><span>Управлять <em>точнее.</em></span></h1><p class="hero-description"><span class="hero-description-full">Помогаю собственникам производства и проектного бизнеса видеть прибыль, управлять деньгами и принимать решения на основе цифр.</span><span class="hero-description-mobile">Порядок в финансах.<br/>Решения на основе цифр.</span></p><a class="button button-yellow hero-cta" href="#contact">Обсудить задачу <Icon/></a></div></div>
+  <div class="container hero-copy"><div class="hero-text"><h1 id="hero-heading"><span>Видеть бизнес</span><span>целиком.</span><span>Управлять <em>точнее.</em></span></h1><p class="hero-description"><span class="hero-description-full">Помогаем собственникам производства и проектного бизнеса видеть прибыль, управлять деньгами и принимать решения на основе цифр.</span><span class="hero-description-mobile">Порядок в финансах.<br/>Решения на основе цифр.</span></p><a class="button button-yellow hero-cta" href="#contact">Получить консультацию <Icon/></a></div></div>
  </div>
- <div class="container hero-facts"><div class="hero-fact"><Emblem name="experience"/><div><strong>С {site.experienceSince} года</strong><span class="fact-full">в финансах и учёте</span><span class="fact-short">в финансах</span></div></div><div class="hero-fact"><Emblem name="system"/><div><strong>1С ERP</strong><span class="fact-full">внедрение и сопровождение</span><span class="fact-short">внедрение</span></div></div><div class="hero-fact"><Emblem name="remote"/><div><strong>Вся Россия</strong><span class="fact-full">работаю удалённо</span><span class="fact-short">удалённо</span></div></div></div>
+ <div class="container hero-facts"><div class="hero-fact"><Emblem name="experience"/><div><strong>С {site.experienceSince} года</strong><span class="fact-full">в финансах и учёте</span><span class="fact-short">в финансах</span></div></div><div class="hero-fact"><Emblem name="system"/><div><strong>1С ERP</strong><span class="fact-full">внедрение и сопровождение</span><span class="fact-short">внедрение</span></div></div><div class="hero-fact"><Emblem name="remote"/><div><strong>Вся Россия</strong><span class="fact-full">работаем удалённо</span><span class="fact-short">удалённо</span></div></div></div>
 </section>
 
-<Iceberg/>
+
 
 <HomeServices/>
 
-<section class="section case-section" id="experience" aria-labelledby="case-heading"><div class="container">
- <div class="case-intro"><div class="case-copy"><p class="eyebrow">Кейс · НИОКР и НМА</p><h2 id="case-heading">Разработки, которые стали активами</h2><p class="case-amount"><span>62</span> млн ₽</p><p class="case-amount-label">затрат отнесены к НИОКР</p><a class="text-link" href="/kejsy/niokr-62-mln/">Разбор кейса <Icon/></a></div><div class="case-art"><CaseIllustration/></div></div>
- <div class="case-steps">
-  <article class="case-step"><span class="step-number">01</span><h3>Проблема</h3><p>Затраты на разработки списывались в расходы. Финансовый результат не отражал созданную технологию.</p><Emblem name="document" class="case-step-emblem"/></article>
-  <article class="case-step case-step-solution"><span class="step-number">02</span><h3>Решение</h3><p>Проанализировала затраты и документы. Выделила 62 млн ₽ затрат на результативные НИОКР.</p><Emblem name="clarity" class="case-step-emblem"/></article>
-  <article class="case-step case-step-result"><span class="step-number">03</span><h3>Результат</h3><p>Технология и патенты отражены как активы. Инвесторы получили более полную финансовую картину.</p><strong class="case-conclusion">Созданные активы стали видны инвесторам.</strong></article>
- </div>
-</div></section>
-
-<RelatedCases home/>
-
 <section class="section process-section" id="approach" aria-labelledby="formats-heading"><div class="container">
- <div class="section-heading"><p class="eyebrow">От первого вопроса до рабочей системы</p><h2 id="formats-heading">Как я работаю</h2></div>
+ <div class="section-heading"><p class="eyebrow">От первого вопроса до рабочей системы</p><h2 id="formats-heading">Как мы работаем</h2></div>
  <div class="process-grid">{formats.map((format,i)=><article class="process-card"><div class="process-card-title"><Emblem name={processIcons[i]}/><h3>{format.label}</h3></div><p class="process-description">{processDescriptions[i]}</p><ul class="process-outputs">{format.items.map(item=><li><Icon name="check"/>{item.title}</li>)}</ul><a class="text-link" href={serviceHref(processPages[i])}>Подробнее о формате <Icon/><span class="sr-only">: {format.label}</span></a></article>)}</div>
 </div></section>
 
@@ -57,19 +43,19 @@ const processDescriptions = ['Проверяю данные, нахожу при
 
 <section class="section container about-section" id="about" aria-labelledby="about-heading">
  <div class="about-portrait"><picture><source type="image/avif" srcset="/images/hybrid/about-natalia-v2-640.avif 640w, /images/hybrid/about-natalia-v2.avif 1120w" sizes="(max-width:640px) 90vw, 40vw"/><img src="/images/hybrid/about-natalia-v2.webp" srcset="/images/hybrid/about-natalia-v2-640.webp 640w, /images/hybrid/about-natalia-v2.webp 1120w" sizes="(max-width:640px) 90vw, 40vw" width="1120" height="1400" alt="Наталья Городицкая" loading="lazy" decoding="async"/></picture></div>
- <div class="about-copy"><h2 id="about-heading">Лично веду <br/>ваш проект</h2><p class="about-name">Наталья Городицкая</p><p class="about-lead">Соединяю финансовую модель, учёт и задачи собственника. Подключаю профильных специалистов под проект.</p><div class="about-facts" id="expertise"><div><Emblem name="experience"/><p><strong>С {site.experienceSince} года</strong><span>в финансах и учёте</span></p></div><div><Emblem name="system"/><p><strong>1С ERP</strong><span>внедрение и сопровождение</span></p></div><div><Emblem name="team"/><p><strong>Руководила командой</strong><span>из более чем 50 специалистов</span></p></div></div><a class="text-link" href="#contact">Обсудить ваш проект <Icon/></a></div>
+ <div class="about-copy"><h2 id="about-heading">Ваш проект<br/>ведёт команда</h2><p class="about-name">Городицкая и партнёры</p><p class="about-lead">Наталья Городицкая руководит финансовой частью. Учётные, налоговые и юридические задачи ведут профильные специалисты. Согласуем состав команды и ответственность каждого участника.</p><div class="about-facts" id="expertise"><div><Emblem name="experience"/><p><strong>С {site.experienceSince} года</strong><span>в финансах и учёте</span></p></div><div><Emblem name="system"/><p><strong>1С ERP</strong><span>внедрение и сопровождение</span></p></div><div><Emblem name="team"/><p><strong>Опыт руководства</strong><span>командой более 50 специалистов</span></p></div></div><a class="text-link" href="#contact">Получить консультацию <Icon/></a></div>
 </section>
 
 <RelatedArticles home/>
-<div class="home-faq-band"><section class="section container faq-section" id="faq" aria-labelledby="faq-heading"><div class="faq-intro"><p class="eyebrow">Перед началом работы</p><h2 id="faq-heading">Ответы <br/>на частые <br/>вопросы</h2><div class="faq-desk-art" aria-hidden="true"><Emblem name="document"/><Emblem name="secure"/></div></div><div class="faq-list">{faq.map((item,i)=><article class="faq-item" data-faq-item><h3><button type="button" id={'faq-toggle-'+i} aria-expanded={i===0?'true':'false'} aria-controls={'faq-answer-'+i} data-faq-toggle><span>{item.question}</span><span class="faq-toggle-art"><Icon name="plus"/></span></button></h3><div class="faq-answer" id={'faq-answer-'+i} role="region" aria-labelledby={'faq-toggle-'+i} hidden={i!==0}>{item.answer.split('\n\n').map(paragraph=><p>{paragraph}</p>)}</div></article>)}</div></section></div>
+{showFaq&&<div class="home-faq-band"><section class="section container faq-section" id="faq" aria-labelledby="faq-heading"><div class="faq-intro"><p class="eyebrow">Перед началом работы</p><h2 id="faq-heading">Ответы <br/>на частые <br/>вопросы</h2><div class="faq-desk-art" aria-hidden="true"><Emblem name="document"/><Emblem name="secure"/></div></div><div class="faq-list">{faq.map((item,i)=><article class="faq-item" data-faq-item><h3><button type="button" id={'faq-toggle-'+i} aria-expanded={i===0?'true':'false'} aria-controls={'faq-answer-'+i} data-faq-toggle><span>{item.question}</span><span class="faq-toggle-art"><Icon name="plus"/></span></button></h3><div class="faq-answer" id={'faq-answer-'+i} role="region" aria-labelledby={'faq-toggle-'+i} hidden={i!==0}>{item.answer.split('\n\n').map(paragraph=><p>{paragraph}</p>)}</div></article>)}</div></section></div>}
 
 <section class="contact-section" id="contact" aria-labelledby="contact-heading"><div class="container contact-layout">
- <div class="contact-copy"><p class="eyebrow">Обсудим вашу задачу</p><h2 id="contact-heading">Начнём <br/>с вашего <br/>вопроса</h2><p>Расскажите о задаче — предложу подходящий формат работы и первые шаги.</p></div>
+ <div class="contact-copy"><p class="eyebrow">Связаться с командой</p><h2 id="contact-heading">Начнём <br/>с вашего <br/>вопроса</h2><p>Оставьте контакт — свяжемся с вами и подберём специалистов под вашу задачу.</p></div>
  <ContactForm/>
 </div></section>
 </main>
 <SiteFooter/>
 
-  <script>import '../scripts/main'; import '../scripts/hybrid';</script>
+  <script>import '../scripts/main'; </script>
 </Layout>
 
