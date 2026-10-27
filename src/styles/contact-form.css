@@ -1,0 +1,27 @@
+/* Compact contact form, shared by the homepage, services and contact page. */
+#contact-form .form-grid{align-items:end}
+#contact-form label.consent-label{font-size:13px;line-height:1.65}
+#contact-form .contact-optional{font-size:12px;font-weight:400;color:#526950;margin-left:5px}
+.contact-method{min-width:0}.contact-method-heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-height:23px}
+#contact-form .contact-method-heading label{white-space:nowrap}.contact-method-heading label>span:first-child{color:inherit}
+#contact-form .contact-channel-toggle{font:500 12px/1.5 var(--sans);border:0;background:none;padding:4px 0;margin:-4px 0;color:#345a42;text-decoration:underline;text-decoration-color:#95aa86;text-underline-offset:4px;cursor:pointer;white-space:nowrap;transition:color 180ms,text-decoration-color 180ms}
+#contact-form .contact-channel-toggle:is(:hover,:focus-visible){color:#153e35;text-decoration-color:currentColor}
+#contact-form .contact-method input{display:block;width:100%;min-width:0;min-height:52px;margin-top:8px;padding:14px 16px;border:1px solid #c9cebd;border-radius:7px;background:#fcfaf3;color:var(--green);font-size:16px;line-height:1.5}
+#contact-form .contact-method input[hidden]{display:none}
+#contact-form .contact-method input:focus-visible,#contact-form .contact-details textarea:focus-visible{outline:2px solid #668a63;outline-offset:3px}
+#contact-form .contact-details{margin-top:24px;padding:0;border:0;border-block:1px solid #c8d2bc;border-radius:0;background:none;interpolate-size:allow-keywords}
+#contact-form .contact-details summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:52px;padding:15px 0;font:500 15px/1.5 var(--sans);list-style:none;cursor:pointer;color:var(--green)}
+#contact-form .contact-details summary::-webkit-details-marker{display:none}
+#contact-form .contact-details summary>svg{width:20px;height:20px;flex-shrink:0;transition:transform 240ms var(--ease)}
+#contact-form .contact-details[open] summary>svg{transform:rotate(45deg)}
+/* Native height interpolation is limited to this small, user-triggered disclosure. */
+#contact-form .contact-details::details-content{height:0;overflow:clip;transition:height 260ms var(--ease),content-visibility 260ms allow-discrete}
+#contact-form .contact-details[open]::details-content{height:auto}
+.contact-details-body{padding:4px 0 20px}
+#contact-form .contact-details-body label{display:block;font-size:14px;line-height:1.5}
+#contact-form .contact-details textarea{display:block;width:100%;min-width:0;min-height:112px;margin-top:8px;padding:14px 16px;border:1px solid #c9cebd;border-radius:7px;background:#fcfaf3;color:var(--green);font-size:16px;line-height:1.6;resize:vertical}
+#contact-form .contact-method input::placeholder,#contact-form .contact-details textarea::placeholder{color:#647267;opacity:1}
+#contact-form :is(.contact-channel-toggle,.contact-details summary):focus-visible{outline:2px solid #42684e;outline-offset:4px;border-radius:3px}
+@media(max-width:1180px){#contact-form .form-grid{grid-template-columns:1fr;gap:20px}}
+@media(max-width:640px){#contact-form .contact-details{margin-top:20px}#contact-form .contact-details summary{font-size:15px}#contact-form .contact-method-heading{min-height:24px}#contact-form .contact-channel-toggle{font-size:13px;padding-block:8px;margin-block:-8px}}
+@media(prefers-reduced-motion:reduce){#contact-form .contact-details::details-content,#contact-form .contact-details summary>svg,#contact-form .contact-channel-toggle{transition:none}}
