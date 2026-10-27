@@ -3,6 +3,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import PageCta from '../../components/PageCta.astro';
 import ArticleDiagram from '../../components/ArticleDiagram.astro';
+import ArticleExample from '../../components/ArticleExample.astro';
 import Icon from '../../components/Icon.astro';
 import RelatedCases from '../../components/RelatedCases.astro';
 import EditorialArt from '../../components/EditorialArt.astro';
@@ -24,13 +25,13 @@ const structuredData=[{'@context':'https://schema.org','@type':'Article',headlin
  <div class="publication">
   <section class="inner-hero article-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи',href:'/stati/'},{label:article.title}]}/><div class="inner-hero-grid story-hero-grid"><div class="article-heading"><h1>{article.title}</h1><p class="inner-lead">{article.lead}</p><ReadingByline minutes={articleMinutes(article)} date="24 октября 2026"/></div><EditorialArt kind={article.diagram}/></div></div></section>
   <div class="container reading-layout"><ReadingNav links={article.sections}/>
-    <article class="article-body reading-body">{article.sections.map((section,i)=><section id={section.id}><h2>{section.title}</h2>{section.paragraphs.map(text=><p>{text}</p>)}{section.items&&<ul>{section.items.map(text=><li>{text.includes(': ')?<><strong>{text.slice(0,text.indexOf(': ')+1)}</strong>{text.slice(text.indexOf(': ')+1)}</>:text}</li>)}</ul>}{i===0&&<ArticleDiagram type={article.diagram}/>}</section>)}
-      <section class="article-takeaway"><h2>С чего начать</h2><p>{article.takeaway}</p></section>
+    <article class="article-body reading-body">{article.sections.map((section,i)=><section id={section.id}><h2>{section.title}</h2>{section.paragraphs.map(text=><p>{text}</p>)}{section.items&&<ul>{section.items.map(text=><li>{text.includes(': ')?<><strong>{text.slice(0,text.indexOf(': ')+1)}</strong>{text.slice(text.indexOf(': ')+1)}</>:text}</li>)}</ul>}{i===0&&<ArticleDiagram type={article.diagram}/>}{section.example&&<ArticleExample example={section.example}/>}</section>)}
+      <section class="article-takeaway"><h2>С чего начать</h2><p>{article.takeaway}</p><div class="article-next-step"><a class="button button-yellow" href="#request">{article.offer.action}<Icon/></a>{related[0]&&<a class="text-link" href={serviceHref(related[0].slug)}>{article.offer.serviceLabel}<Icon/></a>}</div></section>
       <section class="article-sources"><h2>Источники и дополнительные материалы</h2><ul>{article.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul><p>Материал обновлён 27 октября 2026 года.</p></section>
     </article>
   </div>
   <section class="inner-section container article-related"><h2>Помощь с этой задачей</h2><div class="article-links">{related.map(service=><a href={serviceHref(service.slug)}><h3>{service.short}</h3><p>{service.question}</p><span class="text-link">Состав работы <Icon/></span></a>)}</div></section>
   <RelatedCases services={article.relatedServices} illustrated/>
-  <PageCta title="Разберём ваш вопрос по данным компании" text="Расскажите, что не сходится в цифрах или какое решение нужно принять. Рабочие документы и доступы согласуем отдельно." service={related[0]?.title}/>
+  <PageCta title={article.offer.title} text={article.offer.text} service={related[0]?.title}/>
  </div>
 </PageLayout>

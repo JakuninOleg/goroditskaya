@@ -11,6 +11,6 @@ const caseArt:Record<string,ArtKind>={
 };
 export const caseArtKind=(slug:string):ArtKind=>caseArt[slug]??'connections';
 export const readingMinutes=(texts:string[])=>Math.max(2,Math.ceil(texts.join(' ').split(/\s+/).length/180));
-export const articleMinutes=(article:Article)=>readingMinutes([article.lead,article.takeaway,...article.sections.flatMap(s=>[s.title,...s.paragraphs,...(s.items??[])])]);
+export const articleMinutes=(article:Article)=>readingMinutes([article.lead,article.takeaway,...article.sections.flatMap(s=>[s.title,...s.paragraphs,...(s.items??[]),...(s.example?[s.example.title,s.example.intro,...s.example.rows.flat(),s.example.conclusion]:[])])]);
 export const caseMinutes=(study:CaseStudy)=>readingMinutes([study.summary,study.role,...study.problem,...study.actions.flatMap(a=>[a.title,a.text]),...study.results,study.conclusion]);
 export const minuteLabel=(n:number)=>`${n} ${n%10===1&&n%100!==11?'минута':n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?'минуты':'минут'} чтения`;

@@ -1,0 +1,15 @@
+---
+import type { ArticleExampleContent } from '../data/articles';
+interface Props { example: ArticleExampleContent; }
+const { example } = Astro.props;
+---
+<figure class="article-example">
+  <figcaption><h3>{example.title}</h3><p>{example.intro}</p></figcaption>
+  <table role="table" aria-label={example.title} class:list={['article-example-table', { 'article-example-table--numeric': example.numeric }]}>
+    <thead role="rowgroup"><tr role="row">{example.columns.map(label => <th scope="col" role="columnheader">{label}</th>)}</tr></thead>
+    <tbody role="rowgroup">{example.rows.map(row => <tr role="row">{row.map((value, index) => index === 0
+      ? <th scope="row" role="rowheader">{value}</th>
+      : <td role="cell"><span class="article-example-label" aria-hidden="true">{example.columns[index]}</span>{value}</td>)}</tr>)}</tbody>
+  </table>
+  <p class="article-example-conclusion">{example.conclusion}</p>
+</figure>

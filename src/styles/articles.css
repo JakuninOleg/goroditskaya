@@ -2,3 +2,37 @@
 @media(max-width:1100px){.article-layout{grid-template-columns:220px minmax(0,1fr);gap:40px}.article-links{gap:24px}}
 @media(max-width:760px){.article-layout{display:block;padding-top:30px}.article-toc{position:static;padding-bottom:30px;border-bottom:1px solid var(--line);margin-bottom:32px}.article-toc ol{columns:2;column-gap:24px}.article-toc li{break-inside:avoid}.article-links{grid-template-columns:1fr;gap:8px}.article-index-list>article{align-items:flex-start;flex-direction:column;gap:20px}.article-heading h1{font-size:clamp(32px,7vw,46px);text-wrap:pretty}.article-body{font-size:17px;line-height:1.8}.article-body>section{margin-top:38px}.article-diagram{padding:26px 22px}.article-diagram ol{display:block}.article-diagram li{flex-direction:column;align-items:flex-start;gap:18px}.article-diagram li+li{margin-top:18px}.article-diagram svg{transform:rotate(90deg);margin-left:4px}.diagram-step{gap:5px}.article-body .article-takeaway{padding:24px}.article-body .article-sources h2{font-size:22px}}
 @media(max-width:420px){.article-toc ol{columns:1}.article-heading h1{font-size:33px}.article-body h2{font-size:27px}}
+
+.publication .reading-body .article-example{margin:32px 0 0;padding:28px;background:#edf0e5;border-radius:12px}
+.publication .article-example figcaption p{font-size:16px;line-height:1.7}
+.article-example-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:15px;line-height:1.65;text-align:left}
+.article-example-table th,.article-example-table td{padding:15px 10px;vertical-align:top;border-bottom:1px solid #c4ceb8;overflow-wrap:break-word}
+.article-example-table th:first-child,.article-example-table td:first-child{padding-left:0}
+.article-example-table th:last-child,.article-example-table td:last-child{padding-right:0}
+.article-example-table thead th{font-size:13px;font-weight:600;color:#496354}
+.article-example-table tbody th{font-weight:600;width:27%}
+.article-example-table tbody tr:last-child>*{border-bottom:0}
+.article-example-label{display:none}
+.article-example-table--numeric th:first-child{width:21%}
+.article-example-table--numeric tbody th{white-space:nowrap}
+.article-example-table--numeric td:last-child,.article-example-table--numeric thead th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.article-example-table--numeric td:last-child{white-space:nowrap;font-weight:600}
+.publication .reading-body .article-example-conclusion{margin-top:22px;padding-top:20px;border-top:1px solid #c4ceb8;font-size:16px;line-height:1.75}
+.article-next-step{display:flex;flex-direction:column;align-items:flex-start;gap:23px;margin-top:28px}
+.publication .article-next-step .text-link{color:#f1f0e4;font-size:16px;line-height:1.55;text-align:left}
+.article-next-step .text-link svg,.article-next-step .button svg{flex-shrink:0}
+@media(max-width:640px){
+ .publication .reading-body .article-example{padding:24px 20px;margin-top:26px}
+ .article-example-table:not(.article-example-table--numeric) thead{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .article-example-table:not(.article-example-table--numeric),.article-example-table:not(.article-example-table--numeric) tbody{display:block}
+ .article-example-table:not(.article-example-table--numeric) tr{display:block;padding:20px 0;border-top:1px solid #c4ceb8}
+ .article-example-table:not(.article-example-table--numeric) th,.article-example-table:not(.article-example-table--numeric) td{display:block;width:auto;padding:0;border:0}
+ .article-example-table:not(.article-example-table--numeric) tbody th{font-size:17px;line-height:1.5}
+ .article-example-table:not(.article-example-table--numeric) td{margin-top:15px;font-size:16px;line-height:1.65}
+ .article-example-table:not(.article-example-table--numeric) .article-example-label{display:block;margin-bottom:4px;color:#496354;font-size:13px;font-weight:600}
+ .article-example-table:not(.article-example-table--numeric) tr:last-child{padding-bottom:0}
+ .article-example-table--numeric{font-size:14px;line-height:1.6}
+ .article-example-table--numeric th,.article-example-table--numeric td{padding:14px 7px}
+ .article-example-table--numeric thead th{font-size:12px}
+ .article-next-step .button{max-width:100%;padding-inline:22px;font-size:16px}
+}
