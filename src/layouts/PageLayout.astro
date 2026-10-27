@@ -5,11 +5,11 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { site } from '../data/site';
 import '../styles/pages.css';
 import '../styles/hero-art.css';
-interface Props { title:string; description:string; structuredData?:Record<string,unknown>[]; noindex?:boolean; }
-const { title,description,structuredData=[],noindex=false }=Astro.props;
+interface Props { title:string; description:string; structuredData?:Record<string,unknown>[]; noindex?:boolean; contactHref?:string; }
+const { title,description,structuredData=[],noindex=false,contactHref }=Astro.props;
 ---
 <Layout title={title+' — '+site.brand} description={description} structuredData={structuredData} noindex={noindex}>
-  <a class="skip-link" href="#main">К содержанию</a><SiteHeader/>
+  <a class="skip-link" href="#main">К содержанию</a><SiteHeader contactHref={contactHref}/>
   <main class="inner-page" id="main"><slot/></main>
   <SiteFooter/>
   <script>import '../scripts/inner-pages';</script>

@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import ConsentField from './ConsentField.astro';
 import { site } from '../data/site';
 import '../styles/contact-form.css';
 interface Props { standalone?: boolean; service?: string; }
@@ -25,7 +26,7 @@ const Heading=standalone?'h2':'h3';
       <summary>Добавить подробности задачи <Icon name="plus"/></summary>
       <div class="contact-details-body"><label for="contact-message">Что хотите решить?<textarea id="contact-message" name="message" rows="3" placeholder="Например: прибыль есть, а денег на платежи не хватает" maxlength="3000"></textarea></label></div>
     </details>
-    <label class="consent-label"><input type="checkbox" name="consent" required/><span>Согласен с <button type="button" class="inline-link" data-privacy-open>политикой конфиденциальности</button> и обработкой персональных данных</span></label>
+    <ConsentField/>
     <button class="button button-yellow form-submit" type="submit">Отправить заявку<Icon/></button>
   </form>
   <noscript><style>#contact-form{display:none}</style><p class="form-note">Можно написать напрямую: <a href={'mailto:'+site.email}>{site.email}</a>.</p></noscript>

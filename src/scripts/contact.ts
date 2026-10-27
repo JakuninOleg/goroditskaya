@@ -1,6 +1,14 @@
 import { site } from '../data/site';
 import { attachRuPhoneMask, normalizeRuPhone } from '../lib/ru-phone';
 
+function consentRecord(data:FormData):string[]{
+  const version=String(data.get('consent_version')??'');
+  const path=String(data.get('consent_path')??'');
+  if(!version||!path)return [];
+  return ['', 'Согласие на обработку персональных данных: предоставлено.', 'Редакция согласия: '+version, 'Документ: '+new URL(path,window.location.origin).href, 'Время подтверждения (МСК): '+new Date().toLocaleString('ru-RU',{timeZone:'Europe/Moscow'})];
+}
+
+
 const form=document.getElementById('contact-form') as HTMLFormElement|null;
 const contactPhone=document.getElementById('contact-phone') as HTMLInputElement|null;
 if(contactPhone)attachRuPhoneMask(contactPhone,{onValueChange:()=>contactPhone.setCustomValidity('')});
@@ -39,7 +47,7 @@ form?.addEventListener('submit',event=>{
   const task=String(data.get('message')??'').trim();
   const service=String(data.get('service')??'').trim().slice(0,180);
   const page=String(data.get('page')??'').trim();
-  const body=['Наталья, добрый день!','',...(name?['Меня зовут '+name+'.']:[]),useEmail?'Почта для связи: '+email:'Телефон для связи: +'+phone,...(service?['Услуга: '+service]:[]),...(page?['Страница обращения: '+page]:[]),'','Задача:',task||'Нужна консультация по финансовой задаче бизнеса.','','Прошу предложить возможный состав работ и формат сотрудничества.'].join('\n');
+  const body=['Наталья, добрый день!','',...(name?['Меня зовут '+name+'.']:[]),useEmail?'Почта для связи: '+email:'Телефон для связи: +'+phone,...(service?['Услуга: '+service]:[]),...(page?['Страница обращения: '+page]:[]),'','Задача:',task||'Нужна консультация по финансовой задаче бизнеса.','','Прошу предложить возможный состав работ и формат сотрудничества.',...consentRecord(data)].join('\n');
   // Retain the existing delivery route until server delivery is connected.
   window.location.href='mailto:'+site.email+'?subject='+encodeURIComponent('Заявка на консультацию'+(service?': '+service:''))+'&body='+encodeURIComponent(body);
 });
@@ -51,7 +59,8 @@ templatesForm?.addEventListener('submit',event=>{
   const phone=normalizeRuPhone(templatesPhone?.value??'');
   templatesPhone?.setCustomValidity(phone?'':'Укажите телефон полностью: +7 (999) 123-45-67.');
   if(!templatesForm.reportValidity())return;
-  const email=String(new FormData(templatesForm).get('email')??'').trim();
-  const body=['Наталья, добрый день!','','Пришлите, пожалуйста, комплект Excel-форм:','— ДДС на 13 недель','— Прибыль по проектам','— План-факт бюджета','','Моя почта: '+email,'Телефон: +'+phone].join('\n');
+  const data=new FormData(templatesForm);
+  const email=String(data.get('email')??'').trim();
+  const body=['Наталья, добрый день!','','Пришлите, пожалуйста, комплект Excel-форм:','— ДДС на 13 недель','— Прибыль по проектам','— План-факт бюджета','','Моя почта: '+email,'Телефон: +'+phone,...consentRecord(data)].join('\n');
   window.location.href='mailto:'+site.email+'?subject='+encodeURIComponent('Запрос Excel-форм')+'&body='+encodeURIComponent(body);
 });

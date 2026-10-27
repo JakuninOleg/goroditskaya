@@ -1,8 +1,8 @@
 {
-  "pages": 34,
-  "internalPages": 32,
-  "checkedLinks": 1342,
-  "reachableContentPages": 33,
+  "pages": 37,
+  "internalPages": 35,
+  "checkedLinks": 1666,
+  "reachableContentPages": 36,
   "indexing": false,
   "origin": "https://goroditskaya.vercel.app",
   "sitemapUrls": [
@@ -38,6 +38,9 @@
     "https://goroditskaya.vercel.app/stati/prichiny-kassovogo-razryva/",
     "https://goroditskaya.vercel.app/stati/analiz-osv-pered-vosstanovleniem-ucheta/",
     "https://goroditskaya.vercel.app/stati/karta-vzaimosvyazey-uchastkov-ucheta/",
-    "https://goroditskaya.vercel.app/stati/rashozhdeniya-nds-i-naloga-na-pribyl/"
+    "https://goroditskaya.vercel.app/stati/rashozhdeniya-nds-i-naloga-na-pribyl/",
+    "https://goroditskaya.vercel.app/dokumenty/politika-konfidentsialnosti/",
+    "https://goroditskaya.vercel.app/dokumenty/soglasie-na-obrabotku-dannyh/",
+    "https://goroditskaya.vercel.app/dokumenty/usloviya-ispolzovaniya/"
   ]
 }

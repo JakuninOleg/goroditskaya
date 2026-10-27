@@ -1,8 +1,10 @@
 ---
 import Brand from './Brand.astro';
 import Icon from './Icon.astro';
+interface Props { contactHref?: string; }
+const { contactHref: requestedContactHref } = Astro.props;
 const home = Astro.url.pathname === '/';
-const contactHref = home ? '#contact' : '#request';
+const contactHref = requestedContactHref ?? (home ? '#contact' : '#request');
 const active = (path: string) => Astro.url.pathname === path ? 'page' : undefined;
 const articlesCurrent = active('/stati/') ?? (Astro.url.pathname.startsWith('/stati/') ? 'location' : undefined);
 ---

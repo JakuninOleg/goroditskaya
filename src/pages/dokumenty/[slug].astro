@@ -1,0 +1,43 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ReadingNav from '../../components/ReadingNav.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../data/site';
+import { legalAvailable, legalDocuments, legalHref, legalDate, legalVersion, legalOperator, type LegalDocument } from '../../data/legal';
+import '../../styles/publication.css';
+import '../../styles/legal.css';
+
+export function getStaticPaths() {
+  return legalAvailable ? legalDocuments.map(document=>({params:{slug:document.slug},props:{document}})) : [];
+}
+interface Props { document: LegalDocument; }
+const { document }=Astro.props;
+const contents=[...document.sections.map(section=>({id:section.id,title:section.title})),{id:'operator-details',title:'Оператор и связь'}];
+---
+<PageLayout title={document.title} description={document.description} contactHref="/kontakty/#request">
+  <div class="publication legal-publication">
+    <section class="inner-hero legal-hero"><div class="container">
+      <Breadcrumbs items={[{label:document.shortTitle}]}/>
+      <h1>{document.title}</h1><p class="inner-lead">{document.description}</p>
+      <p class="legal-edition">Редакция от <time datetime={legalVersion}>{legalDate}</time></p>
+    </div></section>
+    <nav class="container legal-switcher" aria-label="Юридические документы">{legalDocuments.map(item=><a href={legalHref(item.slug)} aria-current={item.slug===document.slug?'page':undefined}>{item.shortTitle}</a>)}</nav>
+    <div class="container reading-layout legal-reading"><ReadingNav links={contents}/><article class="reading-body legal-body">
+      {document.sections.map(section=><section id={section.id}><h2>{section.title}</h2>{section.items&&<ul>{section.items.map(item=><li>{item}</li>)}</ul>}{section.paragraphs?.map(paragraph=><p>{paragraph}</p>)}</section>)}
+      <section class="legal-operator" id="operator-details"><h2>Оператор и связь</h2>
+        <dl>
+          <div><dt>Сайт</dt><dd>{site.brand}</dd></div>
+          {legalOperator.fullName&&<div><dt>Оператор</dt><dd>{legalOperator.fullName}</dd></div>}
+          {legalOperator.type==='self-employed'&&<div><dt>Статус</dt><dd>Плательщик налога на профессиональный доход (самозанятая)</dd></div>}
+          {legalOperator.inn&&<div><dt>ИНН</dt><dd>{legalOperator.inn}</dd></div>}
+          {legalOperator.ogrn&&<div><dt>{legalOperator.type==='sole-proprietor'?'ОГРНИП':'ОГРН'}</dt><dd>{legalOperator.ogrn}</dd></div>}
+          {legalOperator.address&&<div><dt>Почтовый адрес</dt><dd>{legalOperator.address}</dd></div>}
+          <div><dt>Электронная почта</dt><dd><a href={'mailto:'+site.email}>{site.email}</a></dd></div>
+        </dl>
+        <p>Для запроса о персональных данных укажите контакт из обращения и суть вопроса. Не прикладывайте к первому письму паспорт или документы третьих лиц.</p>
+      </section>
+      <div class="legal-related">{legalDocuments.filter(item=>item.slug!==document.slug).map(item=><a class="text-link" href={legalHref(item.slug)}>{item.shortTitle}<Icon/></a>)}</div>
+    </article></div>
+  </div>
+</PageLayout>

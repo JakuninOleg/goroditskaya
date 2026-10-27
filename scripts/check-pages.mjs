@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { services } from '../src/data/services.ts';
 import { caseStudies,caseHref } from '../src/data/cases.ts';
 import { primaryOrigin,searchIndexingEnabled } from '../src/data/seo.ts';
+import { legalAvailable,legalDocuments } from '../src/data/legal.ts';
 
 async function files(directory){
   const entries=await readdir(directory,{withFileTypes:true});
@@ -19,8 +20,9 @@ for(const file of htmlFiles){
   const html=await readFile(file,'utf8');
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
   assert.equal(ids.length,new Set(ids).size,`Duplicate IDs: ${path}`);
-  assert.equal([...html.matchAll(/<form\b[^>]*id="contact-form"/g)].length,1,`One project form on every page: ${path}`);
-  if(path!=='/')assert(ids.includes('request'),`Local enquiry section: ${path}`);
+  const legalPage=path.startsWith('/dokumenty/');
+  assert.equal([...html.matchAll(/<form\b[^>]*id="contact-form"/g)].length,legalPage?0:1,`Enquiry form on service/content pages only: ${path}`);
+  if(path!=='/'&&!legalPage)assert(ids.includes('request'),`Local enquiry section: ${path}`);
   assert.equal([...html.matchAll(/<h1\b/g)].length,1,`One H1: ${path}`);
   const title=html.match(/<title>(.*?)<\/title>/s)?.[1];
   assert(title&&!titles.has(title),`Unique title: ${path}`);titles.add(title);
@@ -40,7 +42,7 @@ for(const file of htmlFiles){
   assert(!/Демонстрация|условные данные|отправка не подключена|данные ещё не отправлены|Или скачать комплект сразу|financial-templates\.xlsx|Технор[эе]д|С 1996/i.test(html),`Removed copy or ungated download: ${path}`);
   pages.set(path,{html,ids:new Set(ids),links:[...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map(match=>match[1].replaceAll('&amp;','&'))});
 }
-assert.equal(pages.size,25+caseStudies.length,'Expected existing routes plus the complete case library and 404');
+assert.equal(pages.size,25+caseStudies.length+(legalAvailable?legalDocuments.length:0),'Expected content, legal documents and 404');
 let checkedLinks=0;
 const graph=new Map();
 for(const [path,page] of pages){
