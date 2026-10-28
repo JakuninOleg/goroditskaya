@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CaseStudyMap from '../../components/CaseStudyMap.astro';
 import RelatedCases from '../../components/RelatedCases.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
+import CaseSituation from '../../components/CaseSituation.astro';
 import PageCta from '../../components/PageCta.astro';
 import Icon from '../../components/Icon.astro';
 import EditorialArt from '../../components/EditorialArt.astro';
@@ -36,7 +37,8 @@ const structuredData=[
     <section id="case-work"><h2>Что было сделано</h2><ol class="case-actions">{study.actions.map(action=><li><div><h3>{action.title}</h3><p>{action.text}</p></div></li>)}</ol></section>
     <section class="case-study-result" id="case-result"><h2>Результат</h2><ul>{study.results.map(result=><li><Icon name="check"/><span>{result}</span></li>)}</ul><p>{study.conclusion}</p></section>
   </article></div>
-  <section class="inner-section container case-service-links"><h2>Помощь с похожей задачей</h2><div class="case-service-list">{related.map(service=><a href={serviceHref(service.slug)}><span>{service.short}</span><Icon/></a>)}</div></section>
+  <CaseSituation slug={study.slug}/>
+  <section class="inner-section container case-service-links"><h2>Услуги по теме кейса</h2><div class="case-service-list">{related.map(service=><a href={serviceHref(service.slug)}><span>{service.short}</span><Icon/></a>)}</div></section>
   <RelatedCases services={study.services} exclude={study.slug} illustrated/>
   <RelatedArticles caseSlug={study.slug}/>
   <PageCta title="Разберём вашу задачу по данным компании" text="Расскажите, что сейчас мешает работе. Определим исходные данные, результат и подходящий состав проекта." service={related[0]?.title}/>

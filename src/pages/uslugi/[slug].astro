@@ -13,6 +13,7 @@ import { entityIds } from '../../data/entities';
 import RelatedCases from '../../components/RelatedCases.astro';
 import ServicePricing from '../../components/ServicePricing.astro';
 import ServiceDelivery from '../../components/ServiceDelivery.astro';
+import ServiceSituations from '../../components/ServiceSituations.astro';
 import { serviceDelivery } from '../../data/service-delivery';
 import { caseHref } from '../../data/cases';
 import { serviceEngagement } from '../../data/service-engagement';
@@ -36,7 +37,7 @@ const structuredData=[
     <div class="inner-meta"><span>С 2003 года в финансах</span><span>По всей России</span></div>
     <a class="service-practice-link" href={caseHref(serviceDelivery[service.slug].proof.slug)}><Emblem name="review"/><div><span>Из практики Натальи</span><strong>{serviceDelivery[service.slug].proof.label}</strong></div><Icon/></a>
   </div><ServiceVisual service={service}/></div></div></section>
-  <section class="inner-section situation-section"><div class="container"><p class="eyebrow">Когда обращаться</p><h2>В каких ситуациях это поможет</h2><div class="situation-grid">{service.situations.map((s,i)=><article><span class="situation-number">{'0'+(i+1)}</span><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></div></section>
+  <ServiceSituations service={service}/>
   <section class="inner-section container" id="scope"><div class="scope-layout"><div class="scope-intro"><p class="eyebrow">Содержание проекта</p><h2>Что входит в работу</h2><p>До начала проекта определяем задачи, результат и участие вашей команды.</p></div><div class="scope-list">{service.scope.map(s=><article><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></div></section>
   <ServiceDelivery service={service}/>
   <section class="inner-section service-workflow" id="work-process" aria-labelledby="workflow-heading"><div class="container">

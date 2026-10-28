@@ -5,6 +5,7 @@ import HeroArtwork from '../../components/HeroArtwork.astro';
 import PageCta from '../../components/PageCta.astro';
 import Icon from '../../components/Icon.astro';
 import RelatedCases from '../../components/RelatedCases.astro';
+import CaseSituation from '../../components/CaseSituation.astro';
 import ReadingNav from '../../components/ReadingNav.astro';
 import ReadingByline from '../../components/ReadingByline.astro';
 import { entityIds } from '../../data/entities';
@@ -23,6 +24,7 @@ const structuredData=[{'@context':'https://schema.org','@type':'Article','@id':c
     <section class="case-checklist" id="case-check"><h2>Что проверить в своей компании</h2><p>Если у бизнеса есть собственные разработки, начинать стоит с объекта, результата, прав и подтверждённых затрат.</p><h3>Есть ли отдельный объект?</h3><p>Нужно понять, что именно создано и где заканчивается одна разработка и начинается другая.</p><h3>Можно ли связать затраты с результатом?</h3><p>Отделите затраты на конкретную разработку от общих расходов компании. Для каждой суммы нужны документы.</p><h3>Кому принадлежат права?</h3><p>Договоры и документы о правах должны рассматриваться вместе с фактическим результатом работ.</p><h3>На чём основано учётное решение?</h3><p>Признание актива требует проверки критериев и документов по конкретному объекту.</p><a class="text-link" href="/uslugi/niokr-nma/">Как устроена работа с НИОКР и НМА <Icon/></a></section>
     <section id="case-review"><h2>Подготовка к внешней проверке</h2><p>Учёт разработок входит в финансовую картину компании, которую изучает инвестор. Состав подготовки зависит от объектов, прав и подтверждающих документов.</p><a class="text-link" href="/uslugi/podgotovka-k-due-diligence/">Подготовка к due diligence <Icon/></a></section>
   </article></div>
+  <CaseSituation slug="niokr-62-mln"/>
   <RelatedCases services={['podgotovka-k-due-diligence','finansovaya-model']} exclude="niokr-62-mln" illustrated/>
   <PageCta title="Разберём финансовую картину ваших разработок" service="Анализ НИОКР и НМА"/>
  </div>

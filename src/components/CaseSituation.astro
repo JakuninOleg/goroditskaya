@@ -1,0 +1,12 @@
+---
+import { caseSituations, situationServiceLink, situationReadingLink } from '../data/business-situations';
+import SituationIllustration from './SituationIllustration.astro';
+import Icon from './Icon.astro';
+import '../styles/business-situations.css';
+interface Props { slug: string; }
+const { slug } = Astro.props;
+const situation = caseSituations[slug];
+---
+{situation&&<section class="case-situation" aria-labelledby="case-situation-heading"><div class="container case-situation-layout">
+  <div class="case-situation-art"><SituationIllustration kind={situation.art}/></div><div class="case-situation-copy"><h2 id="case-situation-heading">{situation.question}</h2><p>{situation.answer}</p><div class="business-situation-links"><a class="text-link" href={situationServiceLink(situation.service)}>{situation.serviceLabel}<Icon/></a>{situation.reading&&<a class="situation-reading" href={situationReadingLink(situation.reading.slug)}>{situation.reading.label}<Icon/></a>}</div></div>
+</div></section>}

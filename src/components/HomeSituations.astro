@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import SituationIllustration from './SituationIllustration.astro';
+import { homeSituations, situationServiceLink, situationReadingLink } from '../data/business-situations';
+import '../styles/business-situations.css';
+---
+<section class="business-situations" id="business-questions" aria-labelledby="business-questions-heading">
+  <div class="container">
+    <div class="business-situations-heading"><h2 id="business-questions-heading">С чем помогаем разобраться</h2><p>Начать можно с одного вопроса о вашем бизнесе. Проверим данные и покажем, что стоит за цифрами.</p></div>
+    <div class="business-situation-groups">{homeSituations.map(group=><div class="business-situation-group">
+      <figure class="business-situation-art"><SituationIllustration kind={group.art}/><figcaption>{group.title}</figcaption></figure>
+      <div class="business-situation-rows">{group.items.map(item=><article class="business-situation-row">
+        <h3>{item.question}</h3><div class="business-situation-answer"><p>{item.answer}</p><div class="business-situation-links"><a class="text-link" href={situationServiceLink(item.service)}>{item.serviceLabel}<Icon/></a>{item.reading&&<a class="situation-reading" href={situationReadingLink(item.reading.slug)}>{item.reading.label}<Icon/></a>}</div></div>
+      </article>)}</div>
+    </div>)}</div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+import type { Service } from '../data/services';
+import { serviceSituations, situationReadingLink } from '../data/business-situations';
+import SituationIllustration from './SituationIllustration.astro';
+import Icon from './Icon.astro';
+import '../styles/business-situations.css';
+interface Props { service: Service; }
+const { service } = Astro.props;
+const context = serviceSituations[service.slug];
+---
+<section class="service-situations" aria-labelledby="service-situations-heading"><div class="container service-situations-layout">
+  <div class="service-situations-intro"><h2 id="service-situations-heading">Знакомая ситуация?</h2><p>{context.intro}</p><SituationIllustration kind={context.art}/></div>
+  <div class="service-situation-details"><div class="service-situation-rows">{service.situations.map(item=><article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+    <div class="service-situation-next"><a class="text-link" href="#scope">Что проверим и сделаем <Icon/></a>{context.reading&&<a class="situation-reading" href={situationReadingLink(context.reading.slug)}>{context.reading.label}<Icon/></a>}</div>
+  </div>
+</div></section>
