@@ -13,5 +13,6 @@ import '../styles/business-situations.css';
         <h3>{item.question}</h3><div class="business-situation-answer"><p>{item.answer}</p><div class="business-situation-links"><a class="text-link" href={situationServiceLink(item.service)}>{item.serviceLabel}<Icon/></a>{item.reading&&<a class="situation-reading" href={situationReadingLink(item.reading.slug)}>{item.reading.label}<Icon/></a>}</div></div>
       </article>)}</div>
     </div>)}</div>
+    <div class="business-situations-action"><a class="button button-yellow" href="#contact">Помочь разобраться <Icon/></a></div>
   </div>
 </section>
