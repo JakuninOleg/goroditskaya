@@ -5,9 +5,9 @@ import MessengerContacts from './MessengerContacts.astro';
 import { site } from '../data/site';
 import { legalAvailable, legalDocuments, legalHref } from '../data/legal';
 ---
-<footer class="footer container"><div class="footer-top"><div class="footer-brand"><Brand footer href="/"/><div class="footer-credit"><a href="https://jakuninoleg.dev/" target="_blank" rel="noopener noreferrer">Дизайн и разработка — <span>OJ</span></a></div></div>
+<footer class="footer container"><div class="footer-top"><div class="footer-brand"><Brand footer href="/"/><div class="footer-credit footer-credit-desktop"><a href="https://jakuninoleg.dev/" target="_blank" rel="noopener noreferrer">Дизайн и разработка — <span>OJ</span></a></div></div>
   <nav class="footer-site-nav" aria-label="Разделы сайта"><a href="/uslugi/">Услуги</a><a href="/kejsy/">Кейсы</a><a href="/o-natale/">О команде</a><a href="/stati/">Статьи</a><a href="/materialy/">Финансовые формы</a><a href="/kontakty/">Контакты</a></nav>
-  <div class="footer-contact-group"><p class="footer-call-label">Для звонков и писем</p><div class="footer-contacts"><a href={'mailto:'+site.email}><Icon name="mail"/>{site.email}</a><a href={'tel:'+site.phoneHref}><Icon name="phone"/>{site.phone}</a></div><MessengerContacts/></div>
+  <div class="footer-contact-group"><p class="footer-call-label">Для звонков и писем</p><div class="footer-contacts"><a href={'mailto:'+site.email}><Icon name="mail"/>{site.email}</a><a href={'tel:'+site.phoneHref}><Icon name="phone"/>{site.phone}</a></div><MessengerContacts/><div class="footer-credit footer-credit-mobile"><a href="https://jakuninoleg.dev/" target="_blank" rel="noopener noreferrer">Дизайн и разработка — <span>OJ</span></a></div></div>
 </div><div class="footer-bottom"><span>© 2026 {site.brand}</span>{legalAvailable?<nav class="footer-documents" aria-label="Юридические документы">{legalDocuments.map(item=><a href={legalHref(item.slug)}>{item.shortTitle}</a>)}</nav>:<button type="button" class="inline-link" data-privacy-open>Политика конфиденциальности</button>}<a href="#top">Наверх <span aria-hidden="true">↑</span></a></div></footer>
 {!legalAvailable&&<dialog class="info-dialog" id="privacy-dialog" aria-labelledby="privacy-heading"><button type="button" class="dialog-close privacy-close" aria-label="Закрыть политику конфиденциальности"><Icon name="close"/></button><h2 id="privacy-heading">Конфиденциальность</h2><p>Контактные данные из заявки используются для ответа на ваш запрос и отправки запрошенных материалов.</p><p>Данные компании и доступ к рабочим документам передаются отдельно, после согласования условий сотрудничества.</p><p>Контакт для вопросов: <a href={'mailto:'+site.email}>{site.email}</a>.</p></dialog>}
 <script>
@@ -26,10 +26,11 @@ import { legalAvailable, legalDocuments, legalHref } from '../data/legal';
   .footer-brand{display:flex;flex-direction:column;align-items:flex-start;align-self:stretch;justify-content:space-between;gap:14px;min-width:0}
   .footer-brand :global(.brand){align-self:flex-start;max-width:100%}
   .footer-credit{display:flex;justify-content:flex-start;font-size:16px;line-height:1.6;color:#496354}
+  .footer-credit-mobile{display:none}
   .footer-credit a{display:inline-flex;align-items:center;gap:5px;min-height:44px}
   .footer-credit span{font-weight:700;color:var(--green);text-decoration:underline;text-decoration-color:#a4b49e;text-underline-offset:5px;transition:text-decoration-color 180ms ease}
   .footer-credit a:is(:hover,:focus-visible) span{text-decoration-color:currentColor}
   #privacy-dialog>p{margin-top:20px;font-size:17px;line-height:1.7}
   @media(max-width:1180px){.footer-top{flex-wrap:wrap}.footer-contacts{display:grid}}
-  @media(max-width:640px){.footer-site-nav{margin-top:28px;gap:14px 24px;font-size:15px}.footer-documents{flex-direction:column;align-items:flex-start;width:100%;flex:auto}}
+  @media(max-width:640px){.footer-site-nav{margin-top:28px;gap:14px 24px;font-size:15px}.footer-documents{flex-direction:column;align-items:flex-start;width:100%;flex:auto}.footer-credit-desktop{display:none}.footer-credit-mobile{display:flex}}
 </style>
