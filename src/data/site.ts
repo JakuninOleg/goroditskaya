@@ -4,6 +4,7 @@ export const site = {
   name: 'Наталья Городицкая', email: 'Gorodickaya@yandex.ru', phone: '+7 (915) 015-15-08', phoneHref: '+79150151508',
   leadEndpoint: 'https://jakuninoleg.dev/api/natalia-lead',
   messengerPhone: '+7 (918) 859-38-00', messengerDigits: '79188593800',
+  maxUrl: 'https://max.ru/u/f9LHodD0cOJqv-DzZg_Czas9AbkgTa6FVCUuykaKeTunrJXUgc3C9UXc4Co',
   role: 'Независимый финансовый директор',
   experienceSince: 2003,
 };
