@@ -9,6 +9,7 @@ import { showFaq } from '../../data/site';
 import Emblem from '../../components/Emblem.astro';
 import Icon from '../../components/Icon.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
+import { entityIds } from '../../data/entities';
 import RelatedCases from '../../components/RelatedCases.astro';
 import ServicePricing from '../../components/ServicePricing.astro';
 import ServiceDelivery from '../../components/ServiceDelivery.astro';
@@ -24,7 +25,7 @@ const contact='#request';
 const origin=Astro.site!;
 const breadcrumbs=[{label:'Услуги',href:'/uslugi/'},{label:service.short}];
 const structuredData=[
- {'@context':'https://schema.org','@type':'Service',name:service.title,description:service.description,url:new URL(serviceHref(service.slug),origin).href,provider:{'@type':'Organization',name:'Городицкая и партнёры',url:new URL('/o-natale/',origin).href},areaServed:{'@type':'Country',name:'Россия'}},
+ {'@context':'https://schema.org','@type':'Service','@id':new URL(serviceHref(service.slug),origin).href+'#service',name:service.title,description:service.description,url:new URL(serviceHref(service.slug),origin).href,mainEntityOfPage:{'@id':new URL(serviceHref(service.slug),origin).href+'#webpage'},provider:{'@id':entityIds.organization},areaServed:{'@type':'Country',name:'Россия'}},
  {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{name:'Главная',item:new URL('/',origin).href},{name:'Услуги',item:new URL('/uslugi/',origin).href},{name:service.short,item:new URL(serviceHref(service.slug),origin).href}].map((item,i)=>({'@type':'ListItem',position:i+1,...item}))}
 ];
 ---

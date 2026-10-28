@@ -10,6 +10,7 @@ import EditorialArt from '../../components/EditorialArt.astro';
 import ReadingNav from '../../components/ReadingNav.astro';
 import ReadingByline from '../../components/ReadingByline.astro';
 import { caseArtKind,caseMinutes } from '../../data/editorial';
+import { entityIds } from '../../data/entities';
 import { caseStudies,caseHref,type CaseStudy } from '../../data/cases';
 import { services,serviceHref } from '../../data/services';
 import '../../styles/cases.css';
@@ -20,7 +21,7 @@ const {study}=Astro.props;
 const related=study.services.map(slug=>services.find(service=>service.slug===slug)!).filter(Boolean);
 const origin=Astro.site!;
 const structuredData=[
-  {'@context':'https://schema.org','@type':'Article',headline:study.title,description:study.description,inLanguage:'ru-RU',mainEntityOfPage:new URL(caseHref(study.slug),origin).href,author:{'@type':'Person',name:'Наталья Городицкая',url:new URL('/o-natale/',origin).href}},
+  {'@context':'https://schema.org','@type':'Article','@id':new URL(caseHref(study.slug),origin).href+'#article',headline:study.title,description:study.description,inLanguage:'ru-RU',mainEntityOfPage:{'@id':new URL(caseHref(study.slug),origin).href+'#webpage'},author:{'@id':entityIds.person},publisher:{'@id':entityIds.organization}},
   {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{name:'Главная',item:new URL('/',origin).href},{name:'Кейсы',item:new URL('/kejsy/',origin).href},{name:study.title,item:new URL(caseHref(study.slug),origin).href}].map((item,i)=>({'@type':'ListItem',position:i+1,...item}))},
 ];
 ---

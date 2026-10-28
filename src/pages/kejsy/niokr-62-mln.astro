@@ -7,9 +7,13 @@ import Icon from '../../components/Icon.astro';
 import RelatedCases from '../../components/RelatedCases.astro';
 import ReadingNav from '../../components/ReadingNav.astro';
 import ReadingByline from '../../components/ReadingByline.astro';
+import { entityIds } from '../../data/entities';
+import { primaryOrigin } from '../../data/seo';
 import '../../styles/publication.css';
+const caseUrl=primaryOrigin+'/kejsy/niokr-62-mln/';
+const structuredData=[{'@context':'https://schema.org','@type':'Article','@id':caseUrl+'#article',headline:'Как затраты на разработки отразили в активах',description:'Анализ затрат на разработки: 62 млн ₽ отнесены к результативным НИОКР. Технология и патенты отражены как активы.',inLanguage:'ru-RU',mainEntityOfPage:{'@id':caseUrl+'#webpage'},author:{'@id':entityIds.person},publisher:{'@id':entityIds.organization}}];
 ---
-<PageLayout title="Кейс: 62 млн ₽ затрат на НИОКР" description="Анализ затрат на разработки: 62 млн ₽ отнесены к результативным НИОКР. Технология и патенты отражены как активы. Подробный разбор кейса Натальи Городицкой.">
+<PageLayout title="Кейс: 62 млн ₽ затрат на НИОКР" description="Анализ затрат на разработки: 62 млн ₽ отнесены к результативным НИОКР. Технология и патенты отражены как активы. Подробный разбор кейса Натальи Городицкой." structuredData={structuredData}>
  <div class="publication">
   <section class="inner-hero"><div class="container"><Breadcrumbs items={[{label:'Кейсы',href:'/kejsy/'},{label:'НИОКР и активы'}]}/><div class="inner-hero-grid story-hero-grid"><div><p class="case-context">Технологическая компания · НИОКР и активы</p><h1>Как затраты на разработки отразили в активах</h1><p class="case-amount">62 млн ₽</p><p class="inner-lead">затрат отнесены к результативным НИОКР. Анализ помог показать созданную технологию и патенты в составе активов компании.</p><ReadingByline minutes={3}/><div class="inner-actions"><a class="button button-yellow" href="#request">Получить консультацию <Icon/></a><a class="text-link" href="#case-result">К результату <Icon/></a></div></div><HeroArtwork name="case-study" caption="Вложения → Технология → Активы"/></div></div></section>
   <div class="container reading-layout case-reading"><ReadingNav links={[{id:'case-problem',title:'Проблема'},{id:'case-work',title:'Решение'},{id:'case-result',title:'Результат'},{id:'case-check',title:'Что проверить у себя'},{id:'case-review',title:'Проверка инвестора'}]}/><article class="reading-body">

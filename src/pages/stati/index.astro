@@ -5,10 +5,12 @@ import PageCta from '../../components/PageCta.astro';
 import StoryCard from '../../components/StoryCard.astro';
 import { articleMinutes,minuteLabel } from '../../data/editorial';
 import { articles,articleHref } from '../../data/articles';
+import { primaryOrigin } from '../../data/seo';
 import '../../styles/articles.css';
 import '../../styles/publication.css';
+const structuredData=[{'@context':'https://schema.org','@type':'ItemList','@id':primaryOrigin+'/stati/#articles',name:'Статьи Натальи Городицкой',numberOfItems:articles.length,mainEntityOfPage:{'@id':primaryOrigin+'/stati/#webpage'},itemListElement:articles.map((article,index)=>({'@type':'ListItem',position:index+1,name:article.title,url:new URL(articleHref(article.slug),primaryOrigin).href}))}];
 ---
-<PageLayout title="Финансы, учёт и НДС при ВЭД: статьи для собственника" description="Бухгалтерский и управленческий учёт, НДС при экспорте и импорте, кассовые разрывы и проверка отчётности. Практические статьи для вашего бизнеса.">
+<PageLayout title="Финансы, учёт и НДС при ВЭД: статьи для собственника" description="Бухгалтерский и управленческий учёт, НДС при экспорте и импорте, кассовые разрывы и проверка отчётности. Практические статьи для вашего бизнеса." structuredData={structuredData}>
  <div class="publication">
   <section class="inner-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи'}]}/><div class="article-index-intro"><h1>Разобраться в цифрах вашего бизнеса</h1><p class="inner-lead">Как связать бухгалтерский и управленческий учёт, проверить НДС при ВЭД и найти причину нехватки денег. Практические разборы для собственников, бухгалтерии и финансовой команды.</p></div></div></section>
   <section class="inner-section container"><div class="story-grid article-index-grid">{articles.map(article=><StoryCard href={articleHref(article.slug)} title={article.title} description={article.description} context={'Наталья Городицкая · '+minuteLabel(articleMinutes(article))} kind={article.diagram}/>)}</div></section>

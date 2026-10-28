@@ -13,6 +13,7 @@ import { articleMinutes } from '../../data/editorial';
 import { articles,articleHref,type Article } from '../../data/articles';
 import { services,serviceHref } from '../../data/services';
 import { primaryOrigin } from '../../data/seo';
+import { entityIds } from '../../data/entities';
 import '../../styles/articles.css';
 import '../../styles/publication.css';
 export function getStaticPaths(){return articles.map(article=>({params:{slug:article.slug},props:{article}}));}
@@ -22,7 +23,8 @@ const related=article.relatedServices.map(slug=>services.find(service=>service.s
 const publishedAt=article.publishedAt??'2026-10-24';
 const updatedAt=article.updatedAt??'2026-10-27';
 const formatDate=(date:string)=>new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',year:'numeric'}).format(new Date(date+'T12:00:00+03:00')).replace(/\s?г\.$/,'');
-const structuredData=[{'@context':'https://schema.org','@type':'Article',headline:article.title,description:article.description,inLanguage:'ru-RU',mainEntityOfPage:new URL(articleHref(article.slug),primaryOrigin).href,datePublished:publishedAt,dateModified:updatedAt,author:{'@type':'Person',name:'Наталья Городицкая',url:new URL('/o-natale/',primaryOrigin).href}}];
+const articleUrl=new URL(articleHref(article.slug),primaryOrigin).href;
+const structuredData=[{'@context':'https://schema.org','@type':'Article','@id':articleUrl+'#article',headline:article.title,description:article.description,inLanguage:'ru-RU',mainEntityOfPage:{'@id':articleUrl+'#webpage'},datePublished:publishedAt,dateModified:updatedAt,author:{'@id':entityIds.person},publisher:{'@id':entityIds.organization}}];
 ---
 <PageLayout title={article.title} description={article.description} structuredData={structuredData}>
  <div class="publication">
