@@ -3,11 +3,52 @@ import '../styles/editorial-art.css';
 import type { ArtKind } from '../data/editorial';
 interface Props { kind:ArtKind; caption?:string; compact?:boolean; }
 const {kind,caption,compact=false}=Astro.props;
-const labels:Record<ArtKind,string>={cash:'Продажа, отсрочка и поступление денег',ledger:'Путь от сводного отчёта к документу',connections:'Операции связаны с правилами и отчётностью',tax:'Сверка операций между двумя налоговыми регистрами',model:'Доходы, затраты и финансирование в трёхлетнем бюджете',review:'Проверка документов и финансовой картины',planning:'Смета, выполнение и контроль затрат',asset:'От затрат к отдельному объекту учёта',contracts:'Договор связан с документами и расчётами',guarantee:'Контракт, банк и банковская гарантия',research:'Разработка, права и созданный актив'};
+const labels:Record<ArtKind,string>={accounting:'Один документ через правила учёта связан с бухгалтерским отчётом и результатом проекта',export:'Экспортная отгрузка и подтверждение ставки НДС 0 процентов',import:'Ввоз товара, расчёт и уплата импортного НДС',cash:'Продажа, отсрочка и поступление денег',ledger:'Путь от сводного отчёта к документу',connections:'Операции связаны с правилами и отчётностью',tax:'Сверка операций между двумя налоговыми регистрами',model:'Доходы, затраты и финансирование в трёхлетнем бюджете',review:'Проверка документов и финансовой картины',planning:'Смета, выполнение и контроль затрат',asset:'От затрат к отдельному объекту учёта',contracts:'Договор связан с документами и расчётами',guarantee:'Контракт, банк и банковская гарантия',research:'Разработка, права и созданный актив'};
 ---
 <figure class:list={['editorial-art','art-'+kind,{'art-compact':compact}]}>
   <svg viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg" role={compact?'presentation':'img'} aria-label={compact?undefined:labels[kind]} aria-hidden={compact?'true':undefined}>
     <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    {kind==='accounting'&&<>
+      <rect class="art-paper" x="57" y="113" width="145" height="174" rx="9"/>
+      <text class="art-small" x="129" y="155" text-anchor="middle">Документ</text>
+      <path class="art-hairline" d="M83 181H176M83 204H160M83 227H176M83 250H146"/>
+      <path class="art-route" d="M202 200H247M389 200H407Q424 200 424 183V142Q424 125 441 125M407 200Q424 200 424 217V258Q424 275 441 275"/>
+      <rect class="art-highlight" x="247" y="157" width="142" height="86" rx="9"/>
+      <text x="318" y="207" text-anchor="middle">Правила</text>
+      <rect class="art-solid" x="441" y="81" width="144" height="88" rx="9"/>
+      <text class="art-light" x="513" y="118" text-anchor="middle">БУ</text><text class="art-light art-small" x="513" y="145" text-anchor="middle">Отчётность</text>
+      <rect class="art-paper" x="441" y="231" width="144" height="88" rx="9"/>
+      <text x="513" y="268" text-anchor="middle">УУ</text><text class="art-small" x="513" y="295" text-anchor="middle">Проекты</text>
+      <text class="art-label" x="318" y="350" text-anchor="middle">Общие данные · Понятные различия</text>
+    </>}
+    {kind==='export'&&<>
+      <path class="art-hairline" d="M53 321H587"/>
+      <path class="art-solid" d="m70 195 75-33 75 33v113H70Z"/>
+      <path class="art-light-line" d="m70 195 75 34 75-34M145 229v79M107 178l76 34v32"/>
+      <text x="145" y="126" text-anchor="middle">Отгрузка</text>
+      <path class="art-route" d="M221 240H270Q290 240 290 220V163Q290 143 310 143H333"/>
+      <path class="art-route" d="m322 134 11 9-11 9"/>
+      <rect class="art-paper" x="333" y="70" width="233" height="240" rx="10"/>
+      <text class="art-small" x="450" y="113" text-anchor="middle">Подтверждение</text>
+      <path class="art-hairline" d="M361 140H538M361 165H506"/>
+      <circle class="art-seal" cx="450" cy="238" r="48"/>
+      <text x="450" y="252" text-anchor="middle" font-size="43">0%</text>
+      <text class="art-label" x="320" y="356" text-anchor="middle">Документы · Срок 180 дней · Декларация</text>
+    </>}
+    {kind==='import'&&<>
+      <path class="art-hairline" d="M53 321H587"/>
+      <path class="art-paper" d="m70 195 75-33 75 33v113H70Z"/>
+      <path class="art-route" d="m70 195 75 34 75-34M145 229v79M107 178l76 34v32"/>
+      <text x="145" y="126" text-anchor="middle">Поставка</text>
+      <path class="art-route" d="M221 240H270Q290 240 290 220V163Q290 143 310 143H333"/>
+      <path class="art-route" d="m322 134 11 9-11 9"/>
+      <rect class="art-solid" x="333" y="70" width="233" height="240" rx="10"/>
+      <text class="art-light" x="450" y="114" text-anchor="middle">Ввозной НДС</text>
+      <path class="art-light-line" d="M362 144H537M362 169H506"/>
+      <circle class="art-seal" cx="450" cy="242" r="48"/>
+      <path class="art-mark" d="m427 242 16 16 30-34"/>
+      <text class="art-label" x="320" y="356" text-anchor="middle">Расчёт · Уплата · Учёт</text>
+    </>}
     {kind==='cash'&&<>
       <path class="art-hairline" d="M62 108H578M62 280H578"/>
       <path class="art-route" d="M80 130H270Q292 130 292 152V224Q292 246 314 246H548"/>

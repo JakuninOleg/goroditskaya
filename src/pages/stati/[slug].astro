@@ -19,19 +19,22 @@ export function getStaticPaths(){return articles.map(article=>({params:{slug:art
 interface Props { article:Article; }
 const { article }=Astro.props;
 const related=article.relatedServices.map(slug=>services.find(service=>service.slug===slug)!).filter(Boolean);
-const structuredData=[{'@context':'https://schema.org','@type':'Article',headline:article.title,description:article.description,inLanguage:'ru-RU',mainEntityOfPage:new URL(articleHref(article.slug),primaryOrigin).href,datePublished:'2026-10-24',dateModified:'2026-10-27',author:{'@type':'Person',name:'Наталья Городицкая',url:new URL('/o-natale/',primaryOrigin).href}}];
+const publishedAt=article.publishedAt??'2026-10-24';
+const updatedAt=article.updatedAt??'2026-10-27';
+const formatDate=(date:string)=>new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',year:'numeric'}).format(new Date(date+'T12:00:00+03:00')).replace(/\s?г\.$/,'');
+const structuredData=[{'@context':'https://schema.org','@type':'Article',headline:article.title,description:article.description,inLanguage:'ru-RU',mainEntityOfPage:new URL(articleHref(article.slug),primaryOrigin).href,datePublished:publishedAt,dateModified:updatedAt,author:{'@type':'Person',name:'Наталья Городицкая',url:new URL('/o-natale/',primaryOrigin).href}}];
 ---
 <PageLayout title={article.title} description={article.description} structuredData={structuredData}>
  <div class="publication">
-  <section class="inner-hero article-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи',href:'/stati/'},{label:article.title}]}/><div class="inner-hero-grid story-hero-grid"><div class="article-heading"><h1>{article.title}</h1><p class="inner-lead">{article.lead}</p><ReadingByline minutes={articleMinutes(article)} date="24 октября 2026"/></div><EditorialArt kind={article.diagram}/></div></div></section>
+  <section class="inner-hero article-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи',href:'/stati/'},{label:article.title}]}/><div class="inner-hero-grid story-hero-grid"><div class="article-heading"><h1>{article.title}</h1><p class="inner-lead">{article.lead}</p><ReadingByline minutes={articleMinutes(article)} date={formatDate(publishedAt)} dateTime={publishedAt}/></div><EditorialArt kind={article.diagram}/></div></div></section>
   <div class="container reading-layout"><ReadingNav links={article.sections}/>
-    <article class="article-body reading-body">{article.sections.map((section,i)=><section id={section.id}><h2>{section.title}</h2>{section.paragraphs.map(text=><p>{text}</p>)}{section.items&&<ul>{section.items.map(text=><li>{text.includes(': ')?<><strong>{text.slice(0,text.indexOf(': ')+1)}</strong>{text.slice(text.indexOf(': ')+1)}</>:text}</li>)}</ul>}{i===0&&<ArticleDiagram type={article.diagram}/>}{section.example&&<ArticleExample example={section.example}/>}</section>)}
+    <article class="article-body reading-body">{article.sections.map((section,i)=><section id={section.id}><h2>{section.title}</h2>{section.paragraphs.map(text=><p>{text}</p>)}{section.items&&<ul>{section.items.map(text=><li>{text.includes(': ')?<><strong>{text.slice(0,text.indexOf(': ')+1)}</strong>{text.slice(text.indexOf(': ')+1)}</>:text}</li>)}</ul>}{i===0&&<ArticleDiagram type={article.diagram}/>}{section.example&&<ArticleExample example={section.example}/>} {section.links&&<div class="article-context-links">{section.links.map(link=><a class="text-link" href={link.href}>{link.label}<Icon/></a>)}</div>}</section>)}
       <section class="article-takeaway"><h2>С чего начать</h2><p>{article.takeaway}</p><div class="article-next-step"><a class="button button-yellow" href="#request">{article.offer.action}<Icon/></a>{related[0]&&<a class="text-link" href={serviceHref(related[0].slug)}>{article.offer.serviceLabel}<Icon/></a>}</div></section>
-      <section class="article-sources"><h2>Источники и дополнительные материалы</h2><ul>{article.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul><p>Материал обновлён 27 октября 2026 года.</p></section>
+      <section class="article-sources"><h2>Источники и дополнительные материалы</h2><ul>{article.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul><p>Материал обновлён {formatDate(updatedAt)} года.</p></section>
     </article>
   </div>
   <section class="inner-section container article-related"><h2>Помощь с этой задачей</h2><div class="article-links">{related.map(service=><a href={serviceHref(service.slug)}><h3>{service.short}</h3><p>{service.question}</p><span class="text-link">Состав работы <Icon/></span></a>)}</div></section>
-  <RelatedCases services={article.relatedServices} illustrated/>
+  <RelatedCases services={article.relatedServices} slugs={article.relatedCases} illustrated/>
   <PageCta title={article.offer.title} text={article.offer.text} service={related[0]?.title}/>
  </div>
 </PageLayout>

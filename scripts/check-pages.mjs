@@ -3,6 +3,7 @@ import { readFile,readdir,stat,writeFile,mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { services } from '../src/data/services.ts';
 import { caseStudies,caseHref } from '../src/data/cases.ts';
+import { articles,articleHref } from '../src/data/articles.ts';
 import { primaryOrigin,searchIndexingEnabled } from '../src/data/seo.ts';
 import { legalAvailable,legalDocuments } from '../src/data/legal.ts';
 
@@ -42,7 +43,8 @@ for(const file of htmlFiles){
   assert(!/Демонстрация|условные данные|отправка не подключена|данные ещё не отправлены|Или скачать комплект сразу|financial-templates\.xlsx|Технор[эе]д|С 1996/i.test(html),`Removed copy or ungated download: ${path}`);
   pages.set(path,{html,ids:new Set(ids),links:[...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map(match=>match[1].replaceAll('&amp;','&'))});
 }
-assert.equal(pages.size,25+caseStudies.length+(legalAvailable?legalDocuments.length:0),'Expected content, legal documents and 404');
+const staticRoutes=['/','/404.html','/uslugi/','/kejsy/','/stati/','/kontakty/','/materialy/','/o-natale/'];
+assert.equal(pages.size,staticRoutes.length+services.length+articles.length+caseStudies.length+(legalAvailable?legalDocuments.length:0),'Expected content, legal documents and 404');
 let checkedLinks=0;
 const graph=new Map();
 for(const [path,page] of pages){
@@ -77,6 +79,18 @@ for(const study of caseStudies){
   const page=pages.get(caseHref(study.slug));
   assert(page,`Missing case: ${study.slug}`);
   for(const slug of study.services)assert(page.html.includes(`/uslugi/${slug}/`),`Case links back to service ${slug}: ${study.slug}`);
+}
+for(const article of articles){
+  const path=articleHref(article.slug);
+  const page=pages.get(path);
+  assert(page,`Missing article: ${article.slug}`);
+  const primaryService=pages.get(`/uslugi/${article.relatedServices[0]}/`);
+  assert(primaryService?.links.includes(path),`Primary service links back to article: ${article.slug}`);
+  for(const slug of article.relatedServices)assert(page.links.includes(`/uslugi/${slug}/`),`Article links to service ${slug}: ${article.slug}`);
+  for(const slug of article.relatedCases??[]){
+    assert(page.links.includes(caseHref(slug)),`Article links to case ${slug}: ${article.slug}`);
+    assert(pages.get(caseHref(slug))?.links.includes(path),`Case links back to article ${article.slug}: ${slug}`);
+  }
 }
 for(const path of ['/','/kontakty/','/materialy/']){
   const html=pages.get(path).html;

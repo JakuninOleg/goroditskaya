@@ -8,9 +8,9 @@ import { articles,articleHref } from '../../data/articles';
 import '../../styles/articles.css';
 import '../../styles/publication.css';
 ---
-<PageLayout title="Финансы и учёт: материалы для собственника" description="Кассовые разрывы, анализ ОСВ, взаимосвязи участков учёта и расхождения налоговой отчётности. Материалы для разбора финансовых задач бизнеса.">
+<PageLayout title="Финансы, учёт и НДС при ВЭД: статьи для собственника" description="Бухгалтерский и управленческий учёт, НДС при экспорте и импорте, кассовые разрывы и проверка отчётности. Практические статьи для вашего бизнеса.">
  <div class="publication">
-  <section class="inner-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи'}]}/><div class="article-index-intro"><h1>Разобраться в цифрах бизнеса</h1><p class="inner-lead">Почему не хватает денег, где искать расхождения и как связать отчёт с решением. Практические разборы для собственников, бухгалтерии и финансовой команды.</p></div></div></section>
+  <section class="inner-hero"><div class="container"><Breadcrumbs items={[{label:'Статьи'}]}/><div class="article-index-intro"><h1>Разобраться в цифрах вашего бизнеса</h1><p class="inner-lead">Как связать бухгалтерский и управленческий учёт, проверить НДС при ВЭД и найти причину нехватки денег. Практические разборы для собственников, бухгалтерии и финансовой команды.</p></div></div></section>
   <section class="inner-section container"><div class="story-grid article-index-grid">{articles.map(article=><StoryCard href={articleHref(article.slug)} title={article.title} description={article.description} context={'Наталья Городицкая · '+minuteLabel(articleMinutes(article))} kind={article.diagram}/>)}</div></section>
   <PageCta title="Нужен разбор вашей ситуации?" text="Опишите, какие показатели вызывают вопросы. Определим, с каких данных начать и какой формат работы подойдёт."/>
  </div>

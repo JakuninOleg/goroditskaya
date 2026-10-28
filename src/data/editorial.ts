@@ -1,7 +1,7 @@
 import type { Article } from './articles';
 import type { CaseStudy } from './cases';
 
-export type ArtKind = 'cash'|'ledger'|'connections'|'tax'|'model'|'review'|'planning'|'asset'|'contracts'|'guarantee'|'research';
+export type ArtKind = Article['diagram']|'model'|'review'|'planning'|'asset'|'contracts'|'guarantee'|'research';
 const caseArt:Record<string,ArtKind>={
   'niokr-62-mln':'research','erp-proektnyy-uchet':'connections',
   'vosstanovlenie-ucheta-it-gruppy':'ledger','finansovaya-model-proizvodstva':'model',

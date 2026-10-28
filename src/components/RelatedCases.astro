@@ -3,11 +3,13 @@ import { caseStudies,casesForServices,caseHref } from '../data/cases';
 import Icon from './Icon.astro';
 import StoryCard from './StoryCard.astro';
 import { caseArtKind } from '../data/editorial';
-interface Props { service?:string; services?:string[]; exclude?:string; home?:boolean; limit?:number; illustrated?:boolean; branded?:boolean; }
-const { service,services=[],exclude,home=false,limit=2,illustrated=false,branded=false }=Astro.props;
+interface Props { service?:string; services?:string[]; slugs?:string[]; exclude?:string; home?:boolean; limit?:number; illustrated?:boolean; branded?:boolean; }
+const { service,services=[],slugs,exclude,home=false,limit=2,illustrated=false,branded=false }=Astro.props;
 const selected=home
   ? ['erp-proektnyy-uchet','vosstanovlenie-ucheta-it-gruppy','kontrol-zatrat-stroitelstva'].map(slug=>caseStudies.find(study=>study.slug===slug)!)
-  : casesForServices(service?[service]:services,exclude).slice(0,limit);
+  : slugs
+    ? slugs.map(slug=>caseStudies.find(study=>study.slug===slug)!).filter(Boolean).slice(0,limit)
+    : casesForServices(service?[service]:services,exclude).slice(0,limit);
 import '../styles/cases.css';
 import '../styles/home-stories.css';
 ---

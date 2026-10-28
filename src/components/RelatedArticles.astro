@@ -5,9 +5,10 @@ import EditorialArt from './EditorialArt.astro';
 import { articleMinutes,minuteLabel } from '../data/editorial';
 import '../styles/articles.css';
 import '../styles/home-stories.css';
-interface Props { service?:string; limit?:number; home?:boolean; branded?:boolean; }
-const { service,limit=3,home=false,branded=false }=Astro.props;
-const selected=articles.filter(article=>!service||article.relatedServices.includes(service)).slice(0,limit);
+interface Props { service?:string; caseSlug?:string; limit?:number; home?:boolean; branded?:boolean; }
+const { service,caseSlug,limit=3,home=false,branded=false }=Astro.props;
+const selected=articles.filter(article=>(!service||article.relatedServices.includes(service))&&(!caseSlug||article.relatedCases?.includes(caseSlug)))
+  .sort((a,b)=>service?a.relatedServices.indexOf(service)-b.relatedServices.indexOf(service):0).slice(0,limit);
 ---
 {selected.length>0&&(home||branded?<section class="section home-reading" aria-labelledby="home-reading-heading"><div class="container">
   <div class="home-reading-heading"><div><h2 id="home-reading-heading">Разобраться в причине</h2><p>Что стоит за цифрами и с чего начать проверку.</p></div><a class="text-link" href="/stati/">Все материалы <Icon/></a></div>
