@@ -27,6 +27,7 @@ async function sendLead(form:HTMLFormElement,fields:Record<string,string>,succes
       failureMessage=response.status===429?'Слишком много попыток. Подождите минуту и отправьте заявку ещё раз.':response.status===400?'Проверьте контакт и согласие. Если страница была открыта давно, обновите её перед отправкой.':'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами по телефону.';
       throw new Error('delivery_failed');
     }
+    document.dispatchEvent(new CustomEvent('site:lead-success',{detail:{kind:fields.kind==='templates'?'templates':'consultation'}}));
     form.reset();
     delete form.dataset.lastPayload;delete form.dataset.requestId;
     if(status){status.dataset.state='success';status.textContent=successText;}

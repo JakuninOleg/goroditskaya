@@ -1,0 +1,22 @@
+---
+import { analyticsConfigured } from '../data/analytics';
+---
+{analyticsConfigured&&<section class="analytics-consent" id="analytics-consent" aria-labelledby="analytics-consent-title" hidden>
+  <h2 id="analytics-consent-title">Статистика сайта</h2>
+  <p>С вашего согласия используем Яндекс Метрику и Google Analytics, чтобы понимать, какие страницы полезны посетителям. <a href="/dokumenty/politika-konfidentsialnosti/#technical">Подробнее об аналитике</a></p>
+  <div class="analytics-consent-actions"><button class="button button-yellow" type="button" data-analytics-allow>Разрешить</button><button class="analytics-decline" type="button" data-analytics-deny>Не разрешать</button></div>
+</section>}
+<script>import '../scripts/analytics';</script>
+<style>
+  .analytics-consent[hidden]{display:none}
+  .analytics-consent{position:fixed;z-index:90;right:24px;bottom:24px;width:min(440px,calc(100% - 48px));padding:22px;background:#faf8f0;color:var(--green);border-radius:16px;box-shadow:0 12px 40px #153e3929}
+  .analytics-consent h2{font:600 18px/1.4 var(--sans);letter-spacing:0;margin:0 0 10px}
+  .analytics-consent p{font:400 14px/1.65 var(--sans);color:#405b50;margin:0}
+  .analytics-consent p a{text-decoration:underline;text-underline-offset:3px}
+  .analytics-consent-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+  .analytics-consent-actions button{font:600 14px/1.4 var(--sans);min-height:44px;padding:10px 14px;justify-content:center;cursor:pointer}
+  .analytics-decline{border:1px solid #a5b49e;border-radius:30px;background:transparent;color:var(--green);transition:background-color 180ms ease}
+  .analytics-decline:hover{background:#e4e9dd}
+  @media(max-width:640px){.analytics-consent{right:12px;bottom:12px;width:calc(100% - 24px);padding:18px}.analytics-consent-actions{gap:10px}}
+  @media(prefers-reduced-motion:reduce){.analytics-decline{transition:none}}
+</style>

@@ -9,7 +9,9 @@ import '@fontsource/prata/cyrillic-400.css';
 import '@fontsource/prata/latin-400.css';
 import '../styles/hybrid.css';
 import '../styles/refinements.css';
-import { primaryOrigin, searchIndexingEnabled } from '../data/seo';
+import { primaryOrigin, searchIndexingEnabled, seoTitles } from '../data/seo';
+import { yandexVerification } from '../data/analytics';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 import { site } from '../data/site';
 import { entityIds, siteEntities } from '../data/entities';
 import manropeCyrillic from '@fontsource/manrope/files/manrope-cyrillic-400-normal.woff2?url';
@@ -17,10 +19,11 @@ import prataCyrillic from '@fontsource/prata/files/prata-cyrillic-400-normal.wof
 interface Props { title?: string; description?: string; structuredData?:Record<string,unknown>[]; noindex?:boolean; preloadHero?:boolean; }
 const { title = site.brand+' — независимый финансовый директор', description = 'Независимый финансовый директор: управленческий учёт, бюджетирование, финансовые модели и восстановление учёта. Финансовая команда для вашего бизнеса по всей России.', structuredData=[], noindex=false,preloadHero=false } = Astro.props;
 const canonical = new URL(Astro.url.pathname,primaryOrigin).href;
+const seoTitle = seoTitles[Astro.url.pathname] ?? title;
 const pageTypes:Record<string,string>={'/o-natale/':'AboutPage','/kontakty/':'ContactPage','/uslugi/':'CollectionPage','/stati/':'CollectionPage','/kejsy/':'CollectionPage'};
 const pageEntity={
   '@type':pageTypes[Astro.url.pathname]??'WebPage','@id':canonical+'#webpage',
-  url:canonical,name:title,description,inLanguage:'ru-RU',
+  url:canonical,name:seoTitle,description,inLanguage:'ru-RU',
   isPartOf:{'@id':entityIds.website},
   ...(Astro.url.pathname==='/o-natale/'?{mainEntity:{'@id':entityIds.person}}:{}),
   ...(Astro.url.pathname==='/'?{mainEntity:{'@id':entityIds.organization}}:{}),
@@ -34,6 +37,7 @@ const pageStructuredData=[...(!noindex?[{'@context':'https://schema.org','@graph
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="robots" content={noindex || !searchIndexingEnabled ? 'noindex, nofollow' : 'index, follow'} />
+    {yandexVerification&&<meta name="yandex-verification" content={yandexVerification}/>}
     <meta name="theme-color" content="#0f3d33" />
     <link rel="preload" as="font" type="font/woff2" href={manropeCyrillic} crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href={prataCyrillic} crossorigin/>
@@ -45,7 +49,7 @@ const pageStructuredData=[...(!noindex?[{'@context':'https://schema.org','@graph
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:site_name" content={site.brand}/>
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={seoTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     {!noindex&&<link rel="canonical" href={canonical}/>}
@@ -58,7 +62,7 @@ const pageStructuredData=[...(!noindex?[{'@context':'https://schema.org','@graph
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <title>{title}</title>
+    <title>{seoTitle}</title>
   </head>
-  <body><slot /><noscript><style>.faq-answer[hidden]{display:block!important}.faq-toggle-art{display:none}</style></noscript></body>
+  <body><slot /><AnalyticsConsent/><noscript><style>.faq-answer[hidden]{display:block!important}.faq-toggle-art{display:none}</style></noscript></body>
 </html>

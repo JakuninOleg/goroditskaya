@@ -20,7 +20,7 @@ const contents=[...document.sections.map(section=>({id:section.id,title:section.
     <section class="inner-hero legal-hero"><div class="container">
       <Breadcrumbs items={[{label:document.shortTitle}]}/>
       <h1>{document.title}</h1><p class="inner-lead">{document.description}</p>
-      <p class="legal-edition">Редакция от <time datetime={legalVersion}>{legalDate}</time></p>
+      <p class="legal-edition">Редакция от <time datetime={document.updatedAt??legalVersion}>{document.updatedLabel??legalDate}</time></p>
     </div></section>
     <nav class="container legal-switcher" aria-label="Юридические документы">{legalDocuments.map(item=><a href={legalHref(item.slug)} aria-current={item.slug===document.slug?'page':undefined}>{item.shortTitle}</a>)}</nav>
     <div class="container reading-layout legal-reading"><ReadingNav links={contents}/><article class="reading-body legal-body">
