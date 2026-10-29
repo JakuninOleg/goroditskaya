@@ -35,7 +35,7 @@ function activate() {
       w.gtag('js', new Date());
       appendScript('google-site-analytics', 'https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(analytics.googleId));
     }
-    if (analytics.metrikaId) appendScript('yandex-site-analytics', 'https://mc.yandex.ru/metrika/tag.js');
+    if (analytics.metrikaId) appendScript('yandex-site-analytics', 'https://mc.yandex.ru/metrika/tag.js?id='+analytics.metrikaId);
     librariesAdded = true;
   }
   if (analytics.googleId) {
@@ -43,7 +43,7 @@ function activate() {
     w.gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     w.gtag('config', analytics.googleId, { allow_google_signals: false, allow_ad_personalization_signals: false, page_location: location.origin+location.pathname, page_referrer: document.referrer ? new URL(document.referrer).origin : '' });
   }
-  if (analytics.metrikaId) w.ym(analytics.metrikaId, 'init', { clickmap: false, trackLinks: true, accurateTrackBounce: true, webvisor: false, trackHash: false, url: location.origin+location.pathname, referer: document.referrer ? new URL(document.referrer).origin : '' });
+  if (analytics.metrikaId) w.ym(analytics.metrikaId, 'init', { ssr: true, clickmap: false, trackLinks: true, accurateTrackBounce: true, webvisor: false, trackHash: false, url: location.origin+location.pathname, referrer: document.referrer ? new URL(document.referrer).origin : '' });
 }
 
 function deactivate() {
