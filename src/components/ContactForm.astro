@@ -31,6 +31,17 @@ const Heading=standalone?'h2':'h3';
     <button class="button button-yellow form-submit" type="submit"><span data-submit-label>Отправить заявку</span><Icon/></button>
     <FormFeedback id="contact-feedback"/>
   </form>
+  <section class="contact-submit-state" data-contact-state hidden role="status" aria-live="polite" aria-atomic="true">
+    <div class="contact-submit-spinner" aria-hidden="true"></div>
+    <div class="contact-submit-check" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="32"/><path d="m25 40 10 10 21-22"/></svg></div>
+    <Heading class="contact-submit-title" data-state-title tabindex="-1">Заявка отправлена</Heading>
+    <p class="contact-submit-text" data-state-text>Спасибо за обращение. Свяжемся с вами в ближайшее рабочее время.</p>
+    <div class="contact-submit-contact" data-success-only hidden>
+      <span class="contact-submit-phone-icon"><Icon name="phone"/></span>
+      <div><a href={'tel:'+site.phoneHref}>{site.phone}</a><p>Если вопрос срочный, позвоните нам.</p></div>
+    </div>
+    <button class="contact-submit-reset" type="button" data-success-only data-contact-reset hidden>Отправить ещё одну заявку <Icon/></button>
+  </section>
   <noscript><style>#contact-form{display:none}</style><p class="form-note">Можно написать напрямую: <a href={'mailto:'+site.email}>{site.email}</a>.</p></noscript>
 </div>
 <script>import '../scripts/contact';</script>

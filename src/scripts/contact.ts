@@ -1,8 +1,26 @@
 import { site } from '../data/site';
 import { attachRuPhoneMask, normalizeRuPhone } from '../lib/ru-phone';
 
+function setContactState(form:HTMLFormElement,state:'sending'|'success'|null){
+  const panel=form.closest<HTMLElement>('.contact-panel');
+  const view=panel?.querySelector<HTMLElement>('[data-contact-state]');
+  if(!panel||!view)return;
+  form.inert=state!==null;
+  if(state)form.setAttribute('aria-hidden','true');else form.removeAttribute('aria-hidden');
+  view.hidden=state===null;
+  if(!state){delete panel.dataset.submitState;return;}
+  panel.dataset.submitState=state;
+  view.setAttribute('aria-busy',String(state==='sending'));
+  const heading=view.querySelector<HTMLElement>('[data-state-title]');
+  const text=view.querySelector<HTMLElement>('[data-state-text]');
+  if(heading)heading.textContent=state==='sending'?'Отправляем заявку…':'Заявка отправлена';
+  if(text)text.textContent=state==='sending'?'Пожалуйста, подождите. Это займёт несколько секунд.':'Спасибо за обращение. Свяжемся с вами в ближайшее рабочее время.';
+  view.querySelectorAll<HTMLElement>('[data-success-only]').forEach(element=>{element.hidden=state!=='success';});
+  heading?.focus({preventScroll:true});
+}
+
 async function sendLead(form:HTMLFormElement,fields:Record<string,string>,successText:string){
-  if(form.dataset.submitting==='true')return;
+  if(form.dataset.submitting==='true'||form.inert)return;
   const status=form.querySelector<HTMLElement>('.form-feedback');
   const button=form.querySelector<HTMLButtonElement>('button[type="submit"]');
   const label=button?.querySelector<HTMLElement>('[data-submit-label]');
@@ -16,6 +34,7 @@ async function sendLead(form:HTMLFormElement,fields:Record<string,string>,succes
   if(button)button.disabled=true;
   if(label)label.textContent='Отправляем…';
   if(status){status.dataset.state='pending';status.textContent='Отправляем вашу заявку…';}
+  setContactState(form,'sending');
   let failureMessage='';
   try{
     const response=await fetch(import.meta.env.PUBLIC_LEAD_API_URL||site.leadEndpoint,{
@@ -31,8 +50,10 @@ async function sendLead(form:HTMLFormElement,fields:Record<string,string>,succes
     form.reset();
     delete form.dataset.lastPayload;delete form.dataset.requestId;
     if(status){status.dataset.state='success';status.textContent=successText;}
+    setContactState(form,'success');
   }catch{
-    if(status){status.dataset.state='error';status.textContent=failureMessage||'Не удалось связаться с сервером. Данные сохранены в форме — попробуйте отправить ещё раз.';}
+    setContactState(form,null);
+    if(status){status.dataset.state='error';status.textContent=failureMessage||'Не удалось связаться с сервером. Данные сохранены в форме — попробуйте отправить ещё раз.';status.tabIndex=-1;status.focus({preventScroll:true});}
   }finally{
     delete form.dataset.submitting;form.removeAttribute('aria-busy');
     if(button)button.disabled=false;if(label)label.textContent=initialLabel;
@@ -41,6 +62,12 @@ async function sendLead(form:HTMLFormElement,fields:Record<string,string>,succes
 
 
 const form=document.getElementById('contact-form') as HTMLFormElement|null;
+form?.closest('.contact-panel')?.querySelector('[data-contact-reset]')?.addEventListener('click',()=>{
+  setContactState(form,null);
+  const status=form.querySelector<HTMLElement>('.form-feedback');
+  if(status){delete status.dataset.state;status.textContent='';}
+  form.querySelector<HTMLInputElement>('#contact-method-fields input:not([disabled])')?.focus({preventScroll:true});
+});
 const contactPhone=document.getElementById('contact-phone') as HTMLInputElement|null;
 if(contactPhone)attachRuPhoneMask(contactPhone,{onValueChange:()=>contactPhone.setCustomValidity('')});
 const contactEmail=document.getElementById('contact-email') as HTMLInputElement|null;
