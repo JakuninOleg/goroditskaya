@@ -38,6 +38,7 @@ const pageStructuredData=[...(!noindex?[{'@context':'https://schema.org','@graph
     <meta name="description" content={description} />
     <meta name="robots" content={noindex || !searchIndexingEnabled ? 'noindex, nofollow' : 'index, follow'} />
     {yandexVerification&&<meta name="yandex-verification" content={yandexVerification}/>}
+    <meta name="msvalidate.01" content="615E6ADC97EAEB4133AA5DFB7965A075"/>
     <meta name="theme-color" content="#0f3d33" />
     <link rel="preload" as="font" type="font/woff2" href={manropeCyrillic} crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href={prataCyrillic} crossorigin/>
